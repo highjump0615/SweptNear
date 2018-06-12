@@ -12,6 +12,7 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var mPageControl: UIPageControl!
     @IBOutlet weak var mScrollView: UIScrollView!
+    @IBOutlet weak var mButContinue: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,6 +23,10 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidLayoutSubviews() {
+        mButContinue.makeRound()
     }
     
 
@@ -48,6 +53,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         }
         else {
             // go to next page
+            let signinVC = SignInViewController(nibName: "SigninViewController", bundle: nil)
+            self.navigationController?.pushViewController(signinVC, animated: true)
         }
     }
     

@@ -17,6 +17,8 @@
 		C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */; };
 		C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0820CFDE3300B42B7A /* Extensions.swift */; };
 		C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0A20CFDF8A00B42B7A /* Constants.swift */; };
+		C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */; };
+		C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0E20D05FD600B42B7A /* SignInViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +55,8 @@
 		C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		C3959F0820CFDE3300B42B7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C3959F0A20CFDF8A00B42B7A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
+		C3959F0E20D05FD600B42B7A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */,
+				C3959F0E20D05FD600B42B7A /* SignInViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -153,6 +158,7 @@
 		C3959F0020CF86E200B42B7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -287,6 +293,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C368E5C420CF09E3000DA7DC /* LaunchScreen.storyboard in Resources */,
+				C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */,
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
@@ -317,6 +324,7 @@
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
 				C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */,
+				C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */,
 				C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
