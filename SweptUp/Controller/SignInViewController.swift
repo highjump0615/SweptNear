@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
-class SignInViewController: UIViewController {
+class SignInViewController: UIViewController, UITextFieldDelegate {
     
+    @IBOutlet weak var mViewInput: UIView!
     @IBOutlet weak var mViewEmail: UIView!
     @IBOutlet weak var mTextEmail: UITextField!
     @IBOutlet weak var mViewPassword: UIView!
@@ -25,6 +27,8 @@ class SignInViewController: UIViewController {
                                                               attributes: [NSAttributedStringKey.foregroundColor: colorGray])
         mTextPassword.attributedPlaceholder = NSAttributedString(string: "Password",
                                                                  attributes: [NSAttributedStringKey.foregroundColor: colorGray])
+        // keyboard avoiding
+        KeyboardAvoiding.avoidingView = mViewInput
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,7 +42,11 @@ class SignInViewController: UIViewController {
         mButSignin.makeRound()
     }
     
-
+    
+    @IBAction func onButSignin(_ sender: Any) {
+        doSignin()
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -48,5 +56,22 @@ class SignInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    // MARK: - UITextFieldDelegate
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == mTextEmail {
+            mTextPassword.becomeFirstResponder()
+        }
+        else if textField == mTextPassword {
+            textField.resignFirstResponder()
+            doSignin()
+        }
+        
+        return true
+    }
+    
+    private func doSignin() {
+        
+    }
 
 }
