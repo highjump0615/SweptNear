@@ -22,6 +22,10 @@
 		C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0A20CFDF8A00B42B7A /* Constants.swift */; };
 		C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */; };
 		C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0E20D05FD600B42B7A /* SignInViewController.swift */; };
+		C3B332B620D1766100DFEC70 /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332B520D1766100DFEC70 /* ForgetViewController.xib */; };
+		C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */; };
+		C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */; };
+		C3B332BF20D1833800DFEC70 /* SHTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,6 +71,10 @@
 		C3959F0A20CFDF8A00B42B7A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
 		C3959F0E20D05FD600B42B7A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		C3B332B520D1766100DFEC70 /* ForgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
+		C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
+		C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lobster1.3.otf; sourceTree = "<group>"; };
+		C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTextHelper.swift; sourceTree = "<group>"; };
 		EBBD22CE9E5A0E606EC260A8 /* Pods_SweptUpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F611490507ABA1FB4C584E4B /* Pods-SweptUpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUpTests/Pods-SweptUpTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -184,6 +192,7 @@
 			children = (
 				C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */,
 				C3959F0E20D05FD600B42B7A /* SignInViewController.swift */,
+				C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
+				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -206,6 +216,7 @@
 		C3959F0120CF8D3C00B42B7A /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				C3B332B920D181BF00DFEC70 /* Font */,
 				C3959F0220CF8D4500B42B7A /* Image */,
 			);
 			path = Resource;
@@ -224,8 +235,17 @@
 			children = (
 				C3959F0820CFDE3300B42B7A /* Extensions.swift */,
 				C3959F0A20CFDF8A00B42B7A /* Constants.swift */,
+				C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		C3B332B920D181BF00DFEC70 /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */,
+			);
+			path = Font;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -337,10 +357,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				C368E5C420CF09E3000DA7DC /* LaunchScreen.storyboard in Resources */,
+				C3B332B620D1766100DFEC70 /* ForgetViewController.xib in Resources */,
 				C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */,
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
+				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -443,8 +465,10 @@
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
 				C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */,
+				C3B332BF20D1833800DFEC70 /* SHTextHelper.swift in Sources */,
 				C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */,
 				C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */,
+				C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,7 +651,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.SweptUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -645,7 +669,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.SweptUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

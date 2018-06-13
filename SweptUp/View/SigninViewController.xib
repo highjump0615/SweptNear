@@ -43,7 +43,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ZTB-fd-K5V">
                                     <rect key="frame" x="13" y="0.0" width="264" height="44"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="eif-Cc-Vdi"/>
@@ -65,7 +65,7 @@
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5Yt-cf-vCS">
                                     <rect key="frame" x="13" y="0.0" width="264" height="44"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="done" secureTextEntry="YES"/>
                                     <connections>
                                         <outlet property="delegate" destination="-1" id="4St-Un-X9O"/>
@@ -119,6 +119,9 @@
                     <state key="normal" title="Forgot Password?">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
+                    <connections>
+                        <action selector="onButForget:" destination="-1" eventType="touchUpInside" id="W0A-Y4-3NW"/>
+                    </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="jFZ-Qp-gUg">
                     <rect key="frame" x="145" y="571.66666666666663" width="124" height="52"/>
@@ -142,6 +145,9 @@
                     <state key="normal" title="Not Registered? Sign Up!">
                         <color key="titleColor" red="0.40784313725490196" green="0.84705882352941175" blue="0.95294117647058818" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="onButSignup:" destination="-1" eventType="touchUpInside" id="f8F-aF-bSE"/>
+                    </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" red="0.0039215686274509803" green="0.070588235294117646" blue="0.13725490196078433" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

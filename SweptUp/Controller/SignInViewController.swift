@@ -20,6 +20,8 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        self.title = " "
 
         // placeholders
         let colorGray = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.13)
@@ -29,6 +31,10 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
                                                                  attributes: [NSAttributedStringKey.foregroundColor: colorGray])
         // keyboard avoiding
         KeyboardAvoiding.avoidingView = mViewInput
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     override func didReceiveMemoryWarning() {
@@ -45,6 +51,15 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onButSignin(_ sender: Any) {
         doSignin()
+    }
+    
+    @IBAction func onButForget(_ sender: Any) {
+        // go to forget password page
+        let forgetVC = ForgetViewController(nibName: "ForgetViewController", bundle: nil)
+        self.navigationController?.pushViewController(forgetVC, animated: true)
+    }
+    
+    @IBAction func onButSignup(_ sender: Any) {
     }
     
     /*

@@ -33,3 +33,18 @@ extension UIView {
         self.layer.borderColor = color.cgColor
     }
 }
+
+extension UIViewController {
+    
+    func showNavbar(title: String) {
+        // title
+        self.title = title
+        self.navigationController?.navigationBar.titleTextAttributes = [
+            NSAttributedStringKey.font: SHTextHelper.lobster13Regular(size: 20),
+            NSAttributedStringKey.foregroundColor: UIColor.white
+        ]
+        
+
+        self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+}
