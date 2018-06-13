@@ -12,11 +12,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ForgetViewController" customModule="SweptUp" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupEmailViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
-                <outlet property="mButSubmit" destination="KJf-ce-91t" id="2eC-IK-hGw"/>
-                <outlet property="mTextEmail" destination="odN-EV-AB3" id="Qre-jh-HtP"/>
-                <outlet property="mViewEmail" destination="m4E-bu-SlL" id="rqf-Hg-vD4"/>
+                <outlet property="mButNext" destination="KJf-ce-91t" id="HYX-5h-SIy"/>
+                <outlet property="mTextEmail" destination="odN-EV-AB3" id="kh0-Bg-Pl9"/>
+                <outlet property="mViewInput" destination="m4E-bu-SlL" id="QsE-Wa-5EV"/>
                 <outlet property="view" destination="iN0-l3-epB" id="mEq-cX-LUq"/>
             </connections>
         </placeholder>
@@ -28,7 +28,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4E-bu-SlL">
                     <rect key="frame" x="62" y="107" width="290" height="44"/>
                     <subviews>
-                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email Address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odN-EV-AB3">
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odN-EV-AB3">
                             <rect key="frame" x="13" y="0.0" width="264" height="44"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -47,19 +47,44 @@
                         <constraint firstItem="odN-EV-AB3" firstAttribute="leading" secondItem="m4E-bu-SlL" secondAttribute="leading" constant="13" id="xEd-XE-cjX"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAv-Cg-McG">
-                    <rect key="frame" x="101.33333333333333" y="179" width="211.33333333333337" height="33.666666666666657"/>
-                    <string key="text">Put in your email so we can send
-a password reset link</string>
-                    <fontDescription key="fontDescription" type="italicSystem" pointSize="14"/>
-                    <color key="textColor" red="0.29411764705882354" green="0.29411764705882354" blue="0.29411764705882354" alpha="1" colorSpace="calibratedRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V7W-Mz-omQ">
+                    <rect key="frame" x="75" y="169" width="108" height="50.666666666666657"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VWe-s6-gy1">
+                            <rect key="frame" x="0.0" y="0.0" width="108" height="20.333333333333332"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckItemNotChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Jmf-Bb-ZP2">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="20.333333333333332"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valid email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-jC-IDE">
+                                    <rect key="frame" x="26" y="0.0" width="82" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IME-PK-9QI">
+                            <rect key="frame" x="0.0" y="30.333333333333314" width="108" height="20.333333333333329"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckItemNotChecked" translatesAutoresizingMaskIntoConstraints="NO" id="g7l-6a-fG1">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="20.333333333333332"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Not in use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glc-rC-Qcn">
+                                    <rect key="frame" x="26" y="0.0" width="82" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="0.55000000000000004" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJf-ce-91t">
-                    <rect key="frame" x="68" y="576.33333333333337" width="277.33333333333331" height="46"/>
+                    <rect key="frame" x="68.333333333333343" y="576.33333333333337" width="277.33333333333326" height="46"/>
                     <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <state key="normal" title="Submit">
+                    <state key="normal" title="Next">
                         <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </state>
                 </button>
@@ -70,14 +95,17 @@ a password reset link</string>
                 <constraint firstItem="KJf-ce-91t" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Xme-1j-jph"/>
                 <constraint firstItem="m4E-bu-SlL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="YWb-Ed-eId"/>
                 <constraint firstItem="m4E-bu-SlL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="107" id="Yjc-jl-Rnl"/>
-                <constraint firstItem="sAv-Cg-McG" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="bsc-5O-4YV"/>
+                <constraint firstItem="V7W-Mz-omQ" firstAttribute="leading" secondItem="odN-EV-AB3" secondAttribute="leading" id="eBV-jD-Uzq"/>
+                <constraint firstItem="V7W-Mz-omQ" firstAttribute="top" secondItem="m4E-bu-SlL" secondAttribute="bottom" constant="18" id="gO0-WY-zD5"/>
                 <constraint firstItem="KJf-ce-91t" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.67" id="jVi-FJ-d82"/>
                 <constraint firstItem="m4E-bu-SlL" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="paI-di-GfY"/>
-                <constraint firstItem="sAv-Cg-McG" firstAttribute="top" secondItem="m4E-bu-SlL" secondAttribute="bottom" constant="28" id="x4S-zC-QSV"/>
                 <constraint firstItem="KJf-ce-91t" firstAttribute="width" secondItem="KJf-ce-91t" secondAttribute="height" multiplier="277:46" id="yQ2-sy-FIB"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
+    <resources>
+        <image name="CheckItemNotChecked" width="16" height="15"/>
+    </resources>
 </document>

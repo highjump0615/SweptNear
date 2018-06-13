@@ -26,6 +26,9 @@
 		C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */; };
 		C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */ = {isa = PBXBuildFile; fileRef = C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */; };
 		C3B332BF20D1833800DFEC70 /* SHTextHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */; };
+		C3B332C220D191D000DFEC70 /* SignupEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */; };
+		C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */; };
+		C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +78,9 @@
 		C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
 		C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Lobster1.3.otf; sourceTree = "<group>"; };
 		C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SHTextHelper.swift; sourceTree = "<group>"; };
+		C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupEmailViewController.xib; sourceTree = "<group>"; };
+		C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupBaseViewController.swift; sourceTree = "<group>"; };
+		C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailViewController.swift; sourceTree = "<group>"; };
 		EBBD22CE9E5A0E606EC260A8 /* Pods_SweptUpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F611490507ABA1FB4C584E4B /* Pods-SweptUpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUpTests/Pods-SweptUpTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -190,6 +196,7 @@
 		C3959EFE20CF86CE00B42B7A /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				C3B332C720D1923800DFEC70 /* Signup */,
 				C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */,
 				C3959F0E20D05FD600B42B7A /* SignInViewController.swift */,
 				C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */,
@@ -207,8 +214,10 @@
 		C3959F0020CF86E200B42B7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3B332C020D1910800DFEC70 /* CustomUI */,
 				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
 				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
+				C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -246,6 +255,22 @@
 				C3B332BA20D182DF00DFEC70 /* Lobster1.3.otf */,
 			);
 			path = Font;
+			sourceTree = "<group>";
+		};
+		C3B332C020D1910800DFEC70 /* CustomUI */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CustomUI;
+			sourceTree = "<group>";
+		};
+		C3B332C720D1923800DFEC70 /* Signup */ = {
+			isa = PBXGroup;
+			children = (
+				C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */,
+				C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */,
+			);
+			path = Signup;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +384,7 @@
 				C368E5C420CF09E3000DA7DC /* LaunchScreen.storyboard in Resources */,
 				C3B332B620D1766100DFEC70 /* ForgetViewController.xib in Resources */,
 				C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */,
+				C3B332C220D191D000DFEC70 /* SignupEmailViewController.xib in Resources */,
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
@@ -463,7 +489,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
+				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
+				C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */,
 				C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */,
 				C3B332BF20D1833800DFEC70 /* SHTextHelper.swift in Sources */,
 				C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */,

@@ -60,6 +60,9 @@ class SignInViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButSignup(_ sender: Any) {
+        // go to sign up page
+        let signupVC = SignupEmailViewController(nibName: "SignupEmailViewController", bundle: nil)
+        self.navigationController?.pushViewController(signupVC, animated: true)
     }
     
     /*
