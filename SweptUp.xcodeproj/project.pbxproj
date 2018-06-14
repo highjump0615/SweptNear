@@ -12,6 +12,8 @@
 		ACE676BD1E39538E777AB530 /* Pods_SweptUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036AFAA15507C06773A15F5A /* Pods_SweptUpTests.framework */; };
 		C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */; };
 		C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */; };
+		C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B9020D26A1000CAFD8D /* TermsViewController.xib */; };
+		C3342B9320D26B0900CAFD8D /* TermsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B9220D26B0900CAFD8D /* TermsViewController.swift */; };
 		C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368E5B920CF09E2000DA7DC /* AppDelegate.swift */; };
 		C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C368E5BD20CF09E2000DA7DC /* Main.storyboard */; };
 		C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C368E5C020CF09E3000DA7DC /* Assets.xcassets */; };
@@ -64,6 +66,8 @@
 		9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
+		C3342B9020D26A1000CAFD8D /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
+		C3342B9220D26B0900CAFD8D /* TermsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsViewController.swift; sourceTree = "<group>"; };
 		C368E5B620CF09E2000DA7DC /* SweptUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweptUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C368E5B920CF09E2000DA7DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C368E5BE20CF09E2000DA7DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -212,6 +216,7 @@
 				C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */,
 				C3959F0E20D05FD600B42B7A /* SignInViewController.swift */,
 				C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */,
+				C3342B9220D26B0900CAFD8D /* TermsViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -233,6 +238,7 @@
 				C3B332CA20D19E5600DFEC70 /* SignupPasswordViewController.xib */,
 				C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */,
 				C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */,
+				C3342B9020D26A1000CAFD8D /* TermsViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -409,6 +415,7 @@
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
 				C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */,
 				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
+				C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */,
 				C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -512,6 +519,7 @@
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
+				C3342B9320D26B0900CAFD8D /* TermsViewController.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
 				C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */,
 				C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */,

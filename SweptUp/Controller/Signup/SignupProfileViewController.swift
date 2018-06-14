@@ -50,6 +50,9 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     }
     
     @IBAction func onButSignup(_ sender: Any) {
+        // go to terms & conditions page newly
+        let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
+        self.navigationController?.pushViewController(termVC, animated: true)
     }
     
     /*

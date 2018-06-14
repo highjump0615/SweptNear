@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TermsViewController" customModule="SweptUp" customModuleProvider="target">
+            <connections>
+                <outlet property="mIndicator" destination="2hZ-mw-z7t" id="Xha-K7-Lrg"/>
+                <outlet property="mWebView" destination="6ce-oz-RIs" id="yxk-Rw-Aaf"/>
+                <outlet property="view" destination="iN0-l3-epB" id="ehC-SE-HIv"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <wkWebView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6ce-oz-RIs">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="559"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <wkWebViewConfiguration key="configuration">
+                        <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                        <wkPreferences key="preferences"/>
+                    </wkWebViewConfiguration>
+                </wkWebView>
+                <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="2hZ-mw-z7t">
+                    <rect key="frame" x="177.5" y="37" width="20" height="20"/>
+                </activityIndicatorView>
+                <navigationBar contentMode="scaleToFill" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OTe-bJ-6hd">
+                    <rect key="frame" x="0.0" y="559" width="375" height="44"/>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="barTintColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <items>
+                        <navigationItem id="GJa-QF-Th8">
+                            <barButtonItem key="leftBarButtonItem" title="Decline" id="No2-Oj-FDN"/>
+                            <barButtonItem key="rightBarButtonItem" title="Accept" id="Y1K-A7-wBr">
+                                <connections>
+                                    <action selector="onButAccept:" destination="-1" id="HYR-eg-fve"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="OTe-bJ-6hd" secondAttribute="trailing" id="2Gh-7x-XWK"/>
+                <constraint firstItem="2hZ-mw-z7t" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="3QN-dS-9gk"/>
+                <constraint firstItem="OTe-bJ-6hd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jlg-SJ-W08"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ce-oz-RIs" secondAttribute="trailing" id="Ogp-IX-t5a"/>
+                <constraint firstItem="OTe-bJ-6hd" firstAttribute="top" secondItem="6ce-oz-RIs" secondAttribute="bottom" id="P4a-gK-ZZ2"/>
+                <constraint firstAttribute="bottom" secondItem="OTe-bJ-6hd" secondAttribute="bottom" id="Ppf-rc-0ff"/>
+                <constraint firstItem="2hZ-mw-z7t" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="37" id="dh9-pY-SnO"/>
+                <constraint firstItem="6ce-oz-RIs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jed-Tr-W74"/>
+                <constraint firstItem="6ce-oz-RIs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="xdC-m6-xwP"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
