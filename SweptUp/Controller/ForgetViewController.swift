@@ -17,7 +17,10 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        showNavbar(title: "Reset Password")
+        showNavbar()
+        
+        // title
+        self.title = "Reset Password"
         
         // placeholders
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Email Address",

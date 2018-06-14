@@ -17,7 +17,7 @@ class SignupBaseViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        showNavbar(title: "Sign Up")
+        showNavbar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -28,6 +28,16 @@ class SignupBaseViewController: UIViewController {
     override func viewDidLayoutSubviews() {
         mViewInput.makeRoundBorder(width: 1.0, color: gColorGray)
         mButNext.makeRound()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        // title
+        self.title = "Sign Up"
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // clear title
+        self.title = " "
     }
 
     /*

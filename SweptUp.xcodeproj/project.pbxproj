@@ -29,6 +29,10 @@
 		C3B332C220D191D000DFEC70 /* SignupEmailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */; };
 		C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */; };
 		C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */; };
+		C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332CA20D19E5600DFEC70 /* SignupPasswordViewController.xib */; };
+		C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */; };
+		C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */; };
+		C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -81,6 +85,10 @@
 		C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupEmailViewController.xib; sourceTree = "<group>"; };
 		C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupBaseViewController.swift; sourceTree = "<group>"; };
 		C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupEmailViewController.swift; sourceTree = "<group>"; };
+		C3B332CA20D19E5600DFEC70 /* SignupPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupPasswordViewController.xib; sourceTree = "<group>"; };
+		C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordViewController.swift; sourceTree = "<group>"; };
+		C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupCPasswordViewController.xib; sourceTree = "<group>"; };
+		C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCPasswordViewController.swift; sourceTree = "<group>"; };
 		EBBD22CE9E5A0E606EC260A8 /* Pods_SweptUpUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUpUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F611490507ABA1FB4C584E4B /* Pods-SweptUpTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUpTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUpTests/Pods-SweptUpTests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -218,6 +226,8 @@
 				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
 				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
 				C3B332C120D191D000DFEC70 /* SignupEmailViewController.xib */,
+				C3B332CA20D19E5600DFEC70 /* SignupPasswordViewController.xib */,
+				C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -269,6 +279,8 @@
 			children = (
 				C3B332C320D1921300DFEC70 /* SignupBaseViewController.swift */,
 				C3B332C520D1923100DFEC70 /* SignupEmailViewController.swift */,
+				C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */,
+				C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -388,7 +400,9 @@
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
+				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
 				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
+				C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -491,6 +505,8 @@
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
+				C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */,
+				C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */,
 				C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */,
 				C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */,
 				C3B332BF20D1833800DFEC70 /* SHTextHelper.swift in Sources */,

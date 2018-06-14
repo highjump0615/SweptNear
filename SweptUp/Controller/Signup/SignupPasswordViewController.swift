@@ -1,5 +1,5 @@
 //
-//  SignupEmailViewController.swift
+//  SignupPasswordViewController.swift
 //  SweptUp
 //
 //  Created by Administrator on 6/14/18.
@@ -8,15 +8,15 @@
 
 import UIKit
 
-class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
-
-    @IBOutlet weak var mTextEmail: UITextField!
+class SignupPasswordViewController: SignupBaseViewController, UITextFieldDelegate {
+    
+    @IBOutlet weak var mTextPassword: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // placeholders
-        mTextEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email address",
+        mTextPassword.attributedPlaceholder = NSAttributedString(string: "Enter your password",
                                                               attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
     }
 
@@ -26,11 +26,11 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to sign up password page
-        let signupPasswordVC = SignupPasswordViewController(nibName: "SignupPasswordViewController", bundle: nil)
+        // go to confirm password page
+        let signupPasswordVC = SignupCPasswordViewController(nibName: "SignupCPasswordViewController", bundle: nil)
         self.navigationController?.pushViewController(signupPasswordVC, animated: true)
     }
-    
+
     /*
     // MARK: - Navigation
 
@@ -40,10 +40,10 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if textField == mTextEmail {
+        if textField == mTextPassword {
             textField.resignFirstResponder()
             
             onButNext(textField)
@@ -51,4 +51,5 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
         
         return true
     }
+
 }

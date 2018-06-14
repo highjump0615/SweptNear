@@ -36,15 +36,12 @@ extension UIView {
 
 extension UIViewController {
     
-    func showNavbar(title: String) {
-        // title
-        self.title = title
+    func showNavbar() {
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.font: SHTextHelper.lobster13Regular(size: 20),
             NSAttributedStringKey.foregroundColor: UIColor.white
         ]
         
-
         self.navigationController?.setNavigationBarHidden(false, animated: true)
     }
 }
