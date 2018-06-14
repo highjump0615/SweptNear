@@ -10,7 +10,7 @@ import UIKit
 
 class SignupBaseViewController: UIViewController {
     
-    @IBOutlet weak var mViewInput: UIView!
+    @IBOutlet weak var mViewInput: UIView?
     @IBOutlet weak var mButNext: UIButton!
     
     override func viewDidLoad() {
@@ -26,7 +26,7 @@ class SignupBaseViewController: UIViewController {
     }
     
     override func viewDidLayoutSubviews() {
-        mViewInput.makeRoundBorder(width: 1.0, color: gColorGray)
+        mViewInput?.makeRoundBorder(width: 1.0, color: gColorGray)
         mButNext.makeRound()
     }
     

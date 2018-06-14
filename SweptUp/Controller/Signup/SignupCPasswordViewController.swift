@@ -26,6 +26,9 @@ class SignupCPasswordViewController: SignupBaseViewController, UITextFieldDelega
     }
     
     @IBAction func onButNext(_ sender: Any) {
+        // go to signup profile page
+        let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+        self.navigationController?.pushViewController(signupProfileVC, animated: true)
     }
 
     /*
