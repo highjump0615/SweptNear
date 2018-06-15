@@ -35,6 +35,10 @@ class TermsViewController: UIViewController, WKNavigationDelegate {
     }
     
     @IBAction func onButAccept(_ sender: Any) {
+        // go to home page with new navigation
+        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        
+        self.navigationController?.setViewControllers([homeVC], animated: true)
     }
     
     /*

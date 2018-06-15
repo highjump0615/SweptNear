@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="54" id="EBN-eL-HSX" customClass="HomeTitleCell" customModule="SweptUp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="510" height="54"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="EBN-eL-HSX" id="RIm-D8-jRc">
+                <rect key="frame" x="0.0" y="0.0" width="510" height="53.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="HomeWink" translatesAutoresizingMaskIntoConstraints="NO" id="U8i-Of-laM">
+                        <rect key="frame" x="14" y="10" width="23" height="33.5"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You have" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P6y-5g-KSy">
+                        <rect key="frame" x="47" y="18.5" width="66" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1nI-Le-jZy">
+                        <rect key="frame" x="116" y="18" width="10" height="19.5"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="16"/>
+                        <color key="textColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Winks" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FCn-90-tEy">
+                        <rect key="frame" x="129" y="17.5" width="45" height="18"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="P6y-5g-KSy" firstAttribute="centerY" secondItem="RIm-D8-jRc" secondAttribute="centerY" id="LP9-MN-BkB"/>
+                    <constraint firstItem="U8i-Of-laM" firstAttribute="leading" secondItem="RIm-D8-jRc" secondAttribute="leading" constant="14" id="OWX-ej-gUU"/>
+                    <constraint firstAttribute="bottom" secondItem="U8i-Of-laM" secondAttribute="bottom" constant="10" id="PZC-L5-JxN"/>
+                    <constraint firstItem="1nI-Le-jZy" firstAttribute="centerY" secondItem="P6y-5g-KSy" secondAttribute="centerY" id="aAF-Xh-xQn"/>
+                    <constraint firstItem="U8i-Of-laM" firstAttribute="top" secondItem="RIm-D8-jRc" secondAttribute="top" constant="10" id="fdy-7R-ogO"/>
+                    <constraint firstItem="1nI-Le-jZy" firstAttribute="leading" secondItem="P6y-5g-KSy" secondAttribute="trailing" constant="3" id="ofx-WN-pEU"/>
+                    <constraint firstItem="FCn-90-tEy" firstAttribute="centerY" secondItem="U8i-Of-laM" secondAttribute="centerY" id="s2s-Ws-IwB"/>
+                    <constraint firstItem="P6y-5g-KSy" firstAttribute="leading" secondItem="U8i-Of-laM" secondAttribute="trailing" constant="10" id="xUE-k6-wLm"/>
+                    <constraint firstItem="FCn-90-tEy" firstAttribute="leading" secondItem="1nI-Le-jZy" secondAttribute="trailing" constant="3" id="yPO-7v-lGC"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+            <point key="canvasLocation" x="-384" y="34"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="HomeWink" width="23" height="23"/>
+    </resources>
+</document>

@@ -19,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         UIApplication.shared.statusBarView?.backgroundColor = gColorTheme
         
+        // if logged in, go to home page directly
+        let nav = UINavigationController()
+        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        nav.viewControllers = [homeVC]
+        UIApplication.shared.delegate?.window??.rootViewController = nav
+        
         return true
     }
 

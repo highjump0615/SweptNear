@@ -22,7 +22,7 @@ extension UIView {
     
     /// fille round
     func makeRound() {
-        let radius: CGFloat = self.bounds.size.height / 2.0
+        let radius: CGFloat = self.frame.size.height / 2.0
         self.layer.cornerRadius = radius
     }
     
@@ -43,5 +43,9 @@ extension UIViewController {
         ]
         
         self.navigationController?.setNavigationBarHidden(false, animated: true)
+    }
+    
+    func hideNavbar(animated: Bool = false) {
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 }
