@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MessageUI
 
 class SettingsViewController: UITableViewController {
 
@@ -40,6 +41,51 @@ class SettingsViewController: UITableViewController {
     // MARK: - UITableViewDelegate
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-    }
+        
+        switch indexPath.row {
+        case 1:
+            //rate the app
+            Utils.rateApp(appId: Constants.appId, completion: { (_) in
+            })
+            
+        case 2:
+            // Send feedback
+            if !MFMailComposeViewController.canSendMail() {
+                alertOk(title: "Mail", message: "Mail services are not available", cancelButton: "OK", cancelHandler: nil)
+                return
+            }
+            
+            let composeVC = MFMailComposeViewController()
+            composeVC.mailComposeDelegate = self
+            
+            // Configure the fields of the interface.
+            composeVC.setToRecipients(["support@impact.com"])
+            composeVC.setSubject("Report a bug")
+            composeVC.setMessageBody("", isHTML: false)
+            
+            // Present the view controller modally.
+            self.present(composeVC, animated: true, completion: nil)
+            
+        case 6:
+            // Log out
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let onbaordVC = storyboard.instantiateViewController(withIdentifier: "onboardVC") as! OnboardViewController
 
+            self.navigationController?.setViewControllers([onbaordVC], animated: true)
+            
+        default:
+            break
+        }
+    }
 }
+
+extension SettingsViewController : MFMailComposeViewControllerDelegate {
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult, error: Error?) {
+        // Check the result or perform other tasks.
+        
+        // Dismiss the mail compose view controller.
+        controller.dismiss(animated: true, completion: nil)
+    }
+}
+

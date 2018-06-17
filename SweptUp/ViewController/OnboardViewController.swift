@@ -18,6 +18,7 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        hideNavbar()
     }
 
     override func didReceiveMemoryWarning() {

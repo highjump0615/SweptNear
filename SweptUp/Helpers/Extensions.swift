@@ -36,6 +36,18 @@ extension UIView {
 
 extension UIViewController {
     
+    func alertOk(title: String, message: String, cancelButton: String, cancelHandler: ((UIAlertAction) -> ())?) {
+        let alertController = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        
+        let cancelAction = UIAlertAction(title: cancelButton, style: .default, handler: cancelHandler)
+        
+        alertController.addAction(cancelAction)
+        
+        alertController.view.tintColor = UIColor.darkGray
+        
+        present(alertController, animated: true, completion: nil)
+    }
+    
     func showNavbar() {
         self.navigationController?.navigationBar.barTintColor = Constants.gColorTheme
         self.navigationController?.navigationBar.titleTextAttributes = [
