@@ -44,7 +44,7 @@ class SettingsViewController: UITableViewController {
         
         switch indexPath.row {
         case 1:
-            //rate the app
+            // rate the app
             Utils.rateApp(appId: Config.appId, completion: { (_) in
             })
             
@@ -65,6 +65,11 @@ class SettingsViewController: UITableViewController {
             
             // Present the view controller modally.
             self.present(composeVC, animated: true, completion: nil)
+            
+        case 3:
+            // go to about page
+            let aboutVC = AboutViewController(nibName: "AboutViewController", bundle: nil)
+            self.navigationController?.pushViewController(aboutVC, animated: true)
             
         case 4:
             // go to privacy page

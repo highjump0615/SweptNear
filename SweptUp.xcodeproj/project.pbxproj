@@ -24,6 +24,8 @@
 		C3382BF120D60BBA008D0AE6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */; };
 		C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF220D62CFA008D0AE6 /* Utils.swift */; };
 		C3382BF520D6359C008D0AE6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF420D6359C008D0AE6 /* Config.swift */; };
+		C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3382BF620D63807008D0AE6 /* AboutViewController.xib */; };
+		C3382BF920D63AED008D0AE6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF820D63AED008D0AE6 /* AboutViewController.swift */; };
 		C355F91620D3553C005F8F82 /* HomeUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91520D3553C005F8F82 /* HomeUserCell.xib */; };
 		C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */; };
 		C355F91F20D35E97005F8F82 /* HomeUserCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91E20D35E97005F8F82 /* HomeUserCollectionCell.xib */; };
@@ -98,6 +100,8 @@
 		C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C3382BF220D62CFA008D0AE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
 		C3382BF420D6359C008D0AE6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
+		C3382BF620D63807008D0AE6 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
+		C3382BF820D63AED008D0AE6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
 		C355F91520D3553C005F8F82 /* HomeUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUserCell.xib; sourceTree = "<group>"; };
 		C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMessageTitleCell.xib; sourceTree = "<group>"; };
 		C355F91E20D35E97005F8F82 /* HomeUserCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUserCollectionCell.xib; sourceTree = "<group>"; };
@@ -306,6 +310,7 @@
 				C3382BEC20D60B11008D0AE6 /* ChatListViewController.swift */,
 				C3382BEE20D60BAF008D0AE6 /* NotificationViewController.swift */,
 				C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */,
+				C3382BF820D63AED008D0AE6 /* AboutViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -329,6 +334,7 @@
 				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
 				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
 				C3342B9020D26A1000CAFD8D /* TermsViewController.xib */,
+				C3382BF620D63807008D0AE6 /* AboutViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -508,6 +514,7 @@
 				C3FF90A020D3266D00AEFC2F /* HomeWinkTitleCell.xib in Resources */,
 				C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */,
 				C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */,
+				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
 				C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */,
@@ -624,6 +631,7 @@
 				C3382BED20D60B11008D0AE6 /* ChatListViewController.swift in Sources */,
 				C3382BEB20D608D0008D0AE6 /* LocationViewController.swift in Sources */,
 				C3382BE920D604DB008D0AE6 /* BaseViewController.swift in Sources */,
+				C3382BF920D63AED008D0AE6 /* AboutViewController.swift in Sources */,
 				C3382BF120D60BBA008D0AE6 /* SettingsViewController.swift in Sources */,
 				C3342B9320D26B0900CAFD8D /* TermsViewController.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
