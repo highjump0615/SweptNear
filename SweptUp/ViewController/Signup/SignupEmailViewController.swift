@@ -17,7 +17,7 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
 
         // placeholders
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email address",
-                                                              attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                              attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
     }
 
     override func didReceiveMemoryWarning() {

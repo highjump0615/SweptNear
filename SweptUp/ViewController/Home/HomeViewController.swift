@@ -26,7 +26,7 @@ class ConstantCV {
     }
 }
 
-class HomeViewController: UIViewController,
+class HomeViewController: BaseViewController,
                         UITableViewDataSource, UITableViewDelegate,
                         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
@@ -46,6 +46,7 @@ class HomeViewController: UIViewController,
 
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
+        self.title = " "
         
         //
         // init data
@@ -69,9 +70,13 @@ class HomeViewController: UIViewController,
     }
     
     @IBAction func onButScan(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Tab", bundle: nil)
+        let tabbarController = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! MainTabbarController
+        tabbarController.selectedIndex = 1
+        
+        self.navigationController?.setViewControllers([tabbarController], animated: true)
     }
     
-
     /*
     // MARK: - Navigation
 

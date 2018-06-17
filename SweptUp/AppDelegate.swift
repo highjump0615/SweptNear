@@ -17,7 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        UIApplication.shared.statusBarView?.backgroundColor = gColorTheme
+        UIApplication.shared.statusBarView?.backgroundColor = Constants.gColorTheme
+
+        let backImage = UIImage(named: "Back")?.withRenderingMode(.alwaysOriginal)
+        UINavigationBar.appearance().backIndicatorImage = backImage
+        UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
         
         // if logged in, go to home page directly
         let nav = UINavigationController()

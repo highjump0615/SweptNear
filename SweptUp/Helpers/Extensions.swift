@@ -37,6 +37,7 @@ extension UIView {
 extension UIViewController {
     
     func showNavbar() {
+        self.navigationController?.navigationBar.barTintColor = Constants.gColorTheme
         self.navigationController?.navigationBar.titleTextAttributes = [
             NSAttributedStringKey.font: SHTextHelper.lobster13Regular(size: 20),
             NSAttributedStringKey.foregroundColor: UIColor.white

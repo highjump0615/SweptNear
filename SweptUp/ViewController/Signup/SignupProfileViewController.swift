@@ -25,13 +25,13 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
 
         // placeholders
         mTextFirstName.attributedPlaceholder = NSAttributedString(string: "First Name",
-                                                              attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                              attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextLastName.attributedPlaceholder = NSAttributedString(string: "Last Name",
-                                                                 attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextBirthday.attributedPlaceholder = NSAttributedString(string: "Date of Birth",
-                                                                 attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextGender.attributedPlaceholder = NSAttributedString(string: "Gender",
-                                                                 attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                                 attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,11 +42,11 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
-        mViewPhoto.makeRoundBorder(width: 1.0, color: gColorGray)
-        mViewFirstName.makeRoundBorder(width: 1.0, color: gColorGray)
-        mViewLastName.makeRoundBorder(width: 1.0, color: gColorGray)
-        mViewBirthday.makeRoundBorder(width: 1.0, color: gColorGray)
-        mViewGender.makeRoundBorder(width: 1.0, color: gColorGray)
+        mViewPhoto.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
+        mViewFirstName.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
+        mViewLastName.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
+        mViewBirthday.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
+        mViewGender.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
     }
     
     @IBAction func onButSignup(_ sender: Any) {

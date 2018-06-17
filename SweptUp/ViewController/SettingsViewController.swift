@@ -1,23 +1,19 @@
 //
-//  SignupBaseViewController.swift
+//  SettingsViewController.swift
 //  SweptUp
 //
-//  Created by Administrator on 6/14/18.
+//  Created by Administrator on 6/17/18.
 //  Copyright © 2018 Administrator. All rights reserved.
 //
 
 import UIKit
 
-class SignupBaseViewController: BaseViewController {
-    
-    @IBOutlet weak var mViewInput: UIView?
-    @IBOutlet weak var mButNext: UIButton!
-    
+class SettingsViewController: BaseViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        showNavbar()
     }
 
     override func didReceiveMemoryWarning() {
@@ -25,16 +21,9 @@ class SignupBaseViewController: BaseViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewDidLayoutSubviews() {
-        mViewInput?.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
-        mButNext.makeRound()
-    }
-    
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
         // title
-        self.title = "Sign Up"
+        self.tabBarController?.navigationItem.title = "Settings"
     }
 
     /*

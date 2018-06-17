@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Notification View Controller-->
+        <scene sceneID="n1z-RG-Xvb">
+            <objects>
+                <viewController id="Z6N-3v-IQm" customClass="NotificationViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="6ib-Gw-Hzg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="evP-dH-njd"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="TabNotification" id="Hls-YO-MSB">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iv5-Ys-uKv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="762"/>
+        </scene>
+        <!--Settings View Controller-->
+        <scene sceneID="LAR-VG-uPk">
+            <objects>
+                <viewController id="pcR-eL-SCl" customClass="SettingsViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="T1F-n5-ZKh">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="r9x-8g-9NT"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="TabSetting" id="VEp-VW-zOL">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g1V-fx-0gQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="479" y="1472"/>
+        </scene>
+        <!--Location View Controller-->
+        <scene sceneID="SGl-sh-g6R">
+            <objects>
+                <viewController id="lY3-x8-IGb" customClass="LocationViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jMN-ve-GI4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="kOz-bA-DvU"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="TabMap" id="4GK-vl-tXF">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="e9V-ZK-E5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="33"/>
+        </scene>
+        <!--Chat List View Controller-->
+        <scene sceneID="aJZ-vy-5jP">
+            <objects>
+                <viewController id="92k-Mh-qfx" customClass="ChatListViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Tfr-pm-C4u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="JpB-Jt-BGR"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" image="TabChat" id="laF-Ew-qxh">
+                        <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zhR-bX-23b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="478" y="-632"/>
+        </scene>
+        <!--Main Tabbar Controller-->
+        <scene sceneID="UTh-EP-zMA">
+            <objects>
+                <tabBarController storyboardIdentifier="tabbarController" id="GKb-bx-Gev" customClass="MainTabbarController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jEm-aS-gK2">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="barTintColor" red="0.48627450980392156" green="0.082352941176470587" blue="0.14117647058823529" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="92k-Mh-qfx" kind="relationship" relationship="viewControllers" id="cZd-ZH-MfP"/>
+                        <segue destination="lY3-x8-IGb" kind="relationship" relationship="viewControllers" id="FJQ-55-wJL"/>
+                        <segue destination="Z6N-3v-IQm" kind="relationship" relationship="viewControllers" id="Qon-58-1pn"/>
+                        <segue destination="pcR-eL-SCl" kind="relationship" relationship="viewControllers" id="e4E-qR-sjm"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ugK-71-r9B" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-472" y="33"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="TabChat" width="31" height="30"/>
+        <image name="TabMap" width="29" height="28"/>
+        <image name="TabNotification" width="30" height="32"/>
+        <image name="TabSetting" width="33" height="33"/>
+    </resources>
+</document>

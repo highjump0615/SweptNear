@@ -17,7 +17,7 @@ class SignupPasswordViewController: SignupBaseViewController, UITextFieldDelegat
 
         // placeholders
         mTextPassword.attributedPlaceholder = NSAttributedString(string: "Enter your password",
-                                                              attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                              attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
     }
 
     override func didReceiveMemoryWarning() {

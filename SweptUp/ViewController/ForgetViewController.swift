@@ -24,7 +24,7 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
         
         // placeholders
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Email Address",
-                                                              attributes: [NSAttributedStringKey.foregroundColor: gColorGray])
+                                                              attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,7 +33,7 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
     }
     
     override func viewDidLayoutSubviews() {
-        mViewEmail.makeRoundBorder(width: 1.0, color: gColorGray)
+        mViewEmail.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
         mButSubmit.makeRound()
     }
     
