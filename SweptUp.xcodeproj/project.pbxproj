@@ -23,6 +23,7 @@
 		C3382BEF20D60BAF008D0AE6 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BEE20D60BAF008D0AE6 /* NotificationViewController.swift */; };
 		C3382BF120D60BBA008D0AE6 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */; };
 		C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF220D62CFA008D0AE6 /* Utils.swift */; };
+		C3382BF520D6359C008D0AE6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF420D6359C008D0AE6 /* Config.swift */; };
 		C355F91620D3553C005F8F82 /* HomeUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91520D3553C005F8F82 /* HomeUserCell.xib */; };
 		C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */; };
 		C355F91F20D35E97005F8F82 /* HomeUserCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91E20D35E97005F8F82 /* HomeUserCollectionCell.xib */; };
@@ -96,6 +97,7 @@
 		C3382BEE20D60BAF008D0AE6 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		C3382BF220D62CFA008D0AE6 /* Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utils.swift; sourceTree = "<group>"; };
+		C3382BF420D6359C008D0AE6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C355F91520D3553C005F8F82 /* HomeUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUserCell.xib; sourceTree = "<group>"; };
 		C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMessageTitleCell.xib; sourceTree = "<group>"; };
 		C355F91E20D35E97005F8F82 /* HomeUserCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUserCollectionCell.xib; sourceTree = "<group>"; };
@@ -355,6 +357,7 @@
 				C3959F0A20CFDF8A00B42B7A /* Constants.swift */,
 				C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */,
 				C3382BF220D62CFA008D0AE6 /* Utils.swift */,
+				C3382BF420D6359C008D0AE6 /* Config.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 			files = (
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
+				C3382BF520D6359C008D0AE6 /* Config.swift in Sources */,
 				C3382BE720D5F907008D0AE6 /* MainTabbarController.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,

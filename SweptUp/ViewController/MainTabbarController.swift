@@ -28,6 +28,10 @@ class MainTabbarController: UITabBarController {
         showNavbar()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        self.navigationItem.title = " "
+    }
+    
 
     /*
     // MARK: - Navigation

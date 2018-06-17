@@ -72,3 +72,6 @@ GoogleService-Info.plist
 
 # Frameworks
 Framework/
+
+# config files
+SweptUp/Helpers/Config.swift

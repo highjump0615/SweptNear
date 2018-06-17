@@ -13,15 +13,33 @@ class TermsViewController: UIViewController, WKNavigationDelegate {
 
     @IBOutlet weak var mWebView: WKWebView!
     @IBOutlet weak var mIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var mBottomBar: UINavigationBar!
+    @IBOutlet weak var mConstraintBottom: NSLayoutConstraint!
+    
+    static let TERMS_FROM_SIGNUP = 0
+    static let TERMS_FROM_SETTING = 1
+    static let PRIVACY_POLICY = 2
+    
+    var type = TermsViewController.TERMS_FROM_SIGNUP
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         mWebView.navigationDelegate = self
         
-        let url = URL(string: "https://termsfeed.com/terms-conditions/f4ef988b5476ca6a3a15b8779e413251")!
+        let url = type == TermsViewController.PRIVACY_POLICY ?
+            URL(string: Config.urlPrivacyPolicy)! : URL(string: Config.urlTermCondition)!
         mWebView.load(URLRequest(url: url))
         mIndicator.startAnimating()
+        
+        if type != TermsViewController.TERMS_FROM_SIGNUP {
+            hideBottombar()
+        }
+    }
+    
+    private func hideBottombar() {
+        mBottomBar.removeFromSuperview()
+        mConstraintBottom.constant = 0
     }
 
     override func didReceiveMemoryWarning() {
@@ -31,7 +49,7 @@ class TermsViewController: UIViewController, WKNavigationDelegate {
     
     override func viewWillAppear(_ animated: Bool) {
         // title
-        self.title = "Terms and Conditions"
+        self.title = type == TermsViewController.PRIVACY_POLICY ? "Privacy Policy" : "Terms and Conditions"
     }
     
     @IBAction func onButAccept(_ sender: Any) {

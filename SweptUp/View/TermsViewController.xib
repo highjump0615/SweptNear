@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TermsViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
+                <outlet property="mBottomBar" destination="OTe-bJ-6hd" id="NdX-CI-8WJ"/>
+                <outlet property="mConstraintBottom" destination="mf8-lQ-2Oo" id="a6R-LA-bBR"/>
                 <outlet property="mIndicator" destination="2hZ-mw-z7t" id="Xha-K7-Lrg"/>
                 <outlet property="mWebView" destination="6ce-oz-RIs" id="yxk-Rw-Aaf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="ehC-SE-HIv"/>
@@ -55,10 +57,10 @@
                 <constraint firstItem="2hZ-mw-z7t" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="3QN-dS-9gk"/>
                 <constraint firstItem="OTe-bJ-6hd" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Jlg-SJ-W08"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="6ce-oz-RIs" secondAttribute="trailing" id="Ogp-IX-t5a"/>
-                <constraint firstItem="OTe-bJ-6hd" firstAttribute="top" secondItem="6ce-oz-RIs" secondAttribute="bottom" id="P4a-gK-ZZ2"/>
                 <constraint firstAttribute="bottom" secondItem="OTe-bJ-6hd" secondAttribute="bottom" id="Ppf-rc-0ff"/>
                 <constraint firstItem="2hZ-mw-z7t" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="37" id="dh9-pY-SnO"/>
                 <constraint firstItem="6ce-oz-RIs" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jed-Tr-W74"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="6ce-oz-RIs" secondAttribute="bottom" constant="44" id="mf8-lQ-2Oo"/>
                 <constraint firstItem="6ce-oz-RIs" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="xdC-m6-xwP"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>

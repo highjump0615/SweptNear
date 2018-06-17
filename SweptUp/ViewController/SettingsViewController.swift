@@ -45,7 +45,7 @@ class SettingsViewController: UITableViewController {
         switch indexPath.row {
         case 1:
             //rate the app
-            Utils.rateApp(appId: Constants.appId, completion: { (_) in
+            Utils.rateApp(appId: Config.appId, completion: { (_) in
             })
             
         case 2:
@@ -65,6 +65,18 @@ class SettingsViewController: UITableViewController {
             
             // Present the view controller modally.
             self.present(composeVC, animated: true, completion: nil)
+            
+        case 4:
+            // go to privacy page
+            let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
+            termVC.type = TermsViewController.PRIVACY_POLICY
+            self.navigationController?.pushViewController(termVC, animated: true)
+            
+        case 5:
+            // go to terms & conditions page newly
+            let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
+            termVC.type = TermsViewController.TERMS_FROM_SETTING
+            self.navigationController?.pushViewController(termVC, animated: true)
             
         case 6:
             // Log out

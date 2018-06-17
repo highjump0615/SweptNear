@@ -101,21 +101,21 @@ class HomeViewController: BaseViewController,
         
         if indexPath.row == 0 {
             // wink title
-            if (cellItem == nil) {
+            if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeWinkTitleCell", owner: self, options: nil)
                 cellItem = nib?[0] as? UITableViewCell
             }
         }
         else if indexPath.row == 2 {
             // wink title
-            if (cellItem == nil) {
+            if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeMessageTitleCell", owner: self, options: nil)
                 cellItem = nib?[0] as? UITableViewCell
             }
         }
         else {
             // user cell
-            if (cellItem == nil) {
+            if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeUserCell", owner: self, options: nil)
                 let cellUser = nib?[0] as? HomeUserCell
                 
