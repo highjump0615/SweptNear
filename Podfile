@@ -7,6 +7,8 @@ target 'SweptUp' do
 
   # Pods for SweptUp
   pod 'IHKeyboardAvoiding'
+  pod 'GoogleMaps'
+  pod 'GooglePlaces'
 
   target 'SweptUpTests' do
     inherit! :search_paths

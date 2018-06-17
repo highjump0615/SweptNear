@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import GoogleMaps
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +30,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
         nav.setViewControllers([homeVC], animated: true)
         UIApplication.shared.delegate?.window??.rootViewController = nav
+        
+        // google map initialization
+        GMSServices.provideAPIKey(Config.googleMapApiKey)
+        GMSPlacesClient.provideAPIKey(Config.googleMapApiKey)
         
         return true
     }

@@ -1,16 +1,29 @@
 PODS:
+  - GoogleMaps (2.6.0):
+    - GoogleMaps/Maps (= 2.6.0)
+  - GoogleMaps/Base (2.6.0)
+  - GoogleMaps/Maps (2.6.0):
+    - GoogleMaps/Base
+  - GooglePlaces (2.6.0):
+    - GoogleMaps/Base (= 2.6.0)
   - IHKeyboardAvoiding (4.2)
 
 DEPENDENCIES:
+  - GoogleMaps
+  - GooglePlaces
   - IHKeyboardAvoiding
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
+    - GoogleMaps
+    - GooglePlaces
     - IHKeyboardAvoiding
 
 SPEC CHECKSUMS:
+  GoogleMaps: 42f91c68b7fa2f84d5c86597b18ceb99f5414c7f
+  GooglePlaces: f6ddf33b75cef69e888907d9947c57198ed845f3
   IHKeyboardAvoiding: 9fbf816b7c3c84911964802ff110d12caf40ebef
 
-PODFILE CHECKSUM: feef9e47de03a968d118a29e2c2bebe86797bb70
+PODFILE CHECKSUM: 21764946f53506ed79c4693d20a221d1c0b10492
 
 COCOAPODS: 1.5.3
