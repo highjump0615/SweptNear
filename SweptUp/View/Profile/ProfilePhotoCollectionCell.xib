@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="POg-78-xJb">
+            <rect key="frame" x="0.0" y="0.0" width="145" height="140"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="145" height="140"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhotoDefault" translatesAutoresizingMaskIntoConstraints="NO" id="yKb-OK-dgk">
+                        <rect key="frame" x="0.0" y="0.0" width="145" height="140"/>
+                    </imageView>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="yKb-OK-dgk" secondAttribute="trailing" id="2jo-Qw-v3z"/>
+                <constraint firstAttribute="bottom" secondItem="yKb-OK-dgk" secondAttribute="bottom" id="55g-pG-k3r"/>
+                <constraint firstItem="yKb-OK-dgk" firstAttribute="leading" secondItem="POg-78-xJb" secondAttribute="leading" id="CRU-dL-93p"/>
+                <constraint firstItem="yKb-OK-dgk" firstAttribute="top" secondItem="POg-78-xJb" secondAttribute="top" id="jNY-3P-IpH"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="9Hh-tC-r33"/>
+            <size key="customSize" width="145" height="140"/>
+            <point key="canvasLocation" x="-34.5" y="9"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="PhotoDefault" width="118" height="118"/>
+    </resources>
+</document>

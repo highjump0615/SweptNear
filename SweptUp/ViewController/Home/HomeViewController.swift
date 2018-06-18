@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ConstantCV {
+class HomeConstantCV {
     static let column: CGFloat = 4
     
     static let minLineSpacing: CGFloat = 16.0
@@ -32,9 +32,12 @@ class HomeViewController: BaseViewController,
 
     @IBOutlet weak var mLblTitle: UILabel!
     @IBOutlet weak var mSwitch: UISwitch!
+    @IBOutlet weak var mTableView: UITableView!
     
     let TAG_CV_USER_WINK = 1000
     let TAG_CV_USER_MESSAGE = 1001
+    
+    private let CELLID_USER = "UserCell"
     
     var usersWink: [Message] = []
     var usersMessage: [Message] = []
@@ -62,6 +65,8 @@ class HomeViewController: BaseViewController,
             }
             usersMessage.append(m)
         }
+        
+        mTableView.register(UINib(nibName: "HomeUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +102,7 @@ class HomeViewController: BaseViewController,
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         // user for default
-        var cellItem = tableView.dequeueReusableCell(withIdentifier: "UserCell")
+        var cellItem: UITableViewCell?
         
         if indexPath.row == 0 {
             // wink title
@@ -115,36 +120,33 @@ class HomeViewController: BaseViewController,
         }
         else {
             // user cell
-            if cellItem == nil {
-                let nib = Bundle.main.loadNibNamed("HomeUserCell", owner: self, options: nil)
-                let cellUser = nib?[0] as? HomeUserCell
-                
-                // init collection view
-                let cv = cellUser?.collectionView
-                
-                cv?.tag = indexPath.row == 1 ? TAG_CV_USER_WINK : TAG_CV_USER_MESSAGE
-                if let layout = cv?.collectionViewLayout as? UICollectionViewFlowLayout {
-                    layout.scrollDirection = indexPath.row == 1 ? .horizontal : .vertical
-                }
-
-                cv?.dataSource = self
-                cv?.delegate = self
-                
-                // register nib
-                cv?.register(UINib(nibName: "HomeUserCollectionCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionCell")
-                
-                cellItem = cellUser
+            let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as? HomeUserCell
+            
+            // init collection view
+            let cv = cellUser?.collectionView
+            
+            cv?.tag = indexPath.row == 1 ? TAG_CV_USER_WINK : TAG_CV_USER_MESSAGE
+            if let layout = cv?.collectionViewLayout as? UICollectionViewFlowLayout {
+                layout.scrollDirection = indexPath.row == 1 ? .horizontal : .vertical
             }
+
+            cv?.dataSource = self
+            cv?.delegate = self
+            
+            // register nib
+            cv?.register(UINib(nibName: "HomeUserCollectionCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionCell")
+            
+            cellItem = cellUser
         }
         
         return cellItem!
     }
     
     private func getItemsHeight(rowCount: Int) -> CGFloat {
-        let itemHeight = ConstantCV.getItemWidth(boundWidth: view.bounds.size.width)
-        let totalTopBottomOffset = ConstantCV.offsetVert + ConstantCV.offsetVert
+        let itemHeight = HomeConstantCV.getItemWidth(boundWidth: view.bounds.size.width)
+        let totalTopBottomOffset = HomeConstantCV.offsetVert + HomeConstantCV.offsetVert
         
-        let totalSpacing = CGFloat(rowCount - 1) * ConstantCV.minLineSpacing
+        let totalSpacing = CGFloat(rowCount - 1) * HomeConstantCV.minLineSpacing
         let totalHeight  = ((itemHeight * CGFloat(rowCount)) + totalTopBottomOffset + totalSpacing)
         
         return totalHeight
@@ -159,7 +161,7 @@ class HomeViewController: BaseViewController,
             
         case 3:
             // messaged users
-            let totalRow = ceil(CGFloat(usersMessage.count) / ConstantCV.column)
+            let totalRow = ceil(CGFloat(usersMessage.count) / HomeConstantCV.column)
             return getItemsHeight(rowCount: Int(totalRow))
             
         default:
@@ -194,7 +196,7 @@ class HomeViewController: BaseViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let itemWidth = ConstantCV.getItemWidth(boundWidth: collectionView.bounds.size.width)
+        let itemWidth = HomeConstantCV.getItemWidth(boundWidth: collectionView.bounds.size.width)
         
         return CGSize(width: itemWidth, height: itemWidth)
     }

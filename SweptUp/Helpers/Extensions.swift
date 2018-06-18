@@ -61,4 +61,4 @@ extension UIViewController {
     func hideNavbar(animated: Bool = false) {
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
-}
+} 

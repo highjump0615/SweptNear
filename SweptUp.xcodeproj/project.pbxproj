@@ -10,6 +10,13 @@
 		01304B327197158A1EB9782B /* Pods_SweptUpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBD22CE9E5A0E606EC260A8 /* Pods_SweptUpUITests.framework */; };
 		7530AD75D33E312455F9CA22 /* Pods_SweptUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */; };
 		ACE676BD1E39538E777AB530 /* Pods_SweptUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036AFAA15507C06773A15F5A /* Pods_SweptUpTests.framework */; };
+		C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDD420D80143001CA213 /* ProfileViewController.xib */; };
+		C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318CDD820D80468001CA213 /* ProfileViewController.swift */; };
+		C318CDDC20D80662001CA213 /* ProfileUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDDB20D80662001CA213 /* ProfileUserCell.xib */; };
+		C318CDDF20D80A87001CA213 /* ProfileUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */; };
+		C318CDE120D80C91001CA213 /* ProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */; };
+		C318CDE320D80E08001CA213 /* ProfilePhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */; };
+		C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */; };
 		C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */; };
 		C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */; };
 		C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B9020D26A1000CAFD8D /* TermsViewController.xib */; };
@@ -93,6 +100,13 @@
 		480175C3E6CD6160DEFF8F6B /* Pods-SweptUpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUpTests/Pods-SweptUpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		76901E17569DFDEE9D26D16C /* Pods-SweptUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUp/Pods-SweptUp.release.xcconfig"; sourceTree = "<group>"; };
 		9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C318CDD420D80143001CA213 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		C318CDD820D80468001CA213 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		C318CDDB20D80662001CA213 /* ProfileUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserCell.xib; sourceTree = "<group>"; };
+		C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserCell.swift; sourceTree = "<group>"; };
+		C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCell.xib; sourceTree = "<group>"; };
+		C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCollectionCell.xib; sourceTree = "<group>"; };
+		C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
 		C3342B9020D26A1000CAFD8D /* TermsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TermsViewController.xib; sourceTree = "<group>"; };
@@ -208,6 +222,27 @@
 				0F3B879461D38541A75E78DF /* Pods-SweptUpUITests.release.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		C318CDDA20D80649001CA213 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C318CDD420D80143001CA213 /* ProfileViewController.xib */,
+				C318CDDB20D80662001CA213 /* ProfileUserCell.xib */,
+				C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */,
+				C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		C318CDDD20D80A6E001CA213 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				C318CDD820D80468001CA213 /* ProfileViewController.swift */,
+				C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */,
+				C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		C355F91720D35735005F8F82 /* Home */ = {
@@ -340,6 +375,7 @@
 		C3959EFE20CF86CE00B42B7A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C318CDDD20D80A6E001CA213 /* Profile */,
 				C367756D20D7EAF100352B83 /* Chat */,
 				C367756120D79A4B00352B83 /* Notification */,
 				C355F91720D35735005F8F82 /* Home */,
@@ -371,6 +407,7 @@
 		C3959F0020CF86E200B42B7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C318CDDA20D80649001CA213 /* Profile */,
 				C367756820D7C49F00352B83 /* Chat */,
 				C355F92A20D39EC5005F8F82 /* Storyboard */,
 				C355F91B20D35CAC005F8F82 /* Signup */,
@@ -559,15 +596,19 @@
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C3FF90A020D3266D00AEFC2F /* HomeWinkTitleCell.xib in Resources */,
 				C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */,
+				C318CDE120D80C91001CA213 /* ProfilePhotoCell.xib in Resources */,
 				C367756C20D7D18F00352B83 /* ChatToCell.xib in Resources */,
 				C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */,
 				C367756A20D7C72A00352B83 /* ChatFromCell.xib in Resources */,
 				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
+				C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
+				C318CDE320D80E08001CA213 /* ProfilePhotoCollectionCell.xib in Resources */,
 				C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */,
 				C355F91F20D35E97005F8F82 /* HomeUserCollectionCell.xib in Resources */,
 				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
+				C318CDDC20D80662001CA213 /* ProfileUserCell.xib in Resources */,
 				C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */,
 				C367756520D7B48800352B83 /* ChatViewController.xib in Resources */,
 				C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */,
@@ -696,6 +737,7 @@
 				C3382BE720D5F907008D0AE6 /* MainTabbarController.swift in Sources */,
 				C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
+				C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */,
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
 				C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */,
 				C3382BED20D60B11008D0AE6 /* ChatListViewController.swift in Sources */,
@@ -709,8 +751,10 @@
 				C3342B9720D274C900CAFD8D /* HomeViewController.swift in Sources */,
 				C355F92920D3765A005F8F82 /* Message.swift in Sources */,
 				C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */,
+				C318CDDF20D80A87001CA213 /* ProfileUserCell.swift in Sources */,
 				C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */,
 				C355F92120D3609B005F8F82 /* User.swift in Sources */,
+				C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */,
 				C355F92320D36AB0005F8F82 /* HomeTitleCell.swift in Sources */,
 				C355F92720D36B09005F8F82 /* HomeUserCollectionCell.swift in Sources */,
 				C367756020D7820900352B83 /* Notification.swift in Sources */,

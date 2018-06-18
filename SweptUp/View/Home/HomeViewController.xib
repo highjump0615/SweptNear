@@ -15,6 +15,7 @@
             <connections>
                 <outlet property="mLblTitle" destination="VUP-w0-Mtc" id="mbi-y7-hId"/>
                 <outlet property="mSwitch" destination="Djj-kB-qJP" id="3cm-qV-UN8"/>
+                <outlet property="mTableView" destination="v5p-wY-ic5" id="VtT-mq-pge"/>
                 <outlet property="view" destination="j2H-wQ-WNh" id="rf8-G5-NES"/>
             </connections>
         </placeholder>

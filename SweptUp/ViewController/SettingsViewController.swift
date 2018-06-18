@@ -43,6 +43,11 @@ class SettingsViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+        case 0:
+            // go to profile page
+            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            self.navigationController?.pushViewController(profileVC, animated: true)
+            
         case 1:
             // rate the app
             Utils.rateApp(appId: Config.appId, completion: { (_) in

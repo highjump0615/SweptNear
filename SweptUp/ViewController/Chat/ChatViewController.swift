@@ -55,6 +55,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // title
         self.title = "Chat"
     }

@@ -20,6 +20,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     @IBOutlet weak var mViewGender: UIView!
     @IBOutlet weak var mTextGender: UITextField!
     
+    var mUser: User?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,6 +41,15 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if mUser != nil {
+            self.title = "Edit Profile"
+            mButNext.setTitle("Save", for: .normal)
+        }
+    }
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
@@ -50,9 +61,14 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     }
     
     @IBAction func onButSignup(_ sender: Any) {
-        // go to terms & conditions page newly
-        let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
-        self.navigationController?.pushViewController(termVC, animated: true)
+        if mUser != nil {
+            self.navigationController?.popViewController(animated: true)
+        }
+        else {
+            // go to terms & conditions page newly
+            let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
+            self.navigationController?.pushViewController(termVC, animated: true)
+        }
     }
     
     /*

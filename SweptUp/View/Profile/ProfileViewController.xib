@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileViewController" customModule="SweptUp" customModuleProvider="target">
+            <connections>
+                <outlet property="mTableView" destination="v7m-Jg-zkH" id="4bv-im-6xJ"/>
+                <outlet property="view" destination="iN0-l3-epB" id="hqu-KM-hI3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="K1l-M6-AUH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="301.5"/>
+                    <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v7m-Jg-zkH">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="ri9-tp-Gdf"/>
+                        <outlet property="delegate" destination="-1" id="u7Z-St-H7h"/>
+                    </connections>
+                </tableView>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="K1l-M6-AUH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="4DN-fm-fTD"/>
+                <constraint firstItem="v7m-Jg-zkH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="6JE-Vj-fwc"/>
+                <constraint firstItem="v7m-Jg-zkH" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="A3S-i1-xtm"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="K1l-M6-AUH" secondAttribute="trailing" id="DYe-WL-Fa9"/>
+                <constraint firstItem="K1l-M6-AUH" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="Ri7-aF-9fH"/>
+                <constraint firstItem="v7m-Jg-zkH" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="VC7-7R-pKF"/>
+                <constraint firstItem="v7m-Jg-zkH" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="eH6-o9-Wcj"/>
+                <constraint firstItem="K1l-M6-AUH" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" id="mdC-AG-awX"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <point key="canvasLocation" x="24.5" y="51.5"/>
+        </view>
+    </objects>
+</document>

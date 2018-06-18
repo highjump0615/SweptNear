@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="249" id="5c3-y9-eJc" customClass="ProfileUserCell" customModule="SweptUp" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="473" height="249"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="5c3-y9-eJc" id="XV5-v7-xV7">
+                <rect key="frame" x="0.0" y="0.0" width="473" height="248.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ProfileUserBg" translatesAutoresizingMaskIntoConstraints="NO" id="qsx-d0-0zc">
+                        <rect key="frame" x="0.0" y="0.0" width="473" height="138"/>
+                    </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0gB-wh-ThV">
+                        <rect key="frame" x="14" y="14" width="110" height="23"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="10" maxY="0.0"/>
+                        <inset key="titleEdgeInsets" minX="3" minY="0.0" maxX="-13" maxY="0.0"/>
+                        <state key="normal" title="Send Wink" image="HomeWink">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGc-oT-JyW">
+                        <rect key="frame" x="402" y="10" width="57" height="30"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <state key="normal" title="IGNORE">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-7f-njC">
+                        <rect key="frame" x="153.5" y="65" width="166" height="165.5"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="HAc-fh-FFf">
+                                <rect key="frame" x="4" y="4" width="158" height="157.5"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="HAc-fh-FFf" secondAttribute="bottom" constant="4" id="2rX-t0-8Br"/>
+                            <constraint firstAttribute="width" secondItem="a8y-7f-njC" secondAttribute="height" id="6d3-h5-pkK"/>
+                            <constraint firstItem="HAc-fh-FFf" firstAttribute="top" secondItem="a8y-7f-njC" secondAttribute="top" constant="4" id="OwN-Ki-tnk"/>
+                            <constraint firstAttribute="trailing" secondItem="HAc-fh-FFf" secondAttribute="trailing" constant="4" id="TQG-4n-hqI"/>
+                            <constraint firstItem="HAc-fh-FFf" firstAttribute="leading" secondItem="a8y-7f-njC" secondAttribute="leading" constant="4" id="cyZ-BP-Goa"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WGc-oT-JyW" firstAttribute="centerY" secondItem="0gB-wh-ThV" secondAttribute="centerY" id="7Pp-UQ-Xiw"/>
+                    <constraint firstItem="qsx-d0-0zc" firstAttribute="leading" secondItem="XV5-v7-xV7" secondAttribute="leading" id="7Sy-FX-KlB"/>
+                    <constraint firstItem="a8y-7f-njC" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" constant="65" id="7aZ-gs-Yc7"/>
+                    <constraint firstItem="0gB-wh-ThV" firstAttribute="leading" secondItem="XV5-v7-xV7" secondAttribute="leading" constant="14" id="Dgl-hQ-Yp2"/>
+                    <constraint firstItem="0gB-wh-ThV" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" constant="14" id="ELI-gV-N1j"/>
+                    <constraint firstItem="qsx-d0-0zc" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" id="JQR-me-aH0"/>
+                    <constraint firstItem="a8y-7f-njC" firstAttribute="width" secondItem="XV5-v7-xV7" secondAttribute="width" multiplier="0.35" id="cBN-58-MWn"/>
+                    <constraint firstAttribute="trailing" secondItem="WGc-oT-JyW" secondAttribute="trailing" constant="14" id="dbA-PY-CeX"/>
+                    <constraint firstAttribute="bottom" secondItem="a8y-7f-njC" secondAttribute="bottom" constant="18" id="jEA-sU-Njp"/>
+                    <constraint firstItem="a8y-7f-njC" firstAttribute="centerX" secondItem="XV5-v7-xV7" secondAttribute="centerX" id="osX-aQ-ndj"/>
+                    <constraint firstAttribute="trailing" secondItem="qsx-d0-0zc" secondAttribute="trailing" id="xKV-ca-bkr"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mViewPhoto" destination="a8y-7f-njC" id="KwE-o4-ZU8"/>
+            </connections>
+            <point key="canvasLocation" x="-16.5" y="12.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="HomeWink" width="23" height="23"/>
+        <image name="ProfileUserBg" width="414" height="138"/>
+        <image name="UserDefault" width="73" height="73"/>
+    </resources>
+</document>
