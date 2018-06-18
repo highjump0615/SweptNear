@@ -37,6 +37,11 @@
 		C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C355F92B20D39F1C005F8F82 /* Tab.storyboard */; };
 		C367756020D7820900352B83 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367755F20D7820900352B83 /* Notification.swift */; };
 		C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367756220D79B4B00352B83 /* NotificationListCell.swift */; };
+		C367756520D7B48800352B83 /* ChatViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C367756420D7B48800352B83 /* ChatViewController.xib */; };
+		C367756720D7B5B500352B83 /* ChatViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367756620D7B5B500352B83 /* ChatViewController.swift */; };
+		C367756A20D7C72A00352B83 /* ChatFromCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C367756920D7C72A00352B83 /* ChatFromCell.xib */; };
+		C367756C20D7D18F00352B83 /* ChatToCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C367756B20D7D18F00352B83 /* ChatToCell.xib */; };
+		C367756F20D7EB1C00352B83 /* ChatCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367756E20D7EB1C00352B83 /* ChatCell.swift */; };
 		C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368E5B920CF09E2000DA7DC /* AppDelegate.swift */; };
 		C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C368E5BD20CF09E2000DA7DC /* Main.storyboard */; };
 		C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C368E5C020CF09E3000DA7DC /* Assets.xcassets */; };
@@ -115,6 +120,11 @@
 		C355F92B20D39F1C005F8F82 /* Tab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tab.storyboard; sourceTree = "<group>"; };
 		C367755F20D7820900352B83 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
 		C367756220D79B4B00352B83 /* NotificationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
+		C367756420D7B48800352B83 /* ChatViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatViewController.xib; sourceTree = "<group>"; };
+		C367756620D7B5B500352B83 /* ChatViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewController.swift; sourceTree = "<group>"; };
+		C367756920D7C72A00352B83 /* ChatFromCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ChatFromCell.xib; sourceTree = "<group>"; };
+		C367756B20D7D18F00352B83 /* ChatToCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChatToCell.xib; sourceTree = "<group>"; };
+		C367756E20D7EB1C00352B83 /* ChatCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatCell.swift; sourceTree = "<group>"; };
 		C368E5B620CF09E2000DA7DC /* SweptUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweptUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C368E5B920CF09E2000DA7DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C368E5BE20CF09E2000DA7DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -252,6 +262,25 @@
 			path = Notification;
 			sourceTree = "<group>";
 		};
+		C367756820D7C49F00352B83 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C367756B20D7D18F00352B83 /* ChatToCell.xib */,
+				C367756420D7B48800352B83 /* ChatViewController.xib */,
+				C367756920D7C72A00352B83 /* ChatFromCell.xib */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
+		C367756D20D7EAF100352B83 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				C367756620D7B5B500352B83 /* ChatViewController.swift */,
+				C367756E20D7EB1C00352B83 /* ChatCell.swift */,
+			);
+			path = Chat;
+			sourceTree = "<group>";
+		};
 		C368E5AD20CF09E2000DA7DC = {
 			isa = PBXGroup;
 			children = (
@@ -311,6 +340,7 @@
 		C3959EFE20CF86CE00B42B7A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C367756D20D7EAF100352B83 /* Chat */,
 				C367756120D79A4B00352B83 /* Notification */,
 				C355F91720D35735005F8F82 /* Home */,
 				C3B332C720D1923800DFEC70 /* Signup */,
@@ -341,6 +371,7 @@
 		C3959F0020CF86E200B42B7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C367756820D7C49F00352B83 /* Chat */,
 				C355F92A20D39EC5005F8F82 /* Storyboard */,
 				C355F91B20D35CAC005F8F82 /* Signup */,
 				C355F91A20D35CA4005F8F82 /* Home */,
@@ -528,7 +559,9 @@
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C3FF90A020D3266D00AEFC2F /* HomeWinkTitleCell.xib in Resources */,
 				C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */,
+				C367756C20D7D18F00352B83 /* ChatToCell.xib in Resources */,
 				C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */,
+				C367756A20D7C72A00352B83 /* ChatFromCell.xib in Resources */,
 				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
@@ -536,6 +569,7 @@
 				C355F91F20D35E97005F8F82 /* HomeUserCollectionCell.xib in Resources */,
 				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
 				C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */,
+				C367756520D7B48800352B83 /* ChatViewController.xib in Resources */,
 				C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -665,6 +699,7 @@
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
 				C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */,
 				C3382BED20D60B11008D0AE6 /* ChatListViewController.swift in Sources */,
+				C367756F20D7EB1C00352B83 /* ChatCell.swift in Sources */,
 				C3382BEB20D608D0008D0AE6 /* LocationViewController.swift in Sources */,
 				C3382BE920D604DB008D0AE6 /* BaseViewController.swift in Sources */,
 				C3382BF920D63AED008D0AE6 /* AboutViewController.swift in Sources */,
@@ -686,6 +721,7 @@
 				C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */,
 				C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */,
 				C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */,
+				C367756720D7B5B500352B83 /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

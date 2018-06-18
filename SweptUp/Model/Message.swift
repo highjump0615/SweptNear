@@ -10,4 +10,6 @@ import Foundation
 
 class Message {
     var read: Bool = true
+    
+    var userFrom: User?
 }

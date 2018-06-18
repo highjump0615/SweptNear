@@ -27,6 +27,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // if logged in, go to home page directly
         let nav = UINavigationController()
+        nav.navigationBar.tintColor = UIColor.white
+        
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
         nav.setViewControllers([homeVC], animated: true)
         UIApplication.shared.delegate?.window??.rootViewController = nav

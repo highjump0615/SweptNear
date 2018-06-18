@@ -65,6 +65,10 @@ class ChatListViewController: UITableViewController {
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // go to chat page
+        let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        self.navigationController?.pushViewController(chatVC, animated: true)
     }
 
 }
