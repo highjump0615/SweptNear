@@ -12,6 +12,7 @@ import GoogleMaps
 class LocationViewController: BaseViewController {
 
     @IBOutlet weak var mViewMap: GMSMapView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

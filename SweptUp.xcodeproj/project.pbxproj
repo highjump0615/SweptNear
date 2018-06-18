@@ -35,6 +35,8 @@
 		C355F92720D36B09005F8F82 /* HomeUserCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355F92620D36B09005F8F82 /* HomeUserCollectionCell.swift */; };
 		C355F92920D3765A005F8F82 /* Message.swift in Sources */ = {isa = PBXBuildFile; fileRef = C355F92820D3765A005F8F82 /* Message.swift */; };
 		C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C355F92B20D39F1C005F8F82 /* Tab.storyboard */; };
+		C367756020D7820900352B83 /* Notification.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367755F20D7820900352B83 /* Notification.swift */; };
+		C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C367756220D79B4B00352B83 /* NotificationListCell.swift */; };
 		C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368E5B920CF09E2000DA7DC /* AppDelegate.swift */; };
 		C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C368E5BD20CF09E2000DA7DC /* Main.storyboard */; };
 		C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C368E5C020CF09E3000DA7DC /* Assets.xcassets */; };
@@ -111,6 +113,8 @@
 		C355F92620D36B09005F8F82 /* HomeUserCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeUserCollectionCell.swift; sourceTree = "<group>"; };
 		C355F92820D3765A005F8F82 /* Message.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Message.swift; sourceTree = "<group>"; };
 		C355F92B20D39F1C005F8F82 /* Tab.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tab.storyboard; sourceTree = "<group>"; };
+		C367755F20D7820900352B83 /* Notification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notification.swift; sourceTree = "<group>"; };
+		C367756220D79B4B00352B83 /* NotificationListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationListCell.swift; sourceTree = "<group>"; };
 		C368E5B620CF09E2000DA7DC /* SweptUp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SweptUp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C368E5B920CF09E2000DA7DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C368E5BE20CF09E2000DA7DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -239,6 +243,15 @@
 			path = Storyboard;
 			sourceTree = "<group>";
 		};
+		C367756120D79A4B00352B83 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				C3382BEE20D60BAF008D0AE6 /* NotificationViewController.swift */,
+				C367756220D79B4B00352B83 /* NotificationListCell.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
 		C368E5AD20CF09E2000DA7DC = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +311,7 @@
 		C3959EFE20CF86CE00B42B7A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C367756120D79A4B00352B83 /* Notification */,
 				C355F91720D35735005F8F82 /* Home */,
 				C3B332C720D1923800DFEC70 /* Signup */,
 				C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */,
@@ -308,7 +322,6 @@
 				C3382BE820D604DB008D0AE6 /* BaseViewController.swift */,
 				C3382BEA20D608D0008D0AE6 /* LocationViewController.swift */,
 				C3382BEC20D60B11008D0AE6 /* ChatListViewController.swift */,
-				C3382BEE20D60BAF008D0AE6 /* NotificationViewController.swift */,
 				C3382BF020D60BBA008D0AE6 /* SettingsViewController.swift */,
 				C3382BF820D63AED008D0AE6 /* AboutViewController.swift */,
 			);
@@ -320,6 +333,7 @@
 			children = (
 				C355F92020D3609B005F8F82 /* User.swift */,
 				C355F92820D3765A005F8F82 /* Message.swift */,
+				C367755F20D7820900352B83 /* Notification.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -646,6 +660,7 @@
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3382BF520D6359C008D0AE6 /* Config.swift in Sources */,
 				C3382BE720D5F907008D0AE6 /* MainTabbarController.swift in Sources */,
+				C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
 				C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */,
@@ -663,6 +678,7 @@
 				C355F92120D3609B005F8F82 /* User.swift in Sources */,
 				C355F92320D36AB0005F8F82 /* HomeTitleCell.swift in Sources */,
 				C355F92720D36B09005F8F82 /* HomeUserCollectionCell.swift in Sources */,
+				C367756020D7820900352B83 /* Notification.swift in Sources */,
 				C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */,
 				C3382BEF20D60BAF008D0AE6 /* NotificationViewController.swift in Sources */,
 				C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */,
