@@ -88,7 +88,7 @@ class HomeViewController: BaseViewController,
     */
     
     //
-    // UITableViewDataSource
+    // MARK: - UITableViewDataSource
     //
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
@@ -168,7 +168,7 @@ class HomeViewController: BaseViewController,
     }
 
     //
-    // UICollectionViewDataSource
+    // MARK: - UICollectionViewDataSource
     //
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == TAG_CV_USER_WINK {

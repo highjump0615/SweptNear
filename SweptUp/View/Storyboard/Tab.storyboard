@@ -279,22 +279,75 @@
             <point key="canvasLocation" x="476.81159420289856" y="32.608695652173914"/>
         </scene>
         <!--Chat List View Controller-->
-        <scene sceneID="aJZ-vy-5jP">
+        <scene sceneID="f7Y-9C-UAX">
             <objects>
-                <viewController id="92k-Mh-qfx" customClass="ChatListViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Tfr-pm-C4u">
+                <tableViewController id="QlI-ZI-Hu7" customClass="ChatListViewController" customModule="SweptUp" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="M9y-Tf-a2e">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        <viewLayoutGuide key="safeArea" id="JpB-Jt-BGR"/>
-                    </view>
-                    <tabBarItem key="tabBarItem" image="TabChat" id="laF-Ew-qxh">
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListCell" rowHeight="66" id="pju-Z5-jsP">
+                                <rect key="frame" x="0.0" y="28" width="414" height="66"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pju-Z5-jsP" id="zrc-Lg-zzJ">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="65.666666666666671"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="jr4-zG-KWy">
+                                            <rect key="frame" x="20" y="11" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="PlY-YD-maJ"/>
+                                                <constraint firstAttribute="width" constant="44" id="mVg-Yz-OVP"/>
+                                            </constraints>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Williams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-yr-Boa">
+                                            <rect key="frame" x="80" y="7.9999999999999982" width="157" height="19.333333333333329"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                            <color key="textColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Far far away, behind the word mountains, far from the countries" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="evp-yG-v0d">
+                                            <rect key="frame" x="80" y="34.333333333333336" width="322" height="17.666666666666664"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.1803921568627451" green="0.1803921568627451" blue="0.1803921568627451" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="June 10, 2018 at 3:30 AM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmW-m9-G8P">
+                                            <rect key="frame" x="247" y="9.3333333333333357" width="155" height="16"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                                            <color key="textColor" red="0.18039215689999999" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="IAO-yr-Boa" firstAttribute="top" secondItem="zrc-Lg-zzJ" secondAttribute="top" constant="8" id="3eP-xY-7Ql"/>
+                                        <constraint firstItem="jr4-zG-KWy" firstAttribute="leading" secondItem="zrc-Lg-zzJ" secondAttribute="leading" constant="20" id="5At-xe-jDB"/>
+                                        <constraint firstItem="evp-yG-v0d" firstAttribute="trailing" secondItem="nmW-m9-G8P" secondAttribute="trailing" id="JT7-wG-GpG"/>
+                                        <constraint firstAttribute="trailing" secondItem="nmW-m9-G8P" secondAttribute="trailing" constant="12" id="Ncc-Cv-Qfq"/>
+                                        <constraint firstItem="evp-yG-v0d" firstAttribute="leading" secondItem="IAO-yr-Boa" secondAttribute="leading" id="SOI-Ew-0aS"/>
+                                        <constraint firstItem="jr4-zG-KWy" firstAttribute="top" secondItem="zrc-Lg-zzJ" secondAttribute="top" constant="11" id="Xfh-3L-g3r"/>
+                                        <constraint firstItem="nmW-m9-G8P" firstAttribute="centerY" secondItem="IAO-yr-Boa" secondAttribute="centerY" id="bcW-U7-iFd"/>
+                                        <constraint firstItem="IAO-yr-Boa" firstAttribute="leading" secondItem="jr4-zG-KWy" secondAttribute="trailing" constant="16" id="hqQ-hf-USA"/>
+                                        <constraint firstItem="nmW-m9-G8P" firstAttribute="leading" secondItem="IAO-yr-Boa" secondAttribute="trailing" constant="10" id="mJd-dt-2SE"/>
+                                        <constraint firstItem="evp-yG-v0d" firstAttribute="top" secondItem="IAO-yr-Boa" secondAttribute="bottom" constant="7" id="xEm-mD-C3w"/>
+                                        <constraint firstAttribute="bottom" secondItem="evp-yG-v0d" secondAttribute="bottom" constant="13.666666666666671" id="yho-e8-NLi"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="QlI-ZI-Hu7" id="kcX-Bz-1Zl"/>
+                            <outlet property="delegate" destination="QlI-ZI-Hu7" id="0Uw-8a-yXh"/>
+                        </connections>
+                    </tableView>
+                    <tabBarItem key="tabBarItem" title="" image="TabChat" id="kuU-IP-38Y">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="zhR-bX-23b" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="21u-y3-5rq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="478" y="-632"/>
+            <point key="canvasLocation" x="476.81159420289856" y="-651.35869565217399"/>
         </scene>
         <!--Main Tabbar Controller-->
         <scene sceneID="UTh-EP-zMA">
@@ -310,7 +363,7 @@
                         <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
-                        <segue destination="92k-Mh-qfx" kind="relationship" relationship="viewControllers" id="cZd-ZH-MfP"/>
+                        <segue destination="QlI-ZI-Hu7" kind="relationship" relationship="viewControllers" id="a6E-zS-cgf"/>
                         <segue destination="lY3-x8-IGb" kind="relationship" relationship="viewControllers" id="FJQ-55-wJL"/>
                         <segue destination="Z6N-3v-IQm" kind="relationship" relationship="viewControllers" id="Qon-58-1pn"/>
                         <segue destination="Fdq-0U-j5a" kind="relationship" relationship="viewControllers" id="GUF-QN-AgC"/>
@@ -335,5 +388,6 @@
         <image name="TabMap" width="29" height="28"/>
         <image name="TabNotification" width="30" height="32"/>
         <image name="TabSetting" width="33" height="33"/>
+        <image name="UserDefault" width="73" height="73"/>
     </resources>
 </document>

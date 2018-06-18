@@ -8,12 +8,22 @@
 
 import UIKit
 
-class ChatListViewController: BaseViewController {
+class ChatListViewController: UITableViewController {
+    
+    var messages: [Message] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        //
+        // init data
+        //
+        for _ in 1...3 {
+            messages.append(Message())
+        }
+        
+        // hide empty cells
+        tableView.tableFooterView = UIView()
     }
 
     override func didReceiveMemoryWarning() {
@@ -36,5 +46,25 @@ class ChatListViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //
+    // MARK: - UITableViewDataSource
+    //
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return messages.count
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cellMsg = tableView.dequeueReusableCell(withIdentifier: "ChatListCell")        
+        
+        return cellMsg!
+    }
+    
+    //
+    // MARK: - UITableViewDelegate
+    //
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
 
 }
