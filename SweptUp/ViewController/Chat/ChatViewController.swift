@@ -7,12 +7,14 @@
 //
 
 import UIKit
+import IHKeyboardAvoiding
 
 class ChatViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     var messages: [Message] = []
     
     @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var mViewInput: UIView!
     
     private let CELLID_CHAT_TO = "ChatToCell"
     private let CELLID_CHAT_FROM = "ChatFromCell"
@@ -31,6 +33,9 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         mTableView.register(UINib(nibName: "ChatFromCell", bundle: nil), forCellReuseIdentifier: CELLID_CHAT_FROM)
         
         mTableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
+        
+        // keyboard avoiding
+        KeyboardAvoiding.avoidingView = mViewInput
         
         //
         // init data
