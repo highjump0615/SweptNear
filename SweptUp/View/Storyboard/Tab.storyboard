@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -221,16 +222,61 @@
                     <view key="view" contentMode="scaleToFill" id="jMN-ve-GI4">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fow-aV-ecL" customClass="GMSMapView">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="623"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzU-y9-TtJ">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="41"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="U1L-rb-Nf1">
+                                        <rect key="frame" x="373" y="0.0" width="41" height="41"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="U1L-rb-Nf1" secondAttribute="height" id="8rT-f6-oRK"/>
+                                        </constraints>
+                                        <state key="normal" image="LocationMenu"/>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sc-ga-PN7">
+                                        <rect key="frame" x="189" y="10" width="36" height="21"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.91764705882352937" green="0.9137254901960784" blue="0.9137254901960784" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="2sc-ga-PN7" firstAttribute="centerX" secondItem="UzU-y9-TtJ" secondAttribute="centerX" id="34b-Cj-UNs"/>
+                                    <constraint firstAttribute="bottom" secondItem="U1L-rb-Nf1" secondAttribute="bottom" id="YwF-qX-DXW"/>
+                                    <constraint firstItem="2sc-ga-PN7" firstAttribute="centerY" secondItem="UzU-y9-TtJ" secondAttribute="centerY" id="kdj-2N-PWr"/>
+                                    <constraint firstAttribute="trailing" secondItem="U1L-rb-Nf1" secondAttribute="trailing" id="typ-4M-beO"/>
+                                    <constraint firstAttribute="height" constant="41" id="yZe-fd-96x"/>
+                                    <constraint firstItem="U1L-rb-Nf1" firstAttribute="top" secondItem="UzU-y9-TtJ" secondAttribute="top" id="zVE-H6-jLc"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="UzU-y9-TtJ" firstAttribute="trailing" secondItem="kOz-bA-DvU" secondAttribute="trailing" id="3qh-gy-3d5"/>
+                            <constraint firstItem="Fow-aV-ecL" firstAttribute="leading" secondItem="kOz-bA-DvU" secondAttribute="leading" id="F9n-EM-Ycj"/>
+                            <constraint firstItem="UzU-y9-TtJ" firstAttribute="top" secondItem="kOz-bA-DvU" secondAttribute="top" id="dek-L7-JGd"/>
+                            <constraint firstItem="Fow-aV-ecL" firstAttribute="top" secondItem="kOz-bA-DvU" secondAttribute="top" id="iHF-VG-8nE"/>
+                            <constraint firstItem="kOz-bA-DvU" firstAttribute="bottom" secondItem="Fow-aV-ecL" secondAttribute="bottom" id="oK7-IJ-MS3"/>
+                            <constraint firstItem="UzU-y9-TtJ" firstAttribute="leading" secondItem="kOz-bA-DvU" secondAttribute="leading" id="pO0-Ad-tkg"/>
+                            <constraint firstItem="kOz-bA-DvU" firstAttribute="trailing" secondItem="Fow-aV-ecL" secondAttribute="trailing" id="qD7-33-Uaw"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="kOz-bA-DvU"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="" image="TabMap" id="4GK-vl-tXF">
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
+                    <connections>
+                        <outlet property="mViewMap" destination="Fow-aV-ecL" id="g8J-fA-XwW"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9V-ZK-E5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="478" y="33"/>
+            <point key="canvasLocation" x="476.81159420289856" y="32.608695652173914"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="aJZ-vy-5jP">
@@ -276,6 +322,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="LocationMenu" width="17" height="14"/>
         <image name="SettingAbout" width="19" height="18"/>
         <image name="SettingFeedback" width="21" height="16"/>
         <image name="SettingLogout" width="22" height="23"/>
