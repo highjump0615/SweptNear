@@ -15,6 +15,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupProfileViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
                 <outlet property="mButNext" destination="LLw-n3-gsk" id="y9y-bg-lpH"/>
+                <outlet property="mImgViewPhoto" destination="VhF-at-F0Q" id="KlW-aF-FjS"/>
                 <outlet property="mTextBirthday" destination="WoI-OQ-2X8" id="Jtt-aq-vzb"/>
                 <outlet property="mTextFirstName" destination="q31-R1-CNK" id="1pm-ZO-iJl"/>
                 <outlet property="mTextGender" destination="Bi7-Ao-YIh" id="5ef-A2-Fot"/>
@@ -28,15 +29,15 @@
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view contentMode="scaleToFill" id="iN0-l3-epB">
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
             <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkH-nr-R7H">
-                    <rect key="frame" x="140.66666666666669" y="61.333333333333329" width="132.66666666666669" height="132.66666666666669"/>
+                    <rect key="frame" x="140.66666666666669" y="74.666666666666657" width="132.66666666666669" height="133"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bo2-gA-Sh8">
-                            <rect key="frame" x="46.333333333333343" y="44.666666666666671" width="40.666666666666657" height="56.666666666666671"/>
+                            <rect key="frame" x="46.333333333333343" y="44" width="40.666666666666657" height="56.666666666666657"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupPlus" translatesAutoresizingMaskIntoConstraints="NO" id="ODb-Ss-4HW">
                                     <rect key="frame" x="0.0" y="0.0" width="40.666666666666664" height="18"/>
@@ -51,12 +52,19 @@ Photo</string>
                                 </label>
                             </subviews>
                         </stackView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VhF-at-F0Q">
+                            <rect key="frame" x="0.0" y="0.0" width="132.66666666666666" height="133"/>
+                        </imageView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstItem="Bo2-gA-Sh8" firstAttribute="centerX" secondItem="zkH-nr-R7H" secondAttribute="centerX" id="5K7-8g-1kR"/>
                         <constraint firstAttribute="width" secondItem="zkH-nr-R7H" secondAttribute="height" multiplier="1:1" id="8Iw-YU-9Am"/>
                         <constraint firstItem="Bo2-gA-Sh8" firstAttribute="centerY" secondItem="zkH-nr-R7H" secondAttribute="centerY" multiplier="1.1" id="GkT-oL-6Fz"/>
+                        <constraint firstItem="VhF-at-F0Q" firstAttribute="top" secondItem="zkH-nr-R7H" secondAttribute="top" id="UgB-4O-5U3"/>
+                        <constraint firstItem="VhF-at-F0Q" firstAttribute="leading" secondItem="zkH-nr-R7H" secondAttribute="leading" id="kUp-aN-oYD"/>
+                        <constraint firstAttribute="bottom" secondItem="VhF-at-F0Q" secondAttribute="bottom" id="tTm-0K-TCt"/>
+                        <constraint firstAttribute="trailing" secondItem="VhF-at-F0Q" secondAttribute="trailing" id="web-b7-BD1"/>
                     </constraints>
                 </view>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="RAN-N9-isk">
@@ -66,10 +74,13 @@ Photo</string>
                             <rect key="frame" x="0.0" y="0.0" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q31-R1-CNK">
-                                    <rect key="frame" x="13" y="0.0" width="264.66666666666669" height="44"/>
+                                    <rect key="frame" x="13" y="0.0" width="264.33333333333331" height="44"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="mxE-qr-t9N"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -84,10 +95,13 @@ Photo</string>
                             <rect key="frame" x="0.0" y="58.666666666666686" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ip1-cw-8i0">
-                                    <rect key="frame" x="13" y="0.33333333333331439" width="264.66666666666669" height="44.333333333333336"/>
+                                    <rect key="frame" x="13" y="0.66666666666662877" width="264.33333333333331" height="44"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="name"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="BMC-Qf-ZD9"/>
+                                    </connections>
                                 </textField>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -102,13 +116,16 @@ Photo</string>
                             <rect key="frame" x="0.0" y="117.33333333333331" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WoI-OQ-2X8">
-                                    <rect key="frame" x="13" y="0.33333333333337123" width="264.66666666666669" height="44.333333333333336"/>
+                                    <rect key="frame" x="13" y="0.33333333333337123" width="264.33333333333331" height="44"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="name"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="lPB-Xs-mTE"/>
+                                    </connections>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="YsM-sT-xSZ">
-                                    <rect key="frame" x="260.66666666666669" y="14.333333333333371" width="17" height="17"/>
+                                    <rect key="frame" x="260.33333333333331" y="13.333333333333371" width="17" height="17"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -125,13 +142,16 @@ Photo</string>
                             <rect key="frame" x="0.0" y="176" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bi7-Ao-YIh">
-                                    <rect key="frame" x="13" y="0.66666666666668561" width="264.66666666666669" height="43.666666666666664"/>
+                                    <rect key="frame" x="13" y="0.0" width="264.33333333333331" height="44.333333333333336"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
+                                    <connections>
+                                        <outlet property="delegate" destination="-1" id="Nfz-7g-jf4"/>
+                                    </connections>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="wld-tT-I4A">
-                                    <rect key="frame" x="264.66666666666669" y="19.333333333333314" width="13" height="7"/>
+                                    <rect key="frame" x="264.33333333333331" y="18" width="13" height="7"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -186,7 +206,7 @@ Photo</string>
                 <constraint firstItem="zkH-nr-R7H" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.32" id="VAs-MG-zDE"/>
                 <constraint firstItem="LLw-n3-gsk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Vli-iX-MfR"/>
                 <constraint firstItem="LLw-n3-gsk" firstAttribute="width" secondItem="LLw-n3-gsk" secondAttribute="height" multiplier="277:46" id="lep-f1-t63"/>
-                <constraint firstItem="zkH-nr-R7H" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.38" id="lnK-aF-tH0"/>
+                <constraint firstItem="zkH-nr-R7H" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.42" id="lnK-aF-tH0"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MzB-70-ik7" secondAttribute="bottom" multiplier="1.04" id="nP6-yb-qvo"/>
                 <constraint firstItem="RAN-N9-isk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="uZr-Sd-3Jc"/>
                 <constraint firstItem="RAN-N9-isk" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="xNL-BW-vAB"/>

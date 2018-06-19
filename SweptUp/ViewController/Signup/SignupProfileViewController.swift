@@ -7,10 +7,15 @@
 //
 
 import UIKit
+import ActionSheetPicker_3_0
 
 class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate {
     
+    var avatarLoaded = false
+    
     @IBOutlet weak var mViewPhoto: UIView!
+    @IBOutlet weak var mImgViewPhoto: UIImageView!
+    
     @IBOutlet weak var mViewFirstName: UIView!
     @IBOutlet weak var mTextFirstName: UITextField!
     @IBOutlet weak var mViewLastName: UIView!
@@ -21,6 +26,19 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     @IBOutlet weak var mTextGender: UITextField!
     
     var mUser: User?
+    var date: Date = Date() {
+        didSet {
+            mTextBirthday.text = date.toString(format: "yyyy/MM/dd")
+        }
+    }
+    
+    
+    var genders = ["Male", "Female"]
+    var genderIndex = 0 {
+        didSet {
+            mTextGender.text = genders[genderIndex]
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,6 +52,21 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextGender.attributedPlaceholder = NSAttributedString(string: "Gender",
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
+        // init actions
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.onUploadPhoto))
+        tap.numberOfTapsRequired = 1
+        mViewPhoto.isUserInteractionEnabled = true
+        mViewPhoto.addGestureRecognizer(tap)
+        
+        // init data
+        if mUser != nil {
+            mButNext.setTitle("Save", for: .normal)
+            
+            // fill info
+            mImgViewPhoto.image = UIImage(named: "PhotoDefault")
+        }
+
     }
 
     override func didReceiveMemoryWarning() {
@@ -46,7 +79,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         
         if mUser != nil {
             self.title = "Edit Profile"
-            mButNext.setTitle("Save", for: .normal)
         }
     }
     
@@ -58,6 +90,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         mViewLastName.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
         mViewBirthday.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
         mViewGender.makeRoundBorder(width: 1.0, color: Constants.gColorGray)
+        
+        mImgViewPhoto.makeRound()
     }
     
     @IBAction func onButSignup(_ sender: Any) {
@@ -71,6 +105,22 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
     }
     
+    @objc func onUploadPhoto() {
+        let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
+        
+        alert.addAction(UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) in
+            UIViewController.takePhoto(viewController: self)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Select from gallery", style: .default, handler: { (action) in
+            UIViewController.loadFromGallery(viewController: self)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -80,5 +130,59 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //
+    // MARK: - UITextFieldDelegate
+    //
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == mTextFirstName {
+            mTextLastName.becomeFirstResponder()
+        }
+        else if textField == mTextLastName {
+            textField.resignFirstResponder()
+        }
+        
+        return true
+    }
+    
+    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
+        if textField == mTextBirthday {
+            ActionSheetDatePicker.show(withTitle: "Choose birthday(optional):", datePickerMode: .date, selectedDate: date, doneBlock: { (picker, date, view) in
+                if let date = date as? Date {
+                    self.date = date
+                }
+            }, cancel: { (picker) in
+                
+            }, origin: self.view)
+            
+            return false
+        }
+        else if textField == mTextGender {
+            ActionSheetStringPicker.show(withTitle: "Choose your gender:", rows: self.genders, initialSelection: self.genderIndex, doneBlock: { (picker, index, view) in
+                self.genderIndex = index
+            }, cancel: { (picker) in
+                
+            }, origin: self.view)
+            
+            return false
+        }
+        
+        return true
+    }
 
+}
+
+extension SignupProfileViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
+            mImgViewPhoto.image = chosenImage
+            avatarLoaded = true
+        }
+        
+        picker.dismiss(animated: true, completion: nil)
+    }
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true, completion: nil)
+    }
 }
