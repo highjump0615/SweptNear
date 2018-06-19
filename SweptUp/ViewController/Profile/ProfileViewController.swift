@@ -58,6 +58,8 @@ class ProfileViewController: BaseViewController,
                                                                 target: self,
                                                                 action: #selector(onButEdit))
         }
+        
+        showNavbar()
     }
 
     override func didReceiveMemoryWarning() {

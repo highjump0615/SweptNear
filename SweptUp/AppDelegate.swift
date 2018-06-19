@@ -26,12 +26,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = backImage
         
         // if logged in, go to home page directly
-        let nav = UINavigationController()
-        nav.navigationBar.tintColor = UIColor.white
-        
-        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-        nav.setViewControllers([homeVC], animated: true)
-        UIApplication.shared.delegate?.window??.rootViewController = nav
+//        let nav = UINavigationController()
+//        nav.navigationBar.tintColor = UIColor.white
+//
+//        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+//        nav.setViewControllers([homeVC], animated: true)
+//        UIApplication.shared.delegate?.window??.rootViewController = nav
         
         // google map initialization
         GMSServices.provideAPIKey(Config.googleMapApiKey)

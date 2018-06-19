@@ -44,8 +44,6 @@ class HomeViewController: BaseViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        hideNavbar()
 
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
@@ -67,6 +65,12 @@ class HomeViewController: BaseViewController,
         }
         
         mTableView.register(UINib(nibName: "HomeUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        hideNavbar(animated: true)
     }
 
     override func didReceiveMemoryWarning() {
@@ -199,5 +203,12 @@ class HomeViewController: BaseViewController,
         let itemWidth = HomeConstantCV.getItemWidth(boundWidth: collectionView.bounds.size.width)
         
         return CGSize(width: itemWidth, height: itemWidth)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        // go to profile page
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.mUser = User()
+        self.navigationController?.pushViewController(profileVC, animated: true)
     }
 }

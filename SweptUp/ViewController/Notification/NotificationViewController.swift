@@ -72,6 +72,17 @@ class NotificationViewController: UITableViewController {
     //
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        
+        // winks
+        if indexPath.row == 0 || indexPath.row == 1 {
+            // go to profile page
+            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileVC.mUser = User()
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+        else {
+            tabBarController?.selectedIndex = 0
+        }
     }
 
 }
