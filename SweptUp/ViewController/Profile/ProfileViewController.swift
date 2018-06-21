@@ -31,6 +31,7 @@ class ProfileViewController: BaseViewController,
                             UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
     
     var mUser: User?
+    var mViewSent: ProfilePopupSent?
     
     @IBOutlet weak var mTableView: UITableView!
     
@@ -60,6 +61,9 @@ class ProfileViewController: BaseViewController,
         }
         
         showNavbar()
+        
+        mViewSent = ProfilePopupSent.getView() as? ProfilePopupSent
+        self.view.addSubview(mViewSent!)
     }
 
     override func didReceiveMemoryWarning() {
@@ -85,6 +89,12 @@ class ProfileViewController: BaseViewController,
         signupProfileVC.mUser = User()
         self.navigationController?.pushViewController(signupProfileVC, animated: true)
     }
+    
+    /// send wink
+    @objc func onButSend() {
+        mViewSent?.frame = self.view.bounds
+        mViewSent?.showView(bShow: true, animated: true)
+    }
 
     /*
     // MARK: - Navigation
@@ -109,6 +119,7 @@ class ProfileViewController: BaseViewController,
         if indexPath.row == 0 {
             // profile user
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as? ProfileUserCell
+            cellUser?.mButSend.addTarget(self, action: #selector(onButSend), for: .touchUpInside)
             
             cellItem = cellUser
         }

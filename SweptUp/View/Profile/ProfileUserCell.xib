@@ -72,6 +72,8 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mButIgnore" destination="WGc-oT-JyW" id="Frg-Ck-JTY"/>
+                <outlet property="mButSend" destination="0gB-wh-ThV" id="e90-uL-zrP"/>
                 <outlet property="mViewPhoto" destination="a8y-7f-njC" id="KwE-o4-ZU8"/>
             </connections>
             <point key="canvasLocation" x="-16.5" y="12.5"/>

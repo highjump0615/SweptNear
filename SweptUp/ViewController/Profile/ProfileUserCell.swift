@@ -11,6 +11,8 @@ import UIKit
 class ProfileUserCell: UITableViewCell {
 
     @IBOutlet weak var mViewPhoto: UIView!
+    @IBOutlet weak var mButSend: UIButton!
+    @IBOutlet weak var mButIgnore: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
