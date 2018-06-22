@@ -30,12 +30,13 @@ class LocationViewController: BaseViewController {
     }
     
     func initMap() {
+        mViewMap.isMyLocationEnabled = true
+        mViewMap.settings.myLocationButton = true
+        
         // Create a GMSCameraPosition that tells the map to display the
         // coordinate -33.86,151.20 at zoom level 6.
-        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 16.0)
-//        let mapView = GMSMapView.map(withFrame: view.bounds, camera: camera)
-//        view.addSubview(mapView)
-        mViewMap.camera = camera
+//        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 16.0)
+//        mViewMap.camera = camera
 
         // Creates a marker in the center of the map.
         let marker = GMSMarker()

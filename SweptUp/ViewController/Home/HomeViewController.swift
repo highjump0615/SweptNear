@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 class HomeConstantCV {
     static let column: CGFloat = 4
@@ -28,11 +29,14 @@ class HomeConstantCV {
 
 class HomeViewController: BaseViewController,
                         UITableViewDataSource, UITableViewDelegate,
-                        UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+                        UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
+                        CLLocationManagerDelegate {
 
     @IBOutlet weak var mLblTitle: UILabel!
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mTableView: UITableView!
+    
+    let locationManager = CLLocationManager()
     
     let TAG_CV_USER_WINK = 1000
     let TAG_CV_USER_MESSAGE = 1001
@@ -48,6 +52,15 @@ class HomeViewController: BaseViewController,
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
         self.title = " "
+        
+        //
+        // init location
+        //
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
         
         //
         // init data
@@ -210,5 +223,19 @@ class HomeViewController: BaseViewController,
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         profileVC.mUser = User()
         self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
+    //
+    // MARK: - CLLocationManagerDelegate
+    //
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = manager.location else { return }
+        
+//        thisUser?.location = location
+        print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
+        
+//        thisUser?.update(location: location, completion: { (error) in
+//            //ignore error message here
+//        })
     }
 }
