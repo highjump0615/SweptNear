@@ -35,6 +35,13 @@ extension UIView {
     }
 }
 
+extension UIButton {
+    func makeEnable(enable: Bool) {
+        self.isEnabled = enable
+        self.alpha = enable ? 1 : 0.6
+    }
+}
+
 extension Date {
     func toReadableString() -> String {
         return toString(format: "MMMM dd, yyyy HH:mm:ss")

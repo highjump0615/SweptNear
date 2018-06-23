@@ -11,6 +11,8 @@
 		7530AD75D33E312455F9CA22 /* Pods_SweptUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */; };
 		ACE676BD1E39538E777AB530 /* Pods_SweptUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036AFAA15507C06773A15F5A /* Pods_SweptUpTests.framework */; };
 		C3028AB620DE2A0F0073E192 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3028AB520DE2A0F0073E192 /* SignInViewController.xib */; };
+		C3028AB820DE49C10073E192 /* SignupCheckbox.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3028AB720DE49C10073E192 /* SignupCheckbox.swift */; };
+		C3028ABA20DEBB550073E192 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3028AB920DEBB550073E192 /* FirebaseManager.swift */; };
 		C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDD420D80143001CA213 /* ProfileViewController.xib */; };
 		C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318CDD820D80468001CA213 /* ProfileViewController.swift */; };
 		C318CDDC20D80662001CA213 /* ProfileUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDDB20D80662001CA213 /* ProfileUserCell.xib */; };
@@ -105,6 +107,8 @@
 		76901E17569DFDEE9D26D16C /* Pods-SweptUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUp/Pods-SweptUp.release.xcconfig"; sourceTree = "<group>"; };
 		9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C3028AB520DE2A0F0073E192 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
+		C3028AB720DE49C10073E192 /* SignupCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCheckbox.swift; sourceTree = "<group>"; };
+		C3028AB920DEBB550073E192 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C318CDD420D80143001CA213 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		C318CDD820D80468001CA213 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C318CDDB20D80662001CA213 /* ProfileUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserCell.xib; sourceTree = "<group>"; };
@@ -386,6 +390,7 @@
 		C3959EFE20CF86CE00B42B7A /* ViewController */ = {
 			isa = PBXGroup;
 			children = (
+				C3B332C020D1910800DFEC70 /* CustomUI */,
 				C318CDDD20D80A6E001CA213 /* Profile */,
 				C367756D20D7EAF100352B83 /* Chat */,
 				C367756120D79A4B00352B83 /* Notification */,
@@ -423,7 +428,6 @@
 				C355F92A20D39EC5005F8F82 /* Storyboard */,
 				C355F91B20D35CAC005F8F82 /* Signup */,
 				C355F91A20D35CA4005F8F82 /* Home */,
-				C3B332C020D1910800DFEC70 /* CustomUI */,
 				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
 				C3342B9020D26A1000CAFD8D /* TermsViewController.xib */,
 				C3382BF620D63807008D0AE6 /* AboutViewController.xib */,
@@ -457,6 +461,7 @@
 				C3B332BE20D1833800DFEC70 /* SHTextHelper.swift */,
 				C3382BF220D62CFA008D0AE6 /* Utils.swift */,
 				C3382BF420D6359C008D0AE6 /* Config.swift */,
+				C3028AB920DEBB550073E192 /* FirebaseManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -485,6 +490,7 @@
 				C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */,
 				C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */,
 				C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */,
+				C3028AB720DE49C10073E192 /* SignupCheckbox.swift */,
 			);
 			path = Signup;
 			sourceTree = "<group>";
@@ -775,6 +781,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C3028ABA20DEBB550073E192 /* FirebaseManager.swift in Sources */,
+				C3028AB820DE49C10073E192 /* SignupCheckbox.swift in Sources */,
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3382BF520D6359C008D0AE6 /* Config.swift in Sources */,

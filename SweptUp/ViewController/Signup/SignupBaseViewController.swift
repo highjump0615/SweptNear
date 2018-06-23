@@ -13,11 +13,16 @@ class SignupBaseViewController: BaseViewController {
     @IBOutlet weak var mViewInput: UIView?
     @IBOutlet weak var mButNext: UIButton!
     
+    var email: String?
+    var password: String?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
         showNavbar()
+        
+        mButNext.makeEnable(enable: false)
     }
 
     override func didReceiveMemoryWarning() {

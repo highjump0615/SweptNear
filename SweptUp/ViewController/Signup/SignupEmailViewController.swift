@@ -12,12 +12,18 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
 
     @IBOutlet weak var mTextEmail: UITextField!
     
+    @IBOutlet weak var mCheckViewValid: SignupCheckbox!
+    @IBOutlet weak var mCheckViewNotUse: SignupCheckbox!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // placeholders
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email address",
                                                               attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
+        mCheckViewValid.setEnabled(enabled: false)
+        mCheckViewNotUse.setEnabled(enabled: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,9 +32,37 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to sign up password page
-        let signupPasswordVC = SignupPasswordViewController(nibName: "SignupPasswordViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupPasswordVC, animated: true)
+        if mButNext.isEnabled {
+            // go to sign up password page
+            let signupPasswordVC = SignupPasswordViewController(nibName: "SignupPasswordViewController", bundle: nil)
+            self.navigationController?.pushViewController(signupPasswordVC, animated: true)
+        }
+    }
+    
+    @IBAction func onTextChanged(_ sender: Any) {
+        // init controls
+        mButNext.makeEnable(enable: false)
+        mCheckViewValid.setEnabled(enabled: false)
+        mCheckViewNotUse.setEnabled(enabled: false)
+        
+        let email = mTextEmail.text!
+        
+        // check email valid and not in use
+        if Utils.isEmailValid(email: email) {
+            mCheckViewValid.setEnabled(enabled: true)
+            
+            // check if email has been used
+            let database = FirebaseManager.ref()
+            let query = database.child(User.TABLE_NAME)
+            query.queryOrdered(byChild: User.FIELD_EMAIL)
+                .queryEqual(toValue: "\(email)")
+                .observeSingleEvent(of: .value, with: {snapshot in
+                    if !snapshot.exists() {
+                        self.mCheckViewNotUse.setEnabled(enabled: true)
+                        self.mButNext.makeEnable(enable: true)
+                    }
+                })
+        }
     }
     
     /*

@@ -34,16 +34,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //        nav.setViewControllers([homeVC], animated: true)
 //        UIApplication.shared.delegate?.window??.rootViewController = nav
         
-//        // if tutorial has been read, go to log in page directly
-//        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
-//            let signinVC = SignInViewController(nibName: "SignInViewController", bundle: nil)
-//            nav.setViewControllers([signinVC], animated: true)
-//            UIApplication.shared.delegate?.window??.rootViewController = nav
-        let signinVC = SignInViewController(nibName: "SignInViewController", bundle: nil)
-        nav.setViewControllers([signinVC], animated: true)
-        UIApplication.shared.delegate?.window??.rootViewController = nav
-
-//        }
+        // if tutorial has been read, go to log in page directly
+        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
+            let signinVC = SignInViewController(nibName: "SignInViewController", bundle: nil)
+            nav.setViewControllers([signinVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
         
         // google map initialization
         GMSServices.provideAPIKey(Config.googleMapApiKey)

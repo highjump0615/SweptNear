@@ -9,4 +9,12 @@
 import Foundation
 
 class User {
+    
+    //
+    // table info
+    //
+    static let TABLE_NAME = "users"
+    static let FIELD_EMAIL = "email"
+    static let FIELD_TYPE = "type"
+    static let FIELD_BANNED = "banned"
 }
