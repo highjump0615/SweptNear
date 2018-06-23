@@ -7,6 +7,21 @@ target 'SweptUp' do
 
   # Pods for SweptUp
   pod 'IHKeyboardAvoiding'
+
+	pod 'Firebase/Core'
+	pod 'Firebase/Auth'
+ 	pod 'Firebase/Database'
+	pod 'Firebase/Storage'
+	pod 'Firebase/Messaging'
+	pod 'GeoFire'
+
+ 	pod 'SDWebImage'
+	pod 'SVProgressHUD'
+	pod 'ReachabilitySwift'
+ 
+	pod 'FBSDKLoginKit'
+	pod 'GoogleSignIn'
+
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'ActionSheetPicker-3.0'

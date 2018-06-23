@@ -28,6 +28,12 @@ class BaseViewController: UIViewController {
         self.title = " "
     }
     
+    /// go to main page according to user type
+    func goToMain() {
+        // go to home page with new navigation
+        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)        
+        self.navigationController?.setViewControllers([homeVC], animated: true)
+    }
 
     /*
     // MARK: - Navigation

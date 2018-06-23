@@ -14,6 +14,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
     @IBOutlet weak var mScrollView: UIScrollView!
     @IBOutlet weak var mButContinue: UIButton!
     
+    static let KEY_TUTORIAL = "tutorial"
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -53,6 +55,8 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
             mPageControl.currentPage = 1
         }
         else {
+            UserDefaults.standard.set(true, forKey: OnboardViewController.KEY_TUTORIAL)
+            
             // go to next page
             let signinVC = SignInViewController(nibName: "SigninViewController", bundle: nil)
             self.navigationController?.pushViewController(signinVC, animated: true)

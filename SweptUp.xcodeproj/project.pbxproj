@@ -10,12 +10,14 @@
 		01304B327197158A1EB9782B /* Pods_SweptUpUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBBD22CE9E5A0E606EC260A8 /* Pods_SweptUpUITests.framework */; };
 		7530AD75D33E312455F9CA22 /* Pods_SweptUp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */; };
 		ACE676BD1E39538E777AB530 /* Pods_SweptUpTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036AFAA15507C06773A15F5A /* Pods_SweptUpTests.framework */; };
+		C3028AB620DE2A0F0073E192 /* SignInViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3028AB520DE2A0F0073E192 /* SignInViewController.xib */; };
 		C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDD420D80143001CA213 /* ProfileViewController.xib */; };
 		C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318CDD820D80468001CA213 /* ProfileViewController.swift */; };
 		C318CDDC20D80662001CA213 /* ProfileUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDDB20D80662001CA213 /* ProfileUserCell.xib */; };
 		C318CDDF20D80A87001CA213 /* ProfileUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */; };
 		C318CDE120D80C91001CA213 /* ProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */; };
 		C318CDE320D80E08001CA213 /* ProfilePhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */; };
+		C323524620DD9006007D12A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C323524520DD9006007D12A7 /* GoogleService-Info.plist */; };
 		C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */; };
 		C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */; };
 		C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */; };
@@ -59,7 +61,6 @@
 		C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */; };
 		C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0820CFDE3300B42B7A /* Extensions.swift */; };
 		C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0A20CFDF8A00B42B7A /* Constants.swift */; };
-		C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */; };
 		C3959F0F20D05FD600B42B7A /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0E20D05FD600B42B7A /* SignInViewController.swift */; };
 		C3B332B620D1766100DFEC70 /* ForgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332B520D1766100DFEC70 /* ForgetViewController.xib */; };
 		C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */; };
@@ -103,12 +104,14 @@
 		480175C3E6CD6160DEFF8F6B /* Pods-SweptUpTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUpTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUpTests/Pods-SweptUpTests.debug.xcconfig"; sourceTree = "<group>"; };
 		76901E17569DFDEE9D26D16C /* Pods-SweptUp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SweptUp.release.xcconfig"; path = "Pods/Target Support Files/Pods-SweptUp/Pods-SweptUp.release.xcconfig"; sourceTree = "<group>"; };
 		9CC8142A0DDC0A77F0105C1F /* Pods_SweptUp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SweptUp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C3028AB520DE2A0F0073E192 /* SignInViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignInViewController.xib; sourceTree = "<group>"; };
 		C318CDD420D80143001CA213 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		C318CDD820D80468001CA213 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C318CDDB20D80662001CA213 /* ProfileUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserCell.xib; sourceTree = "<group>"; };
 		C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileUserCell.swift; sourceTree = "<group>"; };
 		C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCell.xib; sourceTree = "<group>"; };
 		C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCollectionCell.xib; sourceTree = "<group>"; };
+		C323524520DD9006007D12A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
@@ -158,7 +161,6 @@
 		C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		C3959F0820CFDE3300B42B7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		C3959F0A20CFDF8A00B42B7A /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
 		C3959F0E20D05FD600B42B7A /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		C3B332B520D1766100DFEC70 /* ForgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ForgetViewController.xib; sourceTree = "<group>"; };
 		C3B332B720D179CD00DFEC70 /* ForgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgetViewController.swift; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 		C368E5B820CF09E2000DA7DC /* SweptUp */ = {
 			isa = PBXGroup;
 			children = (
+				C323524520DD9006007D12A7 /* GoogleService-Info.plist */,
 				C3959F0720CFDE1E00B42B7A /* Helpers */,
 				C3959F0120CF8D3C00B42B7A /* Resource */,
 				C3959F0020CF86E200B42B7A /* View */,
@@ -421,10 +424,10 @@
 				C355F91B20D35CAC005F8F82 /* Signup */,
 				C355F91A20D35CA4005F8F82 /* Home */,
 				C3B332C020D1910800DFEC70 /* CustomUI */,
-				C3959F0C20CFEFB300B42B7A /* SigninViewController.xib */,
 				C3B332B520D1766100DFEC70 /* ForgetViewController.xib */,
 				C3342B9020D26A1000CAFD8D /* TermsViewController.xib */,
 				C3382BF620D63807008D0AE6 /* AboutViewController.xib */,
+				C3028AB520DE2A0F0073E192 /* SignInViewController.xib */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -598,7 +601,6 @@
 				C368E5C420CF09E3000DA7DC /* LaunchScreen.storyboard in Resources */,
 				C3B332B620D1766100DFEC70 /* ForgetViewController.xib in Resources */,
 				C3342B9520D2733F00CAFD8D /* HomeViewController.xib in Resources */,
-				C3959F0D20CFEFB300B42B7A /* SigninViewController.xib in Resources */,
 				C3B332C220D191D000DFEC70 /* SignupEmailViewController.xib in Resources */,
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C355F91620D3553C005F8F82 /* HomeUserCell.xib in Resources */,
@@ -608,6 +610,7 @@
 				C318CDE120D80C91001CA213 /* ProfilePhotoCell.xib in Resources */,
 				C367756C20D7D18F00352B83 /* ChatToCell.xib in Resources */,
 				C355F92C20D39F1C005F8F82 /* Tab.storyboard in Resources */,
+				C323524620DD9006007D12A7 /* GoogleService-Info.plist in Resources */,
 				C367756A20D7C72A00352B83 /* ChatFromCell.xib in Resources */,
 				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
 				C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */,
@@ -621,6 +624,7 @@
 				C3E421D120DB837C00FC7D17 /* ProfilePopupSent.xib in Resources */,
 				C3342B9120D26A1000CAFD8D /* TermsViewController.xib in Resources */,
 				C367756520D7B48800352B83 /* ChatViewController.xib in Resources */,
+				C3028AB620DE2A0F0073E192 /* SignInViewController.xib in Resources */,
 				C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,12 +654,38 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SweptUp/Pods-SweptUp-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMOAuth2/GTMOAuth2.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMOAuth2.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -707,11 +737,13 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-SweptUp/Pods-SweptUp-resources.sh",
 				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
 				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
+				"${PODS_ROOT}/GoogleSignIn/Resources/GoogleSignIn.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleMaps.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GooglePlaces.bundle",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/GoogleSignIn.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
