@@ -36,7 +36,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // if tutorial has been read, go to log in page directly
         if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
-            let signinVC = SignInViewController(nibName: "SignInViewController", bundle: nil)
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
             nav.setViewControllers([signinVC], animated: true)
             UIApplication.shared.delegate?.window??.rootViewController = nav
         }

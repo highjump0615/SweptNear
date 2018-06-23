@@ -58,7 +58,7 @@ class OnboardViewController: UIViewController, UIScrollViewDelegate {
             UserDefaults.standard.set(true, forKey: OnboardViewController.KEY_TUTORIAL)
             
             // go to next page
-            let signinVC = SignInViewController(nibName: "SigninViewController", bundle: nil)
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
             self.navigationController?.pushViewController(signinVC, animated: true)
         }
     }

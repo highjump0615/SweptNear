@@ -11,7 +11,7 @@ import IHKeyboardAvoiding
 import SVProgressHUD
 import Firebase
 
-class SignInViewController: BaseViewController, UITextFieldDelegate {
+class SigninViewController: BaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mViewInput: UIView!
     @IBOutlet weak var mViewEmail: UIView!
