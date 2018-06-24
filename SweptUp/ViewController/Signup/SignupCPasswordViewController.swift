@@ -11,6 +11,7 @@ import UIKit
 class SignupCPasswordViewController: SignupBaseViewController, UITextFieldDelegate {
     
     @IBOutlet weak var mTextPassword: UITextField!
+    @IBOutlet weak var mCheckboxMatch: SignupCheckbox!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,6 +19,14 @@ class SignupCPasswordViewController: SignupBaseViewController, UITextFieldDelega
         // placeholders
         mTextPassword.attributedPlaceholder = NSAttributedString(string: "Re-enter your password",
                                                               attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
+        disableCheckboxes()
+    }
+    
+    override func disableCheckboxes() {
+        super.disableCheckboxes()
+        
+        mCheckboxMatch.setEnabled(enabled: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,11 +35,26 @@ class SignupCPasswordViewController: SignupBaseViewController, UITextFieldDelega
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to signup profile page
-        let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupProfileVC, animated: true)
+        if mButNext.isEnabled {
+            // go to signup profile page
+            let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+            signupProfileVC.email = email
+            signupProfileVC.password = password
+            self.navigationController?.pushViewController(signupProfileVC, animated: true)
+        }
     }
 
+    @IBAction func onTextChanged(_ sender: Any) {
+        // init controls
+        disableCheckboxes()
+        
+        let passwdConfirm = mTextPassword.text!
+        if self.password == passwdConfirm {
+            mCheckboxMatch.setEnabled(enabled: true)
+            mButNext.makeEnable(enable: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
