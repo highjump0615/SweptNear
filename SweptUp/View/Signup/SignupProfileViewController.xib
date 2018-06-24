@@ -183,6 +183,9 @@ Photo</string>
                     <state key="normal" title="Go Back">
                         <color key="titleColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </state>
+                    <connections>
+                        <action selector="onButBack:" destination="-1" eventType="touchUpInside" id="mNt-Vh-ow4"/>
+                    </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLw-n3-gsk">
                     <rect key="frame" x="68.333333333333343" y="549" width="277.33333333333326" height="46"/>

@@ -90,10 +90,15 @@ class SettingsViewController: UITableViewController {
             
         case 6:
             // Log out
-            let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let onbaordVC = storyboard.instantiateViewController(withIdentifier: "onboardVC") as! OnboardViewController
-
-            self.navigationController?.setViewControllers([onbaordVC], animated: true)
+            do {
+                try FirebaseManager.mAuth.signOut()
+            }
+            catch {
+            }
+            
+            // go to sign in page
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+            self.navigationController?.setViewControllers([signinVC], animated: true)
             
         default:
             break

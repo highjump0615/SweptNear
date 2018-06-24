@@ -37,5 +37,9 @@ class Utils {
     static func timestamp() -> String {
         return "\(NSDate().timeIntervalSince1970*1000)"
     }
+    
+    static func isStringNullOrEmpty(text: String?) -> Bool {
+        return (text != nil && !((text?.isEmpty)!)) ? false : true
+    }
 
 }

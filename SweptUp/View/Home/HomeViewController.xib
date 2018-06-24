@@ -42,6 +42,9 @@
                                 <constraint firstAttribute="width" secondItem="wLb-PD-P7l" secondAttribute="height" multiplier="1:1" id="Z4N-UY-uad"/>
                             </constraints>
                             <state key="normal" image="HomeSetting"/>
+                            <connections>
+                                <action selector="onButSetting:" destination="-1" eventType="touchUpInside" id="MuH-pC-XQx"/>
+                            </connections>
                         </button>
                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="goX-5b-eUo">
                             <rect key="frame" x="301" y="9" width="26" height="26"/>

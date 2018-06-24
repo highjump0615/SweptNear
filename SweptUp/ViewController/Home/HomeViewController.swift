@@ -91,12 +91,22 @@ class HomeViewController: BaseViewController,
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func onButScan(_ sender: Any) {
+    private func gotoTabbarController(index: Int) {
         let storyboard = UIStoryboard(name: "Tab", bundle: nil)
         let tabbarController = storyboard.instantiateViewController(withIdentifier: "tabbarController") as! MainTabbarController
-        tabbarController.selectedIndex = 1
+        tabbarController.selectedIndex = index
         
         self.navigationController?.setViewControllers([tabbarController], animated: true)
+    }
+    
+    @IBAction func onButSetting(_ sender: Any) {
+        // go to settings page
+        gotoTabbarController(index: 3)
+    }
+    
+    @IBAction func onButScan(_ sender: Any) {
+        // go to map page
+        gotoTabbarController(index: 1)
     }
     
     /*

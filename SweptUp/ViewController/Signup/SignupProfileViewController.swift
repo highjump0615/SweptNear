@@ -249,8 +249,12 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
             self.navigationController?.pushViewController(termVC, animated: true)
         }
-
     }
+    
+    @IBAction func onButBack(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     
     @objc func onUploadPhoto() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
