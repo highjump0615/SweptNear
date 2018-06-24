@@ -37,7 +37,59 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
         mButSubmit.makeRound()
     }
     
-
+    @IBAction func onButSubmit(_ sender: Any) {
+        if Constants.reachability.connection == .none {
+            alertOk(title: "No internet connection",
+                    message: "Please connect to the internet and try again",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            return
+        }
+        
+        let email = mTextEmail.text!
+        let trimmed = email.trimmingCharacters(in: CharacterSet.whitespaces)
+        
+        if trimmed == "" {
+            alertOk(title: "Email Invalid",
+                    message: "Please enter email address",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            return
+        }
+        
+        if !Utils.isEmailValid(email: email) {
+            alertOk(title: "Email Invalid",
+                    message: "Please enter valid email address",
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            return
+        }
+        
+        FirebaseManager.mAuth.sendPasswordReset(withEmail: email) { (error) in
+            if let error = error {
+                if error.localizedDescription.contains("no user record") {
+                    self.alertOk(title: "Account not found",
+                               message: "Email entered is not registered. Please check your email address",
+                               cancelButton: "OK",
+                               cancelHandler: nil)
+                }
+                else {
+                    self.alertOk(title: "Submit Failed",
+                                 message: error.localizedDescription,
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                }
+            } else {
+                self.alertOk(title: "Submitted Successfully",
+                             message: "Success! We’ve sent a password reset link to your email",
+                             cancelButton: "OK",
+                             cancelHandler: { (action) in
+                    self.navigationController?.popViewController(animated: true)
+                })
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
