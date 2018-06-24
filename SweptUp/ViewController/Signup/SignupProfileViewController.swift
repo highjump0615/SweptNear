@@ -8,10 +8,16 @@
 
 import UIKit
 import ActionSheetPicker_3_0
+import Firebase
 
 class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate {
     
     var avatarLoaded = false
+    
+    static let FROM_SIGNUP = 0
+    static let FROM_PROFILE = 1
+    
+    var type = SignupProfileViewController.FROM_SIGNUP
     
     @IBOutlet weak var mViewPhoto: UIView!
     @IBOutlet weak var mImgViewPhoto: UIImageView!
@@ -25,7 +31,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     @IBOutlet weak var mViewGender: UIView!
     @IBOutlet weak var mTextGender: UITextField!
     
-    var mUser: User?
     var date: Date = Date() {
         didSet {
             mTextBirthday.text = date.toString(format: "yyyy/MM/dd")
@@ -60,7 +65,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         mViewPhoto.addGestureRecognizer(tap)
         
         // init data
-        if mUser != nil {
+        if type == SignupProfileViewController.FROM_PROFILE {
             mButNext.setTitle("Save", for: .normal)
             
             // fill info
@@ -77,7 +82,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        if mUser != nil {
+        if type == SignupProfileViewController.FROM_PROFILE {
             self.title = "Edit Profile"
         }
     }
@@ -94,15 +99,157 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         mImgViewPhoto.makeRound()
     }
     
+    /// retrieve first name with white space removed
+    ///
+    /// - Returns: <#return value description#>
+    func getFirstName() -> String {
+        let strText = mTextFirstName.text!
+        return strText.trimmingCharacters(in: .whitespaces)
+    }
+    
+    /// retrieve first name with white space removed
+    ///
+    /// - Returns: <#return value description#>
+    func getLastName() -> String {
+        let strText = mTextLastName.text!
+        return strText.trimmingCharacters(in: .whitespaces)
+    }
+    
     @IBAction func onButSignup(_ sender: Any) {
-        if mUser != nil {
+        let _firstName = getFirstName()
+        let _lastName = getLastName()
+        
+        if _firstName.isEmpty {
+            self.alertOk(title: "First Name Invalid",
+                         message: "First name cannot be empty",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        if !Utils.isNameValid(name: _firstName) {
+            self.alertOk(title: "First Name Invalid",
+                         message: "First name can only be normal charaters",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        
+        if _lastName.isEmpty {
+            self.alertOk(title: "Last Name Invalid",
+                         message: "Last name cannot be empty",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        if !Utils.isNameValid(name: _lastName) {
+            self.alertOk(title: "Last Name Invalid",
+                         message: "Last name can only be normal charaters",
+                         cancelButton: "OK",
+                         cancelHandler: nil)
+            return
+        }
+        
+        if User.currentUser == nil {
+            //
+            // sign up new user
+            //
+            
+            // show loading view
+            showLoadingView()
+
+            FirebaseManager.mAuth.createUser(withEmail: email!, password: password!, completion: { (user, error) in
+                if let error = error {
+                    // hide loading view
+                    self.showLoadingView(show: false)
+                    
+                    self.alertOk(title: "Sign up Failed",
+                                 message: error.localizedDescription,
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                    return
+                }
+                
+                // set user
+                let userNew = User()
+                
+                // save user info
+                userNew.id = (user?.uid)!
+                userNew.email = self.email!
+                
+                User.currentUser = userNew
+
+                self.uploadImageAndSetupUserInfo()
+            })
+        }
+        else {
+            uploadImageAndSetupUserInfo()
+        }
+    }
+    
+    func uploadImageAndSetupUserInfo() {
+        // upload photo
+        let user = User.currentUser!
+        if avatarLoaded, let image = self.mImgViewPhoto.image {
+            showLoadingView()
+            
+            let path = "users / " + user.id + ".png"
+            
+            let resized = image.resized(toWidth: 200, toHeight: 200)
+            FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in
+                if let error = error {
+                    self.showLoadingView(show: false)
+                    self.alertOk(title: "Failed Uploading Photo",
+                                 message: error.localizedDescription,
+                                 cancelButton: "OK",
+                                 cancelHandler: nil)
+                    return
+                }
+                
+                if let url = downloadURL {
+                    self.setupUserInfo(imageURL: url)
+                    
+                } else {
+                    self.setupUserInfo(imageURL: nil)
+                }
+            })
+        }
+        else {
+            self.setupUserInfo(imageURL: nil)
+        }
+    }
+    
+    /// save user data into db
+    ///
+    /// - Parameter imageURL: <#imageURL description#>
+    func setupUserInfo(imageURL: String?) {
+        let user = User.currentUser
+        
+        // save info
+        user?.firstName = getFirstName()
+        user?.lastName = getLastName()
+        user?.birthday = mTextBirthday.text!
+        user?.gender = mTextGender.text
+        
+        if let url = imageURL {
+            user?.photoUrl = url
+        }
+        
+        user?.saveToDatabase()
+        
+        // hide loading
+        showLoadingView(show: false)
+        
+        if type == SignupProfileViewController.FROM_PROFILE {
+            // edit profile page
             self.navigationController?.popViewController(animated: true)
         }
         else {
+            // signup profile page
             // go to terms & conditions page newly
             let termVC = TermsViewController(nibName: "TermsViewController", bundle: nil)
             self.navigationController?.pushViewController(termVC, animated: true)
         }
+
     }
     
     @objc func onUploadPhoto() {
@@ -147,6 +294,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         if textField == mTextBirthday {
+            self.view.endEditing(true)
+            
             ActionSheetDatePicker.show(withTitle: "Choose birthday(optional):", datePickerMode: .date, selectedDate: date, doneBlock: { (picker, date, view) in
                 if let date = date as? Date {
                     self.date = date
@@ -158,6 +307,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             return false
         }
         else if textField == mTextGender {
+            self.view.endEditing(true)
+            
             ActionSheetStringPicker.show(withTitle: "Choose your gender:", rows: self.genders, initialSelection: self.genderIndex, doneBlock: { (picker, index, view) in
                 self.genderIndex = index
             }, cancel: { (picker) in

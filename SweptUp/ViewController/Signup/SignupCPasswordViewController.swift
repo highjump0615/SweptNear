@@ -69,6 +69,8 @@ class SignupCPasswordViewController: SignupBaseViewController, UITextFieldDelega
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == mTextPassword {
             textField.resignFirstResponder()
+            
+            onButNext(textField)
         }
         
         return true

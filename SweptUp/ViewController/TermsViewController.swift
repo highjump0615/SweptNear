@@ -21,6 +21,7 @@ class TermsViewController: UIViewController, WKNavigationDelegate {
     static let PRIVACY_POLICY = 2
     
     var type = TermsViewController.TERMS_FROM_SIGNUP
+    var mUser: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()

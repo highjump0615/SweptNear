@@ -123,7 +123,7 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
         SVProgressHUD.show()
         
         // user authentication
-        Auth.auth().signIn(withEmail: email, password: password, completion: { (user, error) in
+        FirebaseManager.mAuth.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
                 SVProgressHUD.dismiss()
@@ -148,7 +148,7 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
     }
     
     func alertForOtherCredential(email: String) {
-        Auth.auth().fetchProviders(forEmail: email, completion: { (providers, error) in
+        FirebaseManager.mAuth.fetchProviders(forEmail: email, completion: { (providers, error) in
             if error == nil {
                 if providers?[0] == "google.com" {
                     DispatchQueue.main.async {

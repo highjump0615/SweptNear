@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class BaseViewController: UIViewController {
 
@@ -33,6 +34,24 @@ class BaseViewController: UIViewController {
         // go to home page with new navigation
         let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)        
         self.navigationController?.setViewControllers([homeVC], animated: true)
+    }
+    
+    /// show loading mast view
+    ///
+    /// - Parameter show: show/hide
+    func showLoadingView(show: Bool = true) {
+        if (SVProgressHUD.isVisible() && show) {
+            // loading view is already shown
+            return
+        }
+        
+        SVProgressHUD.dismiss()
+        
+        if (show) {
+            SVProgressHUD.setContainerView(self.view)
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            SVProgressHUD.show()
+        }
     }
 
     /*

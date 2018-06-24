@@ -47,6 +47,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // firebase initialization
         FirebaseApp.configure()
+        FirebaseManager.initServerTime()
         
         return true
     }

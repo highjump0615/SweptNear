@@ -86,7 +86,6 @@ class ProfileViewController: BaseViewController,
     @objc func onButEdit() {
         // go to signup profile page
         let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
-        signupProfileVC.mUser = User()
         self.navigationController?.pushViewController(signupProfileVC, animated: true)
     }
     
