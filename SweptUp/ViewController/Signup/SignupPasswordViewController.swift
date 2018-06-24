@@ -12,12 +12,28 @@ class SignupPasswordViewController: SignupBaseViewController, UITextFieldDelegat
     
     @IBOutlet weak var mTextPassword: UITextField!
     
+    @IBOutlet weak var mCheckbox6: SignupCheckbox!
+    @IBOutlet weak var mCheckboxUppercase: SignupCheckbox!
+    @IBOutlet weak var mCheckboxLowercase: SignupCheckbox!
+    @IBOutlet weak var mCheckboxNumber: SignupCheckbox!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // placeholders
         mTextPassword.attributedPlaceholder = NSAttributedString(string: "Enter your password",
                                                               attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
+        disableCheckboxes()
+    }
+    
+    override func disableCheckboxes() {
+        super.disableCheckboxes()
+        
+        mCheckbox6.setEnabled(enabled: false)
+        mCheckboxUppercase.setEnabled(enabled: false)
+        mCheckboxLowercase.setEnabled(enabled: false)
+        mCheckboxNumber.setEnabled(enabled: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -26,11 +42,45 @@ class SignupPasswordViewController: SignupBaseViewController, UITextFieldDelegat
     }
     
     @IBAction func onButNext(_ sender: Any) {
-        // go to confirm password page
-        let signupPasswordVC = SignupCPasswordViewController(nibName: "SignupCPasswordViewController", bundle: nil)
-        self.navigationController?.pushViewController(signupPasswordVC, animated: true)
+        if mButNext.isEnabled {
+            // go to confirm password page
+            let signupPasswordVC = SignupCPasswordViewController(nibName: "SignupCPasswordViewController", bundle: nil)
+            signupPasswordVC.email = email
+            signupPasswordVC.password = mTextPassword.text!
+            self.navigationController?.pushViewController(signupPasswordVC, animated: true)
+        }
     }
-
+    
+    @IBAction func onTextChanged(_ sender: Any) {
+        // init controls
+        disableCheckboxes()
+        
+        let passwd = mTextPassword.text!
+        
+        // check input validity
+        var nCondition = 0
+        if passwd.count >= 6 {
+            mCheckbox6.setEnabled(enabled: true)
+            nCondition += 1
+        }
+        if passwd.containsUppercase {
+            mCheckboxUppercase.setEnabled(enabled: true)
+            nCondition += 1
+        }
+        if passwd.containsLowercase {
+            mCheckboxLowercase.setEnabled(enabled: true)
+            nCondition += 1
+        }
+        if passwd.containsNumber {
+            mCheckboxNumber.setEnabled(enabled: true)
+            nCondition += 1
+        }
+        
+        if nCondition >= 4 {
+            mButNext.makeEnable(enable: true)
+        }
+    }
+    
     /*
     // MARK: - Navigation
 

@@ -21,7 +21,9 @@ class SignupBaseViewController: BaseViewController {
 
         // Do any additional setup after loading the view.
         showNavbar()
-        
+    }
+    
+    func disableCheckboxes() {
         mButNext.makeEnable(enable: false)
     }
 

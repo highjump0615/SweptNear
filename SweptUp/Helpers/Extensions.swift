@@ -216,3 +216,32 @@ extension UIViewController {
         viewController.present(picker, animated: true, completion: nil)
     }
 } 
+
+extension String {
+    var containsUppercase: Bool {
+        let characterset = CharacterSet(charactersIn: "ABCDEFGHIJKLMNOPQRSTUVWXYZ")
+        if self.rangeOfCharacter(from: characterset) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var containsLowercase: Bool {
+        let characterset = CharacterSet(charactersIn: "abcdefghijklmnopqrstuvwxyz")
+        if self.rangeOfCharacter(from: characterset) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+    
+    var containsNumber: Bool {
+        let characterset = CharacterSet(charactersIn: "0123456789")
+        if self.rangeOfCharacter(from: characterset) != nil {
+            return true
+        } else {
+            return false
+        }
+    }
+}

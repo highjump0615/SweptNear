@@ -22,6 +22,13 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
         mTextEmail.attributedPlaceholder = NSAttributedString(string: "Enter your email address",
                                                               attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         
+        disableCheckboxes()
+    }
+    
+    /// disable all check boxes
+    override func disableCheckboxes() {
+        super.disableCheckboxes()
+        
         mCheckViewValid.setEnabled(enabled: false)
         mCheckViewNotUse.setEnabled(enabled: false)
     }
@@ -35,15 +42,14 @@ class SignupEmailViewController: SignupBaseViewController, UITextFieldDelegate {
         if mButNext.isEnabled {
             // go to sign up password page
             let signupPasswordVC = SignupPasswordViewController(nibName: "SignupPasswordViewController", bundle: nil)
+            signupPasswordVC.email = mTextEmail.text!
             self.navigationController?.pushViewController(signupPasswordVC, animated: true)
         }
     }
     
     @IBAction func onTextChanged(_ sender: Any) {
         // init controls
-        mButNext.makeEnable(enable: false)
-        mCheckViewValid.setEnabled(enabled: false)
-        mCheckViewNotUse.setEnabled(enabled: false)
+        disableCheckboxes()
         
         let email = mTextEmail.text!
         
