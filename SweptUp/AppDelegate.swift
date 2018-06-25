@@ -41,11 +41,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // go to home when logged in
         let userId = FirebaseManager.mAuth.currentUser?.uid
         if !Utils.isStringNullOrEmpty(text: userId) {
-            let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-            nav.setViewControllers([homeVC], animated: true)
-            UIApplication.shared.delegate?.window??.rootViewController = nav
+            // open splash screen temporately
+            let splashVC = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
+            UIApplication.shared.delegate?.window??.rootViewController = splashVC
             
             // fetch user info
+            User.readFromDatabase(withId: userId!) { (user) in
+                User.currentUser = user
+//                homeVC.updateUserInfo()
+
+                // go to home page
+                let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+                nav.setViewControllers([homeVC], animated: true)
+                UIApplication.shared.delegate?.window??.rootViewController = nav
+            }
         }
         else {
             // if tutorial has been read, go to log in page directly

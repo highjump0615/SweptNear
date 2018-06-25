@@ -6,6 +6,7 @@ PODS:
   - Bolts/AppLinks (1.9.0):
     - Bolts/Tasks
   - Bolts/Tasks (1.9.0)
+  - EmptyDataSet-Swift (4.0.5)
   - FBSDKCoreKit (4.30.0):
     - Bolts (~> 1.7)
   - FBSDKLoginKit (4.30.0):
@@ -101,6 +102,7 @@ PODS:
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
+  - EmptyDataSet-Swift (~> 4.0.5)
   - FBSDKLoginKit
   - Firebase/Auth
   - Firebase/Core
@@ -120,6 +122,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Bolts
+    - EmptyDataSet-Swift
     - FBSDKCoreKit
     - FBSDKLoginKit
     - Firebase
@@ -148,6 +151,7 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Bolts: ac6567323eac61e203f6a9763667d0f711be34c8
+  EmptyDataSet-Swift: a25810f50c3adfaa3840aa33ae8b5ba12ac29279
   FBSDKCoreKit: 7c4bba2877781a131ab5d54c0a78c405d4307b62
   FBSDKLoginKit: fe7a7e82373dc5daad92e1623219e86224ab1fb1
   Firebase: 632216af3ed7f31e3be34776947fdc7546cfb572
@@ -173,6 +177,6 @@ SPEC CHECKSUMS:
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SVProgressHUD: a5eaeff664a82dda89809c409ace40183ce91523
 
-PODFILE CHECKSUM: a85cd0750344ab619c2e29a2d57b567760f5b363
+PODFILE CHECKSUM: b08af35a8dd5382543767cb341577582c7f97778
 
 COCOAPODS: 1.5.3

@@ -36,9 +36,15 @@ class ProfileViewController: BaseViewController,
     @IBOutlet weak var mTableView: UITableView!
     
     private let CELLID_USER = "ProfileUserCell"
+    private let CELLID_USER_PHOTO = "ProfileUserPhotoCell"
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // init user
+        if mUser == nil {
+            mUser = User.currentUser
+        }
 
         // hide empty cells
         mTableView.tableFooterView = UIView()
@@ -46,18 +52,18 @@ class ProfileViewController: BaseViewController,
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
         
         // right bar button
-        if mUser != nil {
+        if (mUser?.isEqual(to: User.currentUser!))! {
+            // edit profile
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+                                                                target: self,
+                                                                action: #selector(onButEdit))
+        }
+        else {
             // report
             navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ChatReport"),
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(onButReport))
-        }
-        else {
-            // edit profile
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
-                                                                target: self,
-                                                                action: #selector(onButEdit))
         }
         
         showNavbar()
@@ -86,6 +92,7 @@ class ProfileViewController: BaseViewController,
     @objc func onButEdit() {
         // go to signup profile page
         let signupProfileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+        signupProfileVC.type = SignupProfileViewController.FROM_PROFILE
         self.navigationController?.pushViewController(signupProfileVC, animated: true)
     }
     
@@ -118,6 +125,7 @@ class ProfileViewController: BaseViewController,
         if indexPath.row == 0 {
             // profile user
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as? ProfileUserCell
+            cellUser?.fillContent(user: mUser!)
             cellUser?.mButSend.addTarget(self, action: #selector(onButSend), for: .touchUpInside)
             
             cellItem = cellUser
@@ -134,7 +142,7 @@ class ProfileViewController: BaseViewController,
                 cv?.delegate = self
                 
                 // register nib
-                cv?.register(UINib(nibName: "ProfilePhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: "ProfilePhotoCell")
+                cv?.register(UINib(nibName: "ProfilePhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: CELLID_USER_PHOTO)
                 
                 cellItem = cellPhoto
             }
@@ -165,7 +173,7 @@ class ProfileViewController: BaseViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: "ProfilePhotoCell", for: indexPath)
+        let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath)
         
         return cellItem
     }

@@ -41,5 +41,11 @@ class Utils {
     static func isStringNullOrEmpty(text: String?) -> Bool {
         return (text != nil && !((text?.isEmpty)!)) ? false : true
     }
-
+    
+    static func getAttributedString(text: String) -> NSAttributedString {
+        let myAttribute = [NSAttributedStringKey.font: UIFont.systemFont(ofSize: 16.0)]
+        return NSAttributedString(string: text,
+                                  attributes: myAttribute)
+    }
+    
 }

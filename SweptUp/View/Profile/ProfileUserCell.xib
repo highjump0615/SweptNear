@@ -74,6 +74,7 @@
             <connections>
                 <outlet property="mButIgnore" destination="WGc-oT-JyW" id="Frg-Ck-JTY"/>
                 <outlet property="mButSend" destination="0gB-wh-ThV" id="e90-uL-zrP"/>
+                <outlet property="mImgviewPhoto" destination="HAc-fh-FFf" id="965-Ay-VWV"/>
                 <outlet property="mViewPhoto" destination="a8y-7f-njC" id="KwE-o4-ZU8"/>
             </connections>
             <point key="canvasLocation" x="-16.5" y="12.5"/>
@@ -82,6 +83,6 @@
     <resources>
         <image name="HomeWink" width="23" height="23"/>
         <image name="ProfileUserBg" width="414" height="138"/>
-        <image name="UserDefault" width="73" height="73"/>
+        <image name="UserDefault" width="100" height="100"/>
     </resources>
 </document>

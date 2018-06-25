@@ -21,6 +21,7 @@ target 'SweptUp' do
  
 	pod 'FBSDKLoginKit'
 	pod 'GoogleSignIn'
+	pod 'EmptyDataSet-Swift', '~> 4.0.5'
 
   pod 'GoogleMaps'
   pod 'GooglePlaces'

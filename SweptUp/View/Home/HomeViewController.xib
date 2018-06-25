@@ -13,6 +13,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="HomeViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
+                <outlet property="mButProfile" destination="N24-Hg-LEH" id="OED-g4-p5Q"/>
                 <outlet property="mLblTitle" destination="VUP-w0-Mtc" id="mbi-y7-hId"/>
                 <outlet property="mSwitch" destination="Djj-kB-qJP" id="3cm-qV-UN8"/>
                 <outlet property="mTableView" destination="v5p-wY-ic5" id="VtT-mq-pge"/>
@@ -46,26 +47,30 @@
                                 <action selector="onButSetting:" destination="-1" eventType="touchUpInside" id="MuH-pC-XQx"/>
                             </connections>
                         </button>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="goX-5b-eUo">
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N24-Hg-LEH">
                             <rect key="frame" x="301" y="9" width="26" height="26"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="26" id="Nce-Hf-dbB"/>
-                                <constraint firstAttribute="height" constant="26" id="XYA-mj-xe8"/>
+                                <constraint firstAttribute="width" constant="26" id="DtK-tJ-du5"/>
+                                <constraint firstAttribute="height" constant="26" id="FCV-KS-D66"/>
                             </constraints>
-                        </imageView>
+                            <state key="normal" image="UserDefault"/>
+                            <connections>
+                                <action selector="onButProfile:" destination="-1" eventType="touchUpInside" id="90K-L9-oU5"/>
+                            </connections>
+                        </button>
                     </subviews>
                     <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <constraints>
+                        <constraint firstItem="wLb-PD-P7l" firstAttribute="leading" secondItem="N24-Hg-LEH" secondAttribute="trailing" id="5LB-f1-2ek"/>
                         <constraint firstItem="VUP-w0-Mtc" firstAttribute="centerY" secondItem="Jdm-5b-7yd" secondAttribute="centerY" id="9kx-ct-2pF"/>
                         <constraint firstItem="Djj-kB-qJP" firstAttribute="centerY" secondItem="Jdm-5b-7yd" secondAttribute="centerY" id="AZN-53-Ceb"/>
-                        <constraint firstItem="wLb-PD-P7l" firstAttribute="leading" secondItem="goX-5b-eUo" secondAttribute="trailing" id="CO7-I5-cvQ"/>
                         <constraint firstAttribute="height" constant="44" id="HGD-As-Xuw"/>
                         <constraint firstItem="Djj-kB-qJP" firstAttribute="leading" secondItem="wLb-PD-P7l" secondAttribute="trailing" constant="-10" id="OMw-Vy-JJj"/>
                         <constraint firstItem="wLb-PD-P7l" firstAttribute="top" secondItem="Jdm-5b-7yd" secondAttribute="top" id="QgG-Ug-9vJ"/>
                         <constraint firstAttribute="trailing" secondItem="Djj-kB-qJP" secondAttribute="trailing" constant="4" id="RTh-pC-09t"/>
-                        <constraint firstItem="goX-5b-eUo" firstAttribute="centerY" secondItem="Jdm-5b-7yd" secondAttribute="centerY" id="h3i-gK-VGZ"/>
                         <constraint firstAttribute="bottom" secondItem="wLb-PD-P7l" secondAttribute="bottom" id="q0J-yo-hUu"/>
                         <constraint firstItem="VUP-w0-Mtc" firstAttribute="leading" secondItem="Jdm-5b-7yd" secondAttribute="leading" constant="12" id="rZU-SK-mjK"/>
+                        <constraint firstItem="N24-Hg-LEH" firstAttribute="centerY" secondItem="Jdm-5b-7yd" secondAttribute="centerY" id="whM-03-1bv"/>
                     </constraints>
                 </view>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="v5p-wY-ic5">

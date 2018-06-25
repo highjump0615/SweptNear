@@ -44,4 +44,8 @@ class BaseModel {
         
         database.child(self.id).setValue(self.toDictionary())
     }
+    
+    func isEqual(to: BaseModel) -> Bool {
+        return id == to.id
+    }
 }

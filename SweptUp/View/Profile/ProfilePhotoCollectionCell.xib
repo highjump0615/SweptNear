@@ -12,7 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="POg-78-xJb">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="POg-78-xJb" customClass="ProfilePhotoCollectionCell" customModule="SweptUp" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="145" height="140"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
@@ -32,6 +32,9 @@
             </constraints>
             <viewLayoutGuide key="safeArea" id="9Hh-tC-r33"/>
             <size key="customSize" width="145" height="140"/>
+            <connections>
+                <outlet property="mImgViewPhoto" destination="yKb-OK-dgk" id="Ldk-a3-Htr"/>
+            </connections>
             <point key="canvasLocation" x="-34.5" y="9"/>
         </collectionViewCell>
     </objects>

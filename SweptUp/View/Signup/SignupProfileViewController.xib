@@ -15,7 +15,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupProfileViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
                 <outlet property="mButNext" destination="LLw-n3-gsk" id="y9y-bg-lpH"/>
+                <outlet property="mCollectionView" destination="vay-OV-oZX" id="Ghn-km-Ul7"/>
+                <outlet property="mConstraintCollectionHeight" destination="FpO-rv-S2J" id="rh6-Zd-wgN"/>
                 <outlet property="mImgViewPhoto" destination="VhF-at-F0Q" id="KlW-aF-FjS"/>
+                <outlet property="mStackViewInput" destination="RAN-N9-isk" id="d1o-2p-IsQ"/>
                 <outlet property="mTextBirthday" destination="WoI-OQ-2X8" id="Jtt-aq-vzb"/>
                 <outlet property="mTextFirstName" destination="q31-R1-CNK" id="1pm-ZO-iJl"/>
                 <outlet property="mTextGender" destination="Bi7-Ao-YIh" id="5ef-A2-Fot"/>
@@ -34,10 +37,10 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zkH-nr-R7H">
-                    <rect key="frame" x="140.66666666666669" y="74.666666666666657" width="132.66666666666669" height="133"/>
+                    <rect key="frame" x="140.66666666666669" y="84.666666666666657" width="132.66666666666669" height="133"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="Bo2-gA-Sh8">
-                            <rect key="frame" x="46.333333333333343" y="44" width="40.666666666666657" height="56.666666666666657"/>
+                            <rect key="frame" x="46.666666666666686" y="44.333333333333343" width="40.666666666666657" height="56.666666666666657"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupPlus" translatesAutoresizingMaskIntoConstraints="NO" id="ODb-Ss-4HW">
                                     <rect key="frame" x="0.0" y="0.0" width="40.666666666666664" height="18"/>
@@ -67,14 +70,32 @@ Photo</string>
                         <constraint firstAttribute="trailing" secondItem="VhF-at-F0Q" secondAttribute="trailing" id="web-b7-BD1"/>
                     </constraints>
                 </view>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="vay-OV-oZX">
+                    <rect key="frame" x="0.0" y="235.66666666666666" width="414" height="103.66666666666666"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="vay-OV-oZX" secondAttribute="height" multiplier="80:20" priority="750" id="0C4-PB-hv1"/>
+                        <constraint firstAttribute="height" priority="250" constant="120" id="FpO-rv-S2J"/>
+                    </constraints>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZIU-uq-qJR">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="vvP-Kk-ILS"/>
+                        <outlet property="delegate" destination="-1" id="nj9-4c-dys"/>
+                    </connections>
+                </collectionView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="RAN-N9-isk">
-                    <rect key="frame" x="62" y="226" width="290" height="220"/>
+                    <rect key="frame" x="62" y="357.33333333333331" width="290" height="220.33333333333331"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6fZ-Pj-k1C">
                             <rect key="frame" x="0.0" y="0.0" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q31-R1-CNK">
-                                    <rect key="frame" x="13" y="0.0" width="264.33333333333331" height="44"/>
+                                    <rect key="frame" x="13" y="0.33333333333337123" width="264" height="44"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
@@ -95,7 +116,7 @@ Photo</string>
                             <rect key="frame" x="0.0" y="58.666666666666686" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ip1-cw-8i0">
-                                    <rect key="frame" x="13" y="0.66666666666662877" width="264.33333333333331" height="44"/>
+                                    <rect key="frame" x="13" y="0.0" width="264" height="44.666666666666664"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="name"/>
@@ -113,10 +134,10 @@ Photo</string>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Est-oq-5jn">
-                            <rect key="frame" x="0.0" y="117.33333333333331" width="290" height="44"/>
+                            <rect key="frame" x="0.0" y="117.66666666666669" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Date of Birth" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WoI-OQ-2X8">
-                                    <rect key="frame" x="13" y="0.33333333333337123" width="264.33333333333331" height="44"/>
+                                    <rect key="frame" x="13" y="0.33333333333337123" width="264" height="43.666666666666664"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="name"/>
@@ -125,7 +146,7 @@ Photo</string>
                                     </connections>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupCalendar" translatesAutoresizingMaskIntoConstraints="NO" id="YsM-sT-xSZ">
-                                    <rect key="frame" x="260.33333333333331" y="13.333333333333371" width="17" height="17"/>
+                                    <rect key="frame" x="260" y="13" width="17" height="17"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -139,10 +160,10 @@ Photo</string>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="aDI-WI-6kf">
-                            <rect key="frame" x="0.0" y="176" width="290" height="44"/>
+                            <rect key="frame" x="0.0" y="176.33333333333331" width="290" height="44"/>
                             <subviews>
                                 <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Gender" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bi7-Ao-YIh">
-                                    <rect key="frame" x="13" y="0.0" width="264.33333333333331" height="44.333333333333336"/>
+                                    <rect key="frame" x="13" y="0.66666666666674246" width="264" height="43.666666666666664"/>
                                     <nil key="textColor"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <textInputTraits key="textInputTraits" returnKeyType="next" textContentType="name"/>
@@ -151,7 +172,7 @@ Photo</string>
                                     </connections>
                                 </textField>
                                 <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="SignupArrowDown" translatesAutoresizingMaskIntoConstraints="NO" id="wld-tT-I4A">
-                                    <rect key="frame" x="264.33333333333331" y="18" width="13" height="7"/>
+                                    <rect key="frame" x="264" y="18.333333333333371" width="13" height="7"/>
                                 </imageView>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,21 +195,8 @@ Photo</string>
                         <constraint firstItem="ZaK-NR-Wfr" firstAttribute="width" secondItem="ZaK-NR-Wfr" secondAttribute="height" multiplier="145:22" id="vqn-vh-XBP"/>
                     </constraints>
                 </stackView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MzB-70-ik7">
-                    <rect key="frame" x="176.66666666666666" y="608" width="61" height="38"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="38" id="R0b-bm-OOS"/>
-                    </constraints>
-                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                    <state key="normal" title="Go Back">
-                        <color key="titleColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </state>
-                    <connections>
-                        <action selector="onButBack:" destination="-1" eventType="touchUpInside" id="mNt-Vh-ow4"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LLw-n3-gsk">
-                    <rect key="frame" x="68.333333333333343" y="549" width="277.33333333333326" height="46"/>
+                    <rect key="frame" x="68.333333333333343" y="600" width="277.33333333333326" height="46"/>
                     <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <state key="normal" title="Create Account">
@@ -201,18 +209,19 @@ Photo</string>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="MzB-70-ik7" firstAttribute="top" secondItem="LLw-n3-gsk" secondAttribute="bottom" constant="13" id="1kJ-b1-4By"/>
+                <constraint firstItem="vay-OV-oZX" firstAttribute="top" secondItem="zkH-nr-R7H" secondAttribute="bottom" constant="18" id="6DX-pQ-jJB"/>
                 <constraint firstItem="zkH-nr-R7H" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="7YW-US-w1h"/>
+                <constraint firstItem="vay-OV-oZX" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="D0h-sP-uPv"/>
                 <constraint firstItem="RAN-N9-isk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="I5v-w3-WdL"/>
-                <constraint firstItem="MzB-70-ik7" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="LRu-ph-n6w"/>
                 <constraint firstItem="LLw-n3-gsk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.67" id="Ofx-BV-pH6"/>
                 <constraint firstItem="zkH-nr-R7H" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.32" id="VAs-MG-zDE"/>
                 <constraint firstItem="LLw-n3-gsk" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Vli-iX-MfR"/>
+                <constraint firstItem="RAN-N9-isk" firstAttribute="top" secondItem="vay-OV-oZX" secondAttribute="bottom" constant="18.329999999999998" id="abG-3Y-ukL"/>
                 <constraint firstItem="LLw-n3-gsk" firstAttribute="width" secondItem="LLw-n3-gsk" secondAttribute="height" multiplier="277:46" id="lep-f1-t63"/>
-                <constraint firstItem="zkH-nr-R7H" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.42" id="lnK-aF-tH0"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="MzB-70-ik7" secondAttribute="bottom" multiplier="1.04" id="nP6-yb-qvo"/>
+                <constraint firstItem="zkH-nr-R7H" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" multiplier="0.45" id="lnK-aF-tH0"/>
+                <constraint firstItem="vay-OV-oZX" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="pnG-Kn-ufQ"/>
                 <constraint firstItem="RAN-N9-isk" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="uZr-Sd-3Jc"/>
-                <constraint firstItem="RAN-N9-isk" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="xNL-BW-vAB"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="LLw-n3-gsk" secondAttribute="bottom" multiplier="1.04" id="xCb-2x-XqJ"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

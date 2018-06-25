@@ -27,6 +27,7 @@ class User : BaseModel {
     static let FIELD_PHOTO = "photoUrl"
     static let FIELD_TYPE = "type"
     static let FIELD_BANNED = "banned"
+    static let FIELD_PHOTOS = "photos"
     
     static var currentUser: User?
     
@@ -38,6 +39,8 @@ class User : BaseModel {
     var gender: String?
     var photoUrl: String?
     var banned: Bool = false
+    
+    var photos: NSMutableArray = NSMutableArray()
     
     var deviceToken: String?
     
@@ -60,7 +63,38 @@ class User : BaseModel {
         dict[User.FIELD_GENDER] = self.gender
         dict[User.FIELD_PHOTO] = self.photoUrl
         dict[User.FIELD_BANNED] = self.banned
+        dict[User.FIELD_PHOTOS] = self.photos
         
         return NSDictionary(dictionary: dict)
+    }
+    
+    static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
+        let userRef = FirebaseManager.ref().child(TABLE_NAME).child(withId)
+        
+        userRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // user not found
+            if !snapshot.exists() {
+                completion(nil)
+                return
+            }
+            
+            let info = snapshot.value! as! NSDictionary
+            let user = User()
+            
+            user.id = snapshot.key
+            
+            user.email = info[User.FIELD_EMAIL] as! String
+            user.firstName = info[User.FIELD_FIRSTNAME] as! String
+            user.lastName = info[User.FIELD_LASTNAME] as! String
+            user.birthday = info[User.FIELD_BIRTHDAY] as? String
+            user.gender = info[User.FIELD_GENDER] as? String
+            user.photoUrl = info[User.FIELD_PHOTO] as? String
+            user.banned = info[User.FIELD_BANNED] as! Bool
+            if let aryPhoto = info[User.FIELD_BANNED] as? NSArray {
+                user.photos = NSMutableArray(array: aryPhoto)
+            }            
+
+            completion(user)
+        })
     }
 }

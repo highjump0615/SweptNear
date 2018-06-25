@@ -9,6 +9,8 @@
 import UIKit
 import ActionSheetPicker_3_0
 import Firebase
+import EmptyDataSet_Swift
+import IHKeyboardAvoiding
 
 class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate {
     
@@ -17,7 +19,14 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     static let FROM_SIGNUP = 0
     static let FROM_PROFILE = 1
     
+    private let CELLID_USER_PHOTO = "ProfileUserPhotoCell"
+    
     var type = SignupProfileViewController.FROM_SIGNUP
+    
+    static let PHOTO_PROFILE = 0
+    static let PHOTO_OTHER = 1
+    
+    var photoType = PHOTO_PROFILE
     
     @IBOutlet weak var mViewPhoto: UIView!
     @IBOutlet weak var mImgViewPhoto: UIImageView!
@@ -31,12 +40,15 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     @IBOutlet weak var mViewGender: UIView!
     @IBOutlet weak var mTextGender: UITextField!
     
+    @IBOutlet weak var mStackViewInput: UIStackView!
+    @IBOutlet weak var mCollectionView: UICollectionView!
+    @IBOutlet weak var mConstraintCollectionHeight: NSLayoutConstraint!
+    
     var date: Date = Date() {
         didSet {
             mTextBirthday.text = date.toString(format: "yyyy/MM/dd")
         }
     }
-    
     
     var genders = ["Male", "Female"]
     var genderIndex = 0 {
@@ -44,6 +56,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             mTextGender.text = genders[genderIndex]
         }
     }
+    
+    var mPhotosOther: NSMutableArray = NSMutableArray()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +71,15 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextGender.attributedPlaceholder = NSAttributedString(string: "Gender",
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+
+        // collection view
+        mCollectionView.register(UINib(nibName: "ProfilePhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: CELLID_USER_PHOTO)
+        mCollectionView.emptyDataSetView { (view) in
+            view.titleLabelString(Utils.getAttributedString(text: "No photos uploaded yet"))
+                .shouldDisplay(true)
+                .shouldFadeIn(true)
+        }
+        updatePhotosList()
         
         // init actions
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.onUploadPhoto))
@@ -66,12 +89,36 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         
         // init data
         if type == SignupProfileViewController.FROM_PROFILE {
+            // edit profile
+            
+            // right button
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add,
+                                                                target: self,
+                                                                action: #selector(onButAddPhoto))
             mButNext.setTitle("Save", for: .normal)
             
             // fill info
-            mImgViewPhoto.image = UIImage(named: "PhotoDefault")
+            let user = User.currentUser!
+            if let photoUrl = user.photoUrl {
+                mImgViewPhoto.sd_setImage(with: URL(string: photoUrl),
+                                          placeholderImage: UIImage(named: "UserDefault"),
+                                          options: .progressiveDownload,
+                                          completed: nil)
+            }
+            
+            mTextFirstName.text = user.firstName
+            mTextLastName.text = user.lastName
+            mTextBirthday.text = user.birthday
+            mTextGender.text = user.gender
         }
-
+        else {
+            mConstraintCollectionHeight.constant = 0
+            mConstraintCollectionHeight.priority = UILayoutPriority(rawValue: 1000)
+            mButNext.setTitle("Create Account", for: .normal)
+        }
+        
+        // keyboard avoiding
+        KeyboardAvoiding.avoidingView = self.view
     }
 
     override func didReceiveMemoryWarning() {
@@ -99,6 +146,17 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         mImgViewPhoto.makeRound()
     }
     
+    func updatePhotosList() {
+        let user = User.currentUser!
+        let nCount = user.photos.count + mPhotosOther.count
+        
+        mCollectionView.contentInset = UIEdgeInsets(top: 0,
+                                                    left: nCount > 0 ? mStackViewInput.frame.origin.x : 0,
+                                                    bottom: 0,
+                                                    right: nCount > 0 ? mStackViewInput.frame.origin.x : 0)
+        mCollectionView.reloadData()
+    }
+    
     /// retrieve first name with white space removed
     ///
     /// - Returns: <#return value description#>
@@ -113,6 +171,12 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     func getLastName() -> String {
         let strText = mTextLastName.text!
         return strText.trimmingCharacters(in: .whitespaces)
+    }
+    
+    /// add profile photo
+    @objc func onButAddPhoto() {
+        photoType = SignupProfileViewController.PHOTO_OTHER
+        selectImageFromPicker()
     }
     
     @IBAction func onButSignup(_ sender: Any) {
@@ -206,22 +270,61 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                 }
                 
                 if let url = downloadURL {
-                    self.setupUserInfo(imageURL: url)
-                    
-                } else {
-                    self.setupUserInfo(imageURL: nil)
+                    User.currentUser?.photoUrl = url
                 }
+
+                self.setupUserInfo()
             })
         }
         else {
-            self.setupUserInfo(imageURL: nil)
+            self.setupUserInfo()
+        }
+    }
+    
+    func setupUserInfo() {
+        if mPhotosOther.count > 0 {
+            showLoadingView()
+            
+            var nCountSaved = 0
+            let user = User.currentUser!
+            let path = "users / " + user.id + " / " + Utils.timestamp() + ".png"
+            
+            for imgPhoto in mPhotosOther.reversed() {
+                let resized = (imgPhoto as! UIImage).resized(toWidth: 200, toHeight: 200)
+                FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in
+                    if let error = error {
+                        self.showLoadingView(show: false)
+                        self.alertOk(title: "Failed Uploading Photo",
+                                     message: error.localizedDescription,
+                                     cancelButton: "OK",
+                                     cancelHandler: nil)
+                    }
+                    else {
+                        if let url = downloadURL {
+                            user.photos.insert(url, at: 0)
+                        }
+                    }
+                    
+                    nCountSaved += 1
+                    
+                    // all photos are saved
+                    if nCountSaved == self.mPhotosOther.count {
+                        self.saveUserInfo()
+                    }
+                })
+            }
+            
+            return
+        }
+        else {
+            saveUserInfo()
         }
     }
     
     /// save user data into db
     ///
     /// - Parameter imageURL: <#imageURL description#>
-    func setupUserInfo(imageURL: String?) {
+    func saveUserInfo() {
         let user = User.currentUser
         
         // save info
@@ -229,10 +332,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         user?.lastName = getLastName()
         user?.birthday = mTextBirthday.text!
         user?.gender = mTextGender.text
-        
-        if let url = imageURL {
-            user?.photoUrl = url
-        }
         
         user?.saveToDatabase()
         
@@ -251,12 +350,12 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
     }
     
-    @IBAction func onButBack(_ sender: Any) {
-        self.navigationController?.popViewController(animated: true)
+    @objc func onUploadPhoto() {
+        photoType = SignupProfileViewController.PHOTO_PROFILE
+        selectImageFromPicker()
     }
     
-    
-    @objc func onUploadPhoto() {
+    func selectImageFromPicker() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         alert.addAction(UIAlertAction(title: "Take a new photo", style: .default, handler: { (action) in
@@ -331,13 +430,45 @@ extension SignupProfileViewController : UINavigationControllerDelegate, UIImageP
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         if let chosenImage = info[UIImagePickerControllerEditedImage] as? UIImage {
-            mImgViewPhoto.image = chosenImage
-            avatarLoaded = true
+            if photoType == SignupProfileViewController.PHOTO_PROFILE {
+                mImgViewPhoto.image = chosenImage
+                avatarLoaded = true
+            }
+            else {
+                mPhotosOther.insert(chosenImage, at: 0)
+                
+                updatePhotosList()
+            }
         }
         
         picker.dismiss(animated: true, completion: nil)
     }
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         picker.dismiss(animated: true, completion: nil)
+    }
+}
+
+extension SignupProfileViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return User.currentUser!.photos.count + mPhotosOther.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath) as! ProfilePhotoCollectionCell
+        if indexPath.row < mPhotosOther.count {
+            cellItem.fillContent(image: mPhotosOther[indexPath.row] as! UIImage)
+        }
+        else {
+            let nIndex = indexPath.row - mPhotosOther.count
+            cellItem.fillContent(url: User.currentUser?.photos[nIndex] as! String)
+        }
+        
+        return cellItem
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let itemWidth = collectionView.frame.height
+        
+        return CGSize(width: itemWidth, height: itemWidth)
     }
 }

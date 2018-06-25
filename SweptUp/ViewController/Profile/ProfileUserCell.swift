@@ -13,6 +13,7 @@ class ProfileUserCell: UITableViewCell {
     @IBOutlet weak var mViewPhoto: UIView!
     @IBOutlet weak var mButSend: UIButton!
     @IBOutlet weak var mButIgnore: UIButton!
+    @IBOutlet weak var mImgviewPhoto: UIImageView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -34,5 +35,21 @@ class ProfileUserCell: UITableViewCell {
         super.layoutIfNeeded()
  
         mViewPhoto.makeRound()
+        mImgviewPhoto.makeRound()
+    }
+    
+    func fillContent(user: User) {
+        // show/hide wink & ignore buttons
+        mButSend.isHidden = user.isEqual(to: User.currentUser!)
+        mButIgnore.isHidden = user.isEqual(to: User.currentUser!)
+        
+        // photo
+        if let photoUrl = user.photoUrl {
+            mImgviewPhoto.sd_setImage(with: URL(string: photoUrl),
+                                      placeholderImage: UIImage(named: "UserDefault"),
+                                      options: .progressiveDownload,
+                                      completed: nil)
+        }
+        
     }
 }

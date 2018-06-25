@@ -8,6 +8,7 @@
 
 import UIKit
 import CoreLocation
+import SDWebImage
 
 class HomeConstantCV {
     static let column: CGFloat = 4
@@ -35,6 +36,7 @@ class HomeViewController: BaseViewController,
     @IBOutlet weak var mLblTitle: UILabel!
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mTableView: UITableView!
+    @IBOutlet weak var mButProfile: UIButton!
     
     let locationManager = CLLocationManager()
     
@@ -49,9 +51,13 @@ class HomeViewController: BaseViewController,
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        //
+        // init controls
+        //
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
         mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
         self.title = " "
+        mButProfile.makeRound()
         
         //
         // init location
@@ -84,6 +90,9 @@ class HomeViewController: BaseViewController,
         super.viewWillAppear(animated)
         
         hideNavbar(animated: true)
+        
+        // update user info
+        updateUserInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -108,6 +117,28 @@ class HomeViewController: BaseViewController,
         // go to map page
         gotoTabbarController(index: 1)
     }
+    
+    /// update current user info
+    func updateUserInfo() {
+        let user = User.currentUser
+        
+        // photo
+        if let photoUrl = user?.photoUrl {
+            mButProfile.sd_setImage(with: URL(string: photoUrl),
+                                    for: .normal,
+                                    placeholderImage: UIImage(named: "UserDefault"),
+                                    options: .progressiveDownload,
+                                    completed: nil)
+        }
+    }
+    
+    @IBAction func onButProfile(_ sender: Any) {
+        // go to profile page
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.mUser = User.currentUser
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
     
     /*
     // MARK: - Navigation
