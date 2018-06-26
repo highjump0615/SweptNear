@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EmptyDataSet_Swift
 
 class ProfileConstantCV {
     static let column: CGFloat = 3
@@ -77,6 +78,17 @@ class ProfileViewController: BaseViewController,
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        // top bouncing should be theme color
+        var frame = mTableView.bounds
+        frame.origin.y = -frame.size.height
+        let view = UIView(frame: frame)
+        view.backgroundColor = Constants.gColorTheme
+        mTableView.addSubview(view)
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -143,6 +155,11 @@ class ProfileViewController: BaseViewController,
                 
                 // register nib
                 cv?.register(UINib(nibName: "ProfilePhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: CELLID_USER_PHOTO)
+                cv?.emptyDataSetView { (view) in
+                    view.titleLabelString(Utils.getAttributedString(text: "No photos uploaded yet"))
+                        .shouldDisplay(true)
+                        .shouldFadeIn(true)
+                }
                 
                 cellItem = cellPhoto
             }
@@ -155,11 +172,13 @@ class ProfileViewController: BaseViewController,
         var totalHeight = UITableViewAutomaticDimension
         
         if indexPath.row == 1 {
+            // 3 photos in a line
+            let nLine = max(ceil(CGFloat(mUser!.photos.count) / 3.0), 1)
             let itemHeight = ProfileConstantCV.getItemWidth(boundWidth: view.bounds.size.width)
             let totalTopBottomOffset = ProfileConstantCV.offsetVert + HomeConstantCV.offsetVert
             
-            let totalSpacing = 3 * ProfileConstantCV.minLineSpacing
-            totalHeight = ((itemHeight * 3) + totalTopBottomOffset + totalSpacing)
+            let totalSpacing = CGFloat(nLine) * ProfileConstantCV.minLineSpacing
+            totalHeight = ((itemHeight * CGFloat(nLine)) + totalTopBottomOffset + totalSpacing)
         }
 
         return totalHeight
@@ -169,11 +188,12 @@ class ProfileViewController: BaseViewController,
     // MARK: - UICollectionViewDataSource
     //
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 9
+        return mUser!.photos.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath)
+        let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath) as! ProfilePhotoCollectionCell
+        cellItem.fillContent(url: mUser!.photos[indexPath.row] as! String)
         
         return cellItem
     }

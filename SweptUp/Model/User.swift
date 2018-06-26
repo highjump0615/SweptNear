@@ -90,9 +90,9 @@ class User : BaseModel {
             user.gender = info[User.FIELD_GENDER] as? String
             user.photoUrl = info[User.FIELD_PHOTO] as? String
             user.banned = info[User.FIELD_BANNED] as! Bool
-            if let aryPhoto = info[User.FIELD_BANNED] as? NSArray {
+            if let aryPhoto = info[User.FIELD_PHOTOS] as? NSArray {
                 user.photos = NSMutableArray(array: aryPhoto)
-            }            
+            }
 
             completion(user)
         })
