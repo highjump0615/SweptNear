@@ -29,6 +29,7 @@ class User : BaseModel {
     static let FIELD_PHOTO = "photoUrl"
     static let FIELD_TYPE = "type"
     static let FIELD_BANNED = "banned"
+    static let FIELD_AVAILABLE = "available"
     static let FIELD_PHOTOS = "photos"
     
     static var currentUser: User?
@@ -42,6 +43,8 @@ class User : BaseModel {
     var photoUrl: String?
     var banned: Bool = false
     
+    // wink available
+    var available: Bool = true
     var photos: [String] = []
     
     var deviceToken: String?

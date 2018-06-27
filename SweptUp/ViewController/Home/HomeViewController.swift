@@ -71,17 +71,17 @@ class HomeViewController: BaseViewController,
         //
         // init data
         //
-        for _ in 1...10 {
-            usersWink.append(Message())
-        }
-        
-        for i in 1...30 {
-            let m = Message()
-            if i < 10 {
-                m.read = false
-            }
-            usersMessage.append(m)
-        }
+//        for _ in 1...10 {
+//            usersWink.append(Message())
+//        }
+//
+//        for i in 1...30 {
+//            let m = Message()
+//            if i < 10 {
+//                m.read = false
+//            }
+//            usersMessage.append(m)
+//        }
         
         mTableView.register(UINib(nibName: "HomeUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
     }
@@ -187,6 +187,13 @@ class HomeViewController: BaseViewController,
             if let layout = cv?.collectionViewLayout as? UICollectionViewFlowLayout {
                 layout.scrollDirection = indexPath.row == 1 ? .horizontal : .vertical
             }
+            
+            let strNotice = indexPath.row == 1 ? "No winks received yet" : "No messages received yet"
+            cv?.emptyDataSetView { (view) in
+                view.titleLabelString(Utils.getAttributedString(text: strNotice))
+                    .shouldDisplay(true)
+                    .shouldFadeIn(true)
+            }
 
             cv?.dataSource = self
             cv?.delegate = self
@@ -219,7 +226,7 @@ class HomeViewController: BaseViewController,
             
         case 3:
             // messaged users
-            let totalRow = ceil(CGFloat(usersMessage.count) / HomeConstantCV.column)
+            let totalRow = max(ceil(CGFloat(usersMessage.count) / HomeConstantCV.column), 1)
             return getItemsHeight(rowCount: Int(totalRow))
             
         default:

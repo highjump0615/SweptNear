@@ -151,7 +151,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     }
     
     func updatePhotosList() {
-        let user = User.currentUser!
         let nCount = mPhotoUrls.count + mPhotosOther.count
         
         mCollectionView.contentInset = UIEdgeInsets(top: 0,
