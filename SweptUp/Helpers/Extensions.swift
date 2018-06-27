@@ -86,6 +86,14 @@ extension UIViewController {
         present(alertController, animated: true, completion: nil)
     }
     
+    /// show internet connection error
+    func showConnectionError() {
+        alertOk(title: "No internet connection",
+                message: "Please connect to the internet and try again",
+                cancelButton: "OK",
+                cancelHandler: nil)
+    }
+    
     func showNavbar() {
         self.navigationController?.navigationBar.barTintColor = Constants.gColorTheme
         self.navigationController?.navigationBar.titleTextAttributes = [

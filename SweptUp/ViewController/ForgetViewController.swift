@@ -39,10 +39,7 @@ class ForgetViewController: UIViewController, UITextFieldDelegate {
     
     @IBAction func onButSubmit(_ sender: Any) {
         if Constants.reachability.connection == .none {
-            alertOk(title: "No internet connection",
-                    message: "Please connect to the internet and try again",
-                    cancelButton: "OK",
-                    cancelHandler: nil)
+            showConnectionError()
             return
         }
         

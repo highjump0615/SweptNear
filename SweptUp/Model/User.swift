@@ -56,6 +56,16 @@ class User : BaseModel {
     //
     var password = ""
     
+    override init() {
+        super.init()
+    }
+    
+    init(withId: String) {
+        super.init()
+        
+        self.id = withId
+    }
+    
     override func tableName() -> String {
         return User.TABLE_NAME
     }
@@ -85,9 +95,7 @@ class User : BaseModel {
             }
             
             let info = snapshot.value! as! [String: Any?]
-            let user = User()
-            
-            user.id = snapshot.key
+            let user = User(withId: snapshot.key)
             
             user.email = info[User.FIELD_EMAIL] as! String
             user.firstName = info[User.FIELD_FIRSTNAME] as! String

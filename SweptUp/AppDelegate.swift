@@ -10,6 +10,7 @@ import UIKit
 import GoogleMaps
 import GooglePlaces
 import Firebase
+import GoogleSignIn
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -37,6 +38,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // firebase initialization
         FirebaseApp.configure()
         
+        // google sign-in initialization
+        GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        
         // go to home when logged in
         let userId = FirebaseManager.mAuth.currentUser?.uid
         if !Utils.isStringNullOrEmpty(text: userId) {
@@ -53,10 +57,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 User.readFromDatabase(withId: userId!) { (user) in
                     User.currentUser = user
                     
-                    // go to home page
-                    let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-                    nav.setViewControllers([homeVC], animated: true)
-                    UIApplication.shared.delegate?.window??.rootViewController = nav
+                    if user != nil {
+                        // go to home page
+                        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+                        nav.setViewControllers([homeVC], animated: true)
+                        UIApplication.shared.delegate?.window??.rootViewController = nav
+                    }
+                    else {
+                        self.goToSigninView(nav: nav)
+                    }
                 }
             }
         }
@@ -100,6 +109,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
+    func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
+        return GIDSignIn.sharedInstance().handle(url,
+                                                 sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                 annotation: [:])
+    }
 
 }
 

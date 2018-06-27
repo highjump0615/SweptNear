@@ -100,9 +100,15 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                                                                 target: self,
                                                                 action: #selector(onButAddPhoto))
             mButNext.setTitle("Save", for: .normal)
-            
-            // fill info
-            let user = User.currentUser!
+        }
+        else {
+            mConstraintCollectionHeight.constant = 0
+            mConstraintCollectionHeight.priority = UILayoutPriority(rawValue: 999)
+            mButNext.setTitle("Create Account", for: .normal)
+        }
+        
+        // fill info
+        if let user = User.currentUser {
             if let photoUrl = user.photoUrl {
                 mImgViewPhoto.sd_setImage(with: URL(string: photoUrl),
                                           placeholderImage: UIImage(named: "UserDefault"),
@@ -114,11 +120,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             mTextLastName.text = user.lastName
             mTextBirthday.text = user.birthday
             mTextGender.text = user.gender
-        }
-        else {
-            mConstraintCollectionHeight.constant = 0
-            mConstraintCollectionHeight.priority = UILayoutPriority(rawValue: 1000)
-            mButNext.setTitle("Create Account", for: .normal)
         }
         
         // keyboard avoiding
@@ -237,10 +238,9 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                 }
                 
                 // set user
-                let userNew = User()
+                let userNew = User(withId: (user?.uid)!)
                 
                 // save user info
-                userNew.id = (user?.uid)!
                 userNew.email = self.email!
                 
                 User.currentUser = userNew

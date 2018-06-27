@@ -10,6 +10,7 @@ import UIKit
 import IHKeyboardAvoiding
 import SVProgressHUD
 import Firebase
+import GoogleSignIn
 
 class SigninViewController: BaseViewController, UITextFieldDelegate {
     
@@ -33,6 +34,10 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
                                                                  attributes: [NSAttributedStringKey.foregroundColor: colorGray])
         // keyboard avoiding
         KeyboardAvoiding.avoidingView = mViewInput
+        
+        // google sign in initialization
+        GIDSignIn.sharedInstance().delegate = self
+        GIDSignIn.sharedInstance().uiDelegate = self
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -71,6 +76,16 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButGoogle(_ sender: Any) {
+        // check connection
+        if Constants.reachability.connection == .none {
+            showConnectionError()
+            return
+        }
+        
+        SVProgressHUD.setContainerView(self.view)
+        SVProgressHUD.show()
+        
+        GIDSignIn.sharedInstance().signIn()
     }
     
     /*
@@ -113,7 +128,7 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
         
         // check connection
         if Constants.reachability.connection == .none {
-            alertOk(title: "No internet connection", message: "Please connect to the internet and try again", cancelButton: "OK", cancelHandler: nil)
+            showConnectionError()
             return
         }
         
@@ -169,6 +184,50 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
         })
     }
     
+    /// fetch user info with basic user auth
+    ///
+    /// - Returns: <#return value description#>
+    func fetchUserInfo(userInfo: Firebase.User? = nil,
+                       firstName: String?,
+                       lastName: String?,
+                       photoURL: String?,
+                       onFailed: @escaping(() -> ()) = {},
+                       onCompleted: @escaping(() -> ()) = {}) {
+        
+        guard let userId = FirebaseManager.mAuth.currentUser?.uid else {
+            onFailed()
+            return
+        }
+
+        User.readFromDatabase(withId: userId) { (u) in
+            User.currentUser = u
+            
+            if User.currentUser == nil {
+                // get user info, from facebook account info
+                if userInfo != nil {
+                    let newUser = User(withId: userId)
+                    
+                    newUser.email = (userInfo?.email)!
+                    newUser.firstName = firstName!
+                    newUser.lastName = lastName!
+                    newUser.photoUrl = photoURL
+                    
+                    User.currentUser = newUser
+                }
+                
+                // social login, go to u type page
+                let profileVC = SignupProfileViewController(nibName: "SignupProfileViewController", bundle: nil)
+                profileVC.type = SignupProfileViewController.FROM_SIGNUP
+                self.navigationController?.setViewControllers([profileVC], animated: true)
+            }
+            else {
+                self.goToMain()
+            }
+            
+            onCompleted()
+        }
+    }
+    
     // MARK: - UITextFieldDelegate
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if textField == mTextEmail {
@@ -181,6 +240,101 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
         
         return true
     }
+}
 
-
+extension SigninViewController : GIDSignInDelegate, GIDSignInUIDelegate {
+    func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
+        if let error = error {
+            SVProgressHUD.dismiss()
+            
+            alertOk(title: "Google Signin Failed",
+                    message: error.localizedDescription,
+                    cancelButton: "OK",
+                    cancelHandler: nil)
+            
+            return
+        }
+        
+        let email = user.profile.email
+        let firstName = user.profile.givenName ?? " "
+        let lastName = user.profile.familyName ?? " "
+        let picture = user.profile.imageURL(withDimension: 400).absoluteString
+        
+        UserDefaults.standard.set(firstName, forKey: "firstName")
+        UserDefaults.standard.set(lastName, forKey: "lastName")
+        UserDefaults.standard.set(picture, forKey: "picture")
+        
+        Auth.auth().fetchProviders(forEmail: email!, completion: { (providers, error) in
+            
+            if error == nil {
+                
+                if let provider = providers?[0], provider != "google.com" {
+                    let providerName = (provider == "facebook.com" ? "Facebook" : "Email")
+                    SVProgressHUD.dismiss()
+                    
+                    self.alert(title: "Google Signin",
+                               message: "Sign in with Google will replace your previous \(providerName) signin. Are you sure want to proceed?", okButton: "OK",
+                               cancelButton: "Cancel",
+                               okHandler: { (_) in
+                        SVProgressHUD.show()
+                        self.continueGoogleSignIn(user: user,
+                                                  email: email!,
+                                                  firstName: firstName,
+                                                  lastName: lastName,
+                                                  photoURL: picture)
+                    }, cancelHandler: nil)
+                    
+                    return
+                }
+            }
+            self.continueGoogleSignIn(user:user,
+                                      email: email!,
+                                      firstName: firstName,
+                                      lastName: lastName,
+                                      photoURL: picture)
+        })
+    }
+    
+    func sign(_ signIn: GIDSignIn!, didDisconnectWith user: GIDGoogleUser!, withError error: Error!) {
+        // Perform any operations when the user disconnects from app here.
+        // ...
+    }
+    
+    func continueGoogleSignIn(user: GIDGoogleUser,
+                              email: String,
+                              firstName: String,
+                              lastName: String,
+                              photoURL: String) {
+        guard let authentication = user.authentication else { return }
+        let credential = GoogleAuthProvider.credential(withIDToken: authentication.idToken,
+                                                       accessToken: authentication.accessToken)
+        Auth.auth().signIn(with: credential) { (user, error) in
+            
+            if let error = error {
+                SVProgressHUD.dismiss()
+                if let errorCode = AuthErrorCode(rawValue: error._code) {
+                    if errorCode == AuthErrorCode.accountExistsWithDifferentCredential {
+                        self.alertForOtherCredential(email: email)
+                    }
+                    else {
+                        self.alertOk(title: "Google Signin Failed",
+                                     message: error.localizedDescription,
+                                     cancelButton: "OK",
+                                     cancelHandler: nil)
+                    }
+                    
+                    return
+                }
+            }
+            
+            self.fetchUserInfo(userInfo: user,
+                               firstName: firstName,
+                               lastName: lastName,
+                               photoURL: photoURL,
+                               onFailed: {
+                                FirebaseManager.signOut()
+            })
+        }
+    }
+    
 }

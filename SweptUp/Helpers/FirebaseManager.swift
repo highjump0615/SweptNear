@@ -56,4 +56,13 @@ class FirebaseManager {
             }
         }
     }
+    
+    static func signOut() {
+        // Log out
+        do {
+            try FirebaseManager.mAuth.signOut()
+        }
+        catch {
+        }
+    }
 }

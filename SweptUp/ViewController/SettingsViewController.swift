@@ -89,12 +89,7 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.pushViewController(termVC, animated: true)
             
         case 6:
-            // Log out
-            do {
-                try FirebaseManager.mAuth.signOut()
-            }
-            catch {
-            }
+            FirebaseManager.signOut()
             
             // go to sign in page
             let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
