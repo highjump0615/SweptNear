@@ -11,6 +11,7 @@ import ActionSheetPicker_3_0
 import Firebase
 import EmptyDataSet_Swift
 import IHKeyboardAvoiding
+import SDWebImage
 
 class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate {
     
@@ -57,7 +58,10 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
     }
     
-    var mPhotosOther: NSMutableArray = NSMutableArray()
+    var mPhotoUrls = User.currentUser!.photos
+    var mPhotosOther: [UIImage] = []
+    var muploadPhotoIndex = 0
+    var mPhotoDeleted = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -148,7 +152,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     
     func updatePhotosList() {
         let user = User.currentUser!
-        let nCount = user.photos.count + mPhotosOther.count
+        let nCount = mPhotoUrls.count + mPhotosOther.count
         
         mCollectionView.contentInset = UIEdgeInsets(top: 0,
                                                     left: nCount > 0 ? mStackViewInput.frame.origin.x : 0,
@@ -271,6 +275,10 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                 
                 if let url = downloadURL {
                     User.currentUser?.photoUrl = url
+                    
+                    // save image to cache
+                    SDWebImageManager.shared().saveImage(toCache: resized,
+                                                         for: URL(string: url))
                 }
 
                 self.setupUserInfo()
@@ -281,39 +289,49 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
     }
     
+    func uploadPhoto() {
+        let user = User.currentUser!
+        let path = "users / " + user.id + " / " + Utils.timestamp() + ".png"
+        
+        let img = mPhotosOther.reversed()[muploadPhotoIndex]
+        
+        let resized = img.resized(toWidth: 200, toHeight: 200)
+        FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in
+            if let error = error {
+                self.showLoadingView(show: false)
+                self.alertOk(title: "Failed Uploading Photo",
+                             message: error.localizedDescription,
+                             cancelButton: "OK",
+                             cancelHandler: nil)
+            }
+            else {
+                if let url = downloadURL {
+                    user.photos.insert(url, at: 0)
+                    
+                    // save image to cache
+                    SDWebImageManager.shared().saveImage(toCache: resized,
+                                                         for: URL(string: url))
+                }
+                
+                self.muploadPhotoIndex += 1
+                
+                // all photos are saved
+                if self.muploadPhotoIndex == self.mPhotosOther.count {
+                    self.saveUserInfo()
+                }
+                else {
+                    self.uploadPhoto()
+                }
+            }
+        })
+    }
+    
     func setupUserInfo() {
         if mPhotosOther.count > 0 {
             showLoadingView()
+            muploadPhotoIndex = 0
             
-            var nCountSaved = 0
-            let user = User.currentUser!
-            let path = "users / " + user.id + " / " + Utils.timestamp() + ".png"
-            
-            for imgPhoto in mPhotosOther.reversed() {
-                let resized = (imgPhoto as! UIImage).resized(toWidth: 200, toHeight: 200)
-                FirebaseManager.uploadImageTo(path: path, image: resized, completionHandler: { (downloadURL, error) in
-                    if let error = error {
-                        self.showLoadingView(show: false)
-                        self.alertOk(title: "Failed Uploading Photo",
-                                     message: error.localizedDescription,
-                                     cancelButton: "OK",
-                                     cancelHandler: nil)
-                    }
-                    else {
-                        if let url = downloadURL {
-                            user.photos.insert(url, at: 0)
-                        }
-                    }
-                    
-                    nCountSaved += 1
-                    
-                    // all photos are saved
-                    if nCountSaved == self.mPhotosOther.count {
-                        self.saveUserInfo()
-                    }
-                })
-            }
-            
+            uploadPhoto()
             return
         }
         else {
@@ -332,6 +350,11 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         user?.lastName = getLastName()
         user?.birthday = mTextBirthday.text!
         user?.gender = mTextGender.text
+        user?.gender = mTextGender.text
+        
+        if mPhotoDeleted {
+            user?.photos = mPhotoUrls
+        }
         
         user?.saveToDatabase()
         
@@ -449,18 +472,49 @@ extension SignupProfileViewController : UINavigationControllerDelegate, UIImageP
 }
 
 extension SignupProfileViewController : UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
+    /// delete photo
+    @objc func onButDelete(_ sender: Any) {
+        let but = sender as! UIButton
+        let nIndex = but.tag
+        
+        self.alert(title: "Are you sure to delete this photo?",
+                   message: "You can tap back without saving to restore the photo",
+                   okButton: "OK",
+                   cancelButton: "Cancel",
+                   okHandler: { (_) in
+                    
+                    // if it is newly added, remove it from photos directly
+                    if (nIndex < self.mPhotosOther.count) {
+                        self.mPhotosOther.remove(at: nIndex)
+                    }
+                    else {
+                        // add index to delete
+                        self.mPhotoUrls.remove(at: nIndex - self.mPhotosOther.count)
+                        self.mPhotoDeleted = true
+                    }
+                    
+                    self.mCollectionView.reloadData()
+        }, cancelHandler: nil)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return User.currentUser!.photos.count + mPhotosOther.count
+        return mPhotoUrls.count + mPhotosOther.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath) as! ProfilePhotoCollectionCell
+        cellItem.mButDelete.isHidden = false
+        cellItem.mButDelete.tag = indexPath.row
+        cellItem.mButDelete.addTarget(self,
+                                      action: #selector(onButDelete),
+                                      for: .touchUpInside)
+        
         if indexPath.row < mPhotosOther.count {
-            cellItem.fillContent(image: mPhotosOther[indexPath.row] as! UIImage)
+            cellItem.fillContent(image: mPhotosOther[indexPath.row])
         }
         else {
             let nIndex = indexPath.row - mPhotosOther.count
-            cellItem.fillContent(url: User.currentUser?.photos[nIndex] as! String)
+            cellItem.fillContent(url: mPhotoUrls[nIndex])
         }
         
         return cellItem

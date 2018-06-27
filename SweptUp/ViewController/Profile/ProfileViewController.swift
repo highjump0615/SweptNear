@@ -12,8 +12,8 @@ import EmptyDataSet_Swift
 class ProfileConstantCV {
     static let column: CGFloat = 3
     
-    static let minLineSpacing: CGFloat = 16.0
-    static let minItemSpacing: CGFloat = 16.0
+    static let minLineSpacing: CGFloat = 10.0
+    static let minItemSpacing: CGFloat = 10.0
     
     static let offset: CGFloat = 20.0 // TODO: for each side, define its offset
     static let offsetVert: CGFloat = 14.0
@@ -94,6 +94,8 @@ class ProfileViewController: BaseViewController,
         
         // title
         self.title = "Profile Information"
+        
+        mTableView.reloadData()
     }
     
     /// report user
@@ -193,7 +195,7 @@ class ProfileViewController: BaseViewController,
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cellItem = collectionView.dequeueReusableCell(withReuseIdentifier: CELLID_USER_PHOTO, for: indexPath) as! ProfilePhotoCollectionCell
-        cellItem.fillContent(url: mUser!.photos[indexPath.row] as! String)
+        cellItem.fillContent(url: mUser!.photos[indexPath.row])
         
         return cellItem
     }

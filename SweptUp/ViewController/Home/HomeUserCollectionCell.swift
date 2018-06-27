@@ -19,9 +19,12 @@ class HomeUserCollectionCell: UICollectionViewCell {
     
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
-        
+
         // init view
         let radius: CGFloat = layoutAttributes.size.height / 2.0
         mViewBg.layer.cornerRadius = radius
+        
+        mImgViewUser.layer.masksToBounds = true
+        mImgViewUser.layer.cornerRadius = radius - 3
     }
 }

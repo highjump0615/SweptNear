@@ -36,7 +36,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // firebase initialization
         FirebaseApp.configure()
-        FirebaseManager.initServerTime()
         
         // go to home when logged in
         let userId = FirebaseManager.mAuth.currentUser?.uid
@@ -45,27 +44,38 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let splashVC = UIStoryboard(name: "LaunchScreen", bundle: nil).instantiateInitialViewController()
             UIApplication.shared.delegate?.window??.rootViewController = splashVC
             
-            // fetch user info
-            User.readFromDatabase(withId: userId!) { (user) in
-                User.currentUser = user
-//                homeVC.updateUserInfo()
-
-                // go to home page
-                let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
-                nav.setViewControllers([homeVC], animated: true)
-                UIApplication.shared.delegate?.window??.rootViewController = nav
+            // check connection
+            if Constants.reachability.connection == .none {
+                self.goToSigninView(nav: nav)
+            }
+            else {
+                // fetch user info
+                User.readFromDatabase(withId: userId!) { (user) in
+                    User.currentUser = user
+                    
+                    // go to home page
+                    let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+                    nav.setViewControllers([homeVC], animated: true)
+                    UIApplication.shared.delegate?.window??.rootViewController = nav
+                }
             }
         }
         else {
-            // if tutorial has been read, go to log in page directly
-            if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
-                let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
-                nav.setViewControllers([signinVC], animated: true)
-                UIApplication.shared.delegate?.window??.rootViewController = nav
-            }
+            goToSigninView(nav: nav)
         }
         
+        FirebaseManager.initServerTime()
+        
         return true
+    }
+    
+    func goToSigninView(nav: UINavigationController) {
+        // if tutorial has been read, go to log in page directly
+        if let tutorial = UserDefaults.standard.value(forKey: OnboardViewController.KEY_TUTORIAL) as? Bool, tutorial == true {
+            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+            nav.setViewControllers([signinVC], animated: true)
+            UIApplication.shared.delegate?.window??.rootViewController = nav
+        }
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

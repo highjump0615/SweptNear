@@ -66,7 +66,7 @@
                     <constraint firstItem="qsx-d0-0zc" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" id="JQR-me-aH0"/>
                     <constraint firstItem="a8y-7f-njC" firstAttribute="width" secondItem="XV5-v7-xV7" secondAttribute="width" multiplier="0.35" id="cBN-58-MWn"/>
                     <constraint firstAttribute="trailing" secondItem="WGc-oT-JyW" secondAttribute="trailing" constant="14" id="dbA-PY-CeX"/>
-                    <constraint firstAttribute="bottom" secondItem="a8y-7f-njC" secondAttribute="bottom" constant="18" id="jEA-sU-Njp"/>
+                    <constraint firstAttribute="bottom" secondItem="a8y-7f-njC" secondAttribute="bottom" priority="999" constant="18" id="jEA-sU-Njp"/>
                     <constraint firstItem="a8y-7f-njC" firstAttribute="centerX" secondItem="XV5-v7-xV7" secondAttribute="centerX" id="osX-aQ-ndj"/>
                     <constraint firstAttribute="trailing" secondItem="qsx-d0-0zc" secondAttribute="trailing" id="xKV-ca-bkr"/>
                 </constraints>

@@ -20,19 +20,32 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="PhotoDefault" translatesAutoresizingMaskIntoConstraints="NO" id="yKb-OK-dgk">
-                        <rect key="frame" x="0.0" y="0.0" width="145" height="140"/>
+                        <rect key="frame" x="0.0" y="6" width="139" height="134"/>
                     </imageView>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="o3u-v4-TlH">
+                        <rect key="frame" x="117" y="0.0" width="28" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="E9b-Vd-4dz"/>
+                            <constraint firstAttribute="width" constant="28" id="jSr-gT-Yh8"/>
+                        </constraints>
+                        <state key="normal" image="ProfilePopupClose"/>
+                    </button>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="yKb-OK-dgk" secondAttribute="trailing" id="2jo-Qw-v3z"/>
+                <constraint firstAttribute="trailing" secondItem="yKb-OK-dgk" secondAttribute="trailing" constant="6" id="2jo-Qw-v3z"/>
                 <constraint firstAttribute="bottom" secondItem="yKb-OK-dgk" secondAttribute="bottom" id="55g-pG-k3r"/>
                 <constraint firstItem="yKb-OK-dgk" firstAttribute="leading" secondItem="POg-78-xJb" secondAttribute="leading" id="CRU-dL-93p"/>
-                <constraint firstItem="yKb-OK-dgk" firstAttribute="top" secondItem="POg-78-xJb" secondAttribute="top" id="jNY-3P-IpH"/>
+                <constraint firstAttribute="trailing" secondItem="o3u-v4-TlH" secondAttribute="trailing" id="GBl-p6-vTX"/>
+                <constraint firstItem="o3u-v4-TlH" firstAttribute="top" secondItem="POg-78-xJb" secondAttribute="top" id="ZEg-9l-0S1"/>
+                <constraint firstItem="yKb-OK-dgk" firstAttribute="top" secondItem="POg-78-xJb" secondAttribute="top" constant="6" id="jNY-3P-IpH"/>
+                <constraint firstAttribute="trailing" secondItem="o3u-v4-TlH" secondAttribute="trailing" id="qEK-2t-zXr"/>
+                <constraint firstItem="o3u-v4-TlH" firstAttribute="top" secondItem="POg-78-xJb" secondAttribute="top" id="xba-Bo-jJR"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="9Hh-tC-r33"/>
             <size key="customSize" width="145" height="140"/>
             <connections>
+                <outlet property="mButDelete" destination="o3u-v4-TlH" id="m73-Pr-2kS"/>
                 <outlet property="mImgViewPhoto" destination="yKb-OK-dgk" id="Ldk-a3-Htr"/>
             </connections>
             <point key="canvasLocation" x="-34.5" y="9"/>
@@ -40,5 +53,6 @@
     </objects>
     <resources>
         <image name="PhotoDefault" width="118" height="118"/>
+        <image name="ProfilePopupClose" width="19" height="19"/>
     </resources>
 </document>

@@ -272,11 +272,11 @@ class HomeViewController: BaseViewController,
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let location = manager.location else { return }
         
-//        thisUser?.location = location
         print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
         
-//        thisUser?.update(location: location, completion: { (error) in
-//            //ignore error message here
-//        })
+        // update user location
+        User.currentUser?.update(location: location, completion: { (error) in
+            //ignore error message here
+        })
     }
 }

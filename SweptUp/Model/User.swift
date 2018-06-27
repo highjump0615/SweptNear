@@ -7,6 +7,8 @@
 //
 
 import Foundation
+import CoreLocation
+import GeoFire
 
 enum UserType : String {
     case user = "user"
@@ -40,7 +42,7 @@ class User : BaseModel {
     var photoUrl: String?
     var banned: Bool = false
     
-    var photos: NSMutableArray = NSMutableArray()
+    var photos: [String] = []
     
     var deviceToken: String?
     
@@ -53,8 +55,8 @@ class User : BaseModel {
         return User.TABLE_NAME
     }
     
-    override func toDictionary() -> NSDictionary {
-        var dict = Dictionary<String, Any>()
+    override func toDictionary() -> [String: Any] {
+        var dict: [String: Any] = [:]
 
         dict[User.FIELD_EMAIL] = self.email
         dict[User.FIELD_FIRSTNAME] = self.firstName
@@ -65,7 +67,7 @@ class User : BaseModel {
         dict[User.FIELD_BANNED] = self.banned
         dict[User.FIELD_PHOTOS] = self.photos
         
-        return NSDictionary(dictionary: dict)
+        return dict
     }
     
     static func readFromDatabase(withId: String, completion: @escaping((User?)->())) {
@@ -78,7 +80,7 @@ class User : BaseModel {
                 return
             }
             
-            let info = snapshot.value! as! NSDictionary
+            let info = snapshot.value! as! [String: Any?]
             let user = User()
             
             user.id = snapshot.key
@@ -90,11 +92,31 @@ class User : BaseModel {
             user.gender = info[User.FIELD_GENDER] as? String
             user.photoUrl = info[User.FIELD_PHOTO] as? String
             user.banned = info[User.FIELD_BANNED] as! Bool
-            if let aryPhoto = info[User.FIELD_PHOTOS] as? NSArray {
-                user.photos = NSMutableArray(array: aryPhoto)
+            
+            // parse photos
+            if let aryPhoto = info[User.FIELD_PHOTOS] as? [Any] {
+                for p in aryPhoto {
+                    if p is String {
+                        user.photos.append(p as! String)
+                    }
+                }
             }
 
             completion(user)
+        })
+    }
+    
+    
+    /// update location
+    ///
+    /// - Parameters:
+    ///   - location: <#location description#>
+    ///   - completion: <#completion description#>
+    func update(location: CLLocation, completion:@escaping((Error?)->Void)) {
+        let usersRef = FirebaseManager.ref().child(tableName())
+        let geoFire = GeoFire(firebaseRef: usersRef)
+        geoFire.setLocation(location, forKey: self.id, withCompletionBlock: { (error) in
+            completion(error)
         })
     }
 }

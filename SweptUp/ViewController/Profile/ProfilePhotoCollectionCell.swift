@@ -11,6 +11,7 @@ import UIKit
 class ProfilePhotoCollectionCell: UICollectionViewCell {
     
     @IBOutlet weak var mImgViewPhoto: UIImageView!
+    @IBOutlet weak var mButDelete: UIButton!
     
     func fillContent(image: UIImage) {
         mImgViewPhoto.image = image

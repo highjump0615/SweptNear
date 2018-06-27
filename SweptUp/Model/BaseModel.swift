@@ -27,9 +27,9 @@ class BaseModel {
         return "base"
     }
     
-    func toDictionary() -> NSDictionary {
+    func toDictionary() -> [String: Any] {
         // virtual func
-        return NSDictionary()
+        return [:]
     }
     
     func saveToDatabase(withID: String? = nil) {
