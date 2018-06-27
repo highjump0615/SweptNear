@@ -61,7 +61,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     var mPhotoUrls = User.currentUser!.photos
     var mPhotosOther: [UIImage] = []
     var muploadPhotoIndex = 0
-    var mPhotoDeleted = false
+    var mPhotoUpdated = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -151,7 +151,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     }
     
     func updatePhotosList() {
-        let nCount = mPhotoUrls.count + mPhotosOther.count
+        let nCount = collectionView(mCollectionView, numberOfItemsInSection: 0)
         
         mCollectionView.contentInset = UIEdgeInsets(top: 0,
                                                     left: nCount > 0 ? mStackViewInput.frame.origin.x : 0,
@@ -305,7 +305,8 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             }
             else {
                 if let url = downloadURL {
-                    user.photos.insert(url, at: 0)
+                    self.mPhotoUrls.insert(url, at: 0)
+                    self.mPhotoUpdated = true
                     
                     // save image to cache
                     SDWebImageManager.shared().saveImage(toCache: resized,
@@ -316,6 +317,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                 
                 // all photos are saved
                 if self.muploadPhotoIndex == self.mPhotosOther.count {
+                    user.savePhotosToDb()
                     self.saveUserInfo()
                 }
                 else {
@@ -351,8 +353,9 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         user?.gender = mTextGender.text
         user?.gender = mTextGender.text
         
-        if mPhotoDeleted {
+        if mPhotoUpdated {
             user?.photos = mPhotoUrls
+            user?.savePhotosToDb()
         }
         
         user?.saveToDatabase()
@@ -489,10 +492,10 @@ extension SignupProfileViewController : UICollectionViewDataSource, UICollection
                     else {
                         // add index to delete
                         self.mPhotoUrls.remove(at: nIndex - self.mPhotosOther.count)
-                        self.mPhotoDeleted = true
+                        self.mPhotoUpdated = true
                     }
                     
-                    self.mCollectionView.reloadData()
+                    self.updatePhotosList()
         }, cancelHandler: nil)
     }
     

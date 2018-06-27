@@ -39,6 +39,8 @@ class ProfileViewController: BaseViewController,
     private let CELLID_USER = "ProfileUserCell"
     private let CELLID_USER_PHOTO = "ProfileUserPhotoCell"
     
+    var mRefreshControl: UIRefreshControl = UIRefreshControl()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -49,8 +51,11 @@ class ProfileViewController: BaseViewController,
 
         // hide empty cells
         mTableView.tableFooterView = UIView()
-        
         mTableView.register(UINib(nibName: "ProfileUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
+        
+        mRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        mRefreshControl.tintColor = UIColor.white
+        mTableView.addSubview(mRefreshControl)
         
         // right bar button
         if (mUser?.isEqual(to: User.currentUser!))! {
@@ -71,6 +76,9 @@ class ProfileViewController: BaseViewController,
         
         mViewSent = ProfilePopupSent.getView() as? ProfilePopupSent
         self.view.addSubview(mViewSent!)
+        
+        // fetch user photos
+        getPhotos(bRefresh: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -86,7 +94,7 @@ class ProfileViewController: BaseViewController,
         frame.origin.y = -frame.size.height
         let view = UIView(frame: frame)
         view.backgroundColor = Constants.gColorTheme
-        mTableView.addSubview(view)
+        mTableView.insertSubview(view, at: 0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -98,8 +106,30 @@ class ProfileViewController: BaseViewController,
         mTableView.reloadData()
     }
     
+    /// fetch photos from user
+    ///
+    /// - Parameter bRefresh: <#bRefresh description#>
+    func getPhotos(bRefresh: Bool) {
+        if !bRefresh {
+            // show refreshing indicator manually
+            mRefreshControl.beginRefreshing()
+        }
+        
+        mUser?.fetchPhotos {
+            self.mRefreshControl.endRefreshing()
+            self.mTableView.reloadData()
+        }
+    }
+    
     /// report user
     @objc func onButReport() {
+    }
+    
+    /// refresh table
+    ///
+    /// - Parameter sender: <#sender description#>
+    @objc func refresh(sender: Any) {
+        getPhotos(bRefresh: true)
     }
     
     /// edit profile

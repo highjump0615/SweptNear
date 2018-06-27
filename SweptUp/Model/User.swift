@@ -30,7 +30,9 @@ class User : BaseModel {
     static let FIELD_TYPE = "type"
     static let FIELD_BANNED = "banned"
     static let FIELD_AVAILABLE = "available"
-    static let FIELD_PHOTOS = "photos"
+    
+    static let TABLE_NAME_PHOTOS = "photos"
+    static let TABLE_NAME_GEOLOCATION = "geolocations"
     
     static var currentUser: User?
     
@@ -68,7 +70,6 @@ class User : BaseModel {
         dict[User.FIELD_GENDER] = self.gender
         dict[User.FIELD_PHOTO] = self.photoUrl
         dict[User.FIELD_BANNED] = self.banned
-        dict[User.FIELD_PHOTOS] = self.photos
         
         return dict
     }
@@ -96,19 +97,42 @@ class User : BaseModel {
             user.photoUrl = info[User.FIELD_PHOTO] as? String
             user.banned = info[User.FIELD_BANNED] as! Bool
             
-            // parse photos
-            if let aryPhoto = info[User.FIELD_PHOTOS] as? [Any] {
-                for p in aryPhoto {
-                    if p is String {
-                        user.photos.append(p as! String)
-                    }
-                }
-            }
-
             completion(user)
         })
     }
     
+    /// fetch functions
+    ///
+    /// - Parameter completion: <#completion description#>
+    func fetchPhotos(completion: @escaping(()->())) {
+        let photoRef = FirebaseManager.ref().child(User.TABLE_NAME_PHOTOS).child(self.id)
+        photoRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // photos not found
+            if !snapshot.exists() {
+                completion()
+                return
+            }
+            
+            // clear list
+            self.photos.removeAll()
+            
+            // parse photos
+            if let aryPhoto = snapshot.value! as? [Any] {
+                for p in aryPhoto {
+                    if p is String {
+                        self.photos.append(p as! String)
+                    }
+                }
+            }
+            
+            completion()
+        })
+    }
+    
+    func savePhotosToDb() {
+        let database = FirebaseManager.ref().child(User.TABLE_NAME_PHOTOS)
+        database.child(self.id).setValue(self.photos)
+    }
     
     /// update location
     ///
@@ -116,7 +140,7 @@ class User : BaseModel {
     ///   - location: <#location description#>
     ///   - completion: <#completion description#>
     func update(location: CLLocation, completion:@escaping((Error?)->Void)) {
-        let usersRef = FirebaseManager.ref().child(tableName())
+        let usersRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
         let geoFire = GeoFire(firebaseRef: usersRef)
         geoFire.setLocation(location, forKey: self.id, withCompletionBlock: { (error) in
             completion(error)
