@@ -55,6 +55,7 @@ class User : BaseModel {
     // excludes
     //
     var password = ""
+    var location: CLLocation?
     
     override init() {
         super.init()
@@ -109,6 +110,10 @@ class User : BaseModel {
         })
     }
     
+    func userFullName() -> String {
+        return "\(firstName) \(lastName)"
+    }
+    
     /// fetch functions
     ///
     /// - Parameter completion: <#completion description#>
@@ -148,8 +153,11 @@ class User : BaseModel {
     ///   - location: <#location description#>
     ///   - completion: <#completion description#>
     func update(location: CLLocation, completion:@escaping((Error?)->Void)) {
-        let usersRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
-        let geoFire = GeoFire(firebaseRef: usersRef)
+        self.location = location
+        
+        // save to geofire db
+        let locationsRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
+        let geoFire = GeoFire(firebaseRef: locationsRef)
         geoFire.setLocation(location, forKey: self.id, withCompletionBlock: { (error) in
             completion(error)
         })

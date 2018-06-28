@@ -8,14 +8,18 @@
 
 import UIKit
 import GoogleMaps
+import GeoFire
 
 class LocationViewController: BaseViewController {
 
     @IBOutlet weak var mViewMap: GMSMapView!
     
+    var users: [User] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        initLocation()
         initMap()
     }
 
@@ -32,17 +36,36 @@ class LocationViewController: BaseViewController {
     func initMap() {
         mViewMap.isMyLocationEnabled = true
         mViewMap.settings.myLocationButton = true
+        mViewMap.delegate = self
         
-        // Create a GMSCameraPosition that tells the map to display the
-        // coordinate -33.86,151.20 at zoom level 6.
-//        let camera = GMSCameraPosition.camera(withLatitude: -33.86, longitude: 151.20, zoom: 16.0)
-//        mViewMap.camera = camera
-
+        showMyLocation()
+    }
+    
+    func showMyLocation() {
+        if let l = User.currentUser?.location {
+            let camera = GMSCameraPosition.camera(withLatitude: l.coordinate.latitude,
+                                                  longitude: l.coordinate.longitude,
+                                                  zoom: 16.0)
+            mViewMap.camera = camera
+        }
+    }
+    
+    func addMarkerOnMap(location: CLLocation, userInfo: User) {
+        // custom marker view with user photo
+        let markerWidth = 30.0
+        let markerImgView = UIImageView(frame: CGRect(x: 0, y: 0,
+                                                      width: markerWidth, height: markerWidth))
+        markerImgView.sd_setImage(with: URL(string: userInfo.photoUrl!),
+                                  placeholderImage: UIImage(named: "UserDefault"),
+                                  options: .progressiveDownload,
+                                  completed: nil)
+        markerImgView.makeRoundBorder(width: 1.0, color: Constants.gColorTheme)
+        
         // Creates a marker in the center of the map.
         let marker = GMSMarker()
-        marker.position = CLLocationCoordinate2D(latitude: -33.86, longitude: 151.20)
-        marker.title = "Sydney"
-        marker.snippet = "Australia"
+        marker.position = location.coordinate
+        marker.iconView = markerImgView
+        marker.snippet = userInfo.id
         marker.map = mViewMap
     }
     
@@ -56,5 +79,65 @@ class LocationViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
+    
+    //
+    // MARK: - CLLocationManagerDelegate
+    //
+    override func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        super.locationManager(manager, didUpdateLocations: locations)
+        
+        showMyLocation()
+    }
 
+}
+
+extension LocationViewController: GMSMapViewDelegate {
+    
+    func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
+        //
+        // load users in the area
+        //
+        let locationsRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
+        let geoFire = GeoFire(firebaseRef: locationsRef)
+        let centerLocation = mapView.getCenterCoordinate()
+        let userCurrent = User.currentUser
+        let radius = mapView.getRadius() / 1000.0 // in kilometers
+        
+        let query = geoFire.query(at: CLLocation(latitude: centerLocation.latitude,
+                                                 longitude: centerLocation.longitude),
+                                  withRadius: radius)
+        query.observe(.keyEntered) { (key, location) in
+            print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
+            
+            if key == userCurrent?.id { return } //ignore me
+            
+            User.readFromDatabase(withId: key, completion: { (user) in
+                if let user = user {
+                    if let _ = self.users.index(where: {$0.id == key}) {
+                    }
+                    else {
+                        self.users.append(user)
+                        
+                        // add user to map
+                        self.addMarkerOnMap(location: location, userInfo: user)
+                    }
+                }
+            })
+        }
+        
+        query.observeReady {
+            print("ready")
+        }
+    }
+    
+    func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
+        let user = self.users.first(where: {$0.id == marker.snippet!})
+            
+        // go to profile page
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.mUser = user
+        self.navigationController?.pushViewController(profileVC, animated: true)
+        
+        return true
+    }
 }

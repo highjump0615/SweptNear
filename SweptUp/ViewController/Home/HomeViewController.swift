@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import CoreLocation
 import SDWebImage
 
 class HomeConstantCV {
@@ -30,15 +29,12 @@ class HomeConstantCV {
 
 class HomeViewController: BaseViewController,
                         UITableViewDataSource, UITableViewDelegate,
-                        UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout,
-                        CLLocationManagerDelegate {
+                        UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var mLblTitle: UILabel!
     @IBOutlet weak var mSwitch: UISwitch!
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mButProfile: UIButton!
-    
-    let locationManager = CLLocationManager()
     
     let TAG_CV_USER_WINK = 1000
     let TAG_CV_USER_MESSAGE = 1001
@@ -59,14 +55,7 @@ class HomeViewController: BaseViewController,
         self.title = " "
         mButProfile.makeRound()
         
-        //
-        // init location
-        //
-        self.locationManager.requestWhenInUseAuthorization()
-        
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        locationManager.startUpdatingLocation()
+        initLocation()
         
         //
         // init data
@@ -271,19 +260,5 @@ class HomeViewController: BaseViewController,
         let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
         profileVC.mUser = User()
         self.navigationController?.pushViewController(profileVC, animated: true)
-    }
-    
-    //
-    // MARK: - CLLocationManagerDelegate
-    //
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        guard let location = manager.location else { return }
-        
-        print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
-        
-        // update user location
-        User.currentUser?.update(location: location, completion: { (error) in
-            //ignore error message here
-        })
     }
 }

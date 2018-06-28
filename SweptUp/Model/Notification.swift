@@ -8,10 +8,13 @@
 
 import Foundation
 
-class Notification {
+class Notification : BaseModel {
     static let TYPE_WINK = 0
     static let TYPE_WINK_BACK = 1
     static let TYPE_MESSAGE = 2
     
     var type = Notification.TYPE_WINK
+    
+    var senderId: String = ""
+    var sender: User?
 }

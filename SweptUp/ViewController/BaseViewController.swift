@@ -8,8 +8,11 @@
 
 import UIKit
 import SVProgressHUD
+import CoreLocation
 
 class BaseViewController: UIViewController {
+    
+    let locationManager = CLLocationManager()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,6 +56,17 @@ class BaseViewController: UIViewController {
             SVProgressHUD.show()
         }
     }
+    
+    func initLocation() {
+        //
+        // init location
+        //
+        self.locationManager.requestWhenInUseAuthorization()
+        
+        locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.startUpdatingLocation()
+    }
 
     /*
     // MARK: - Navigation
@@ -63,5 +77,20 @@ class BaseViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
+}
 
+extension BaseViewController: CLLocationManagerDelegate {
+    //
+    // MARK: - CLLocationManagerDelegate
+    //
+    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
+        guard let location = manager.location else { return }
+        
+        print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
+        
+        // update user location
+        User.currentUser?.update(location: location, completion: { (error) in
+            //ignore error message here
+        })
+    }
 }
