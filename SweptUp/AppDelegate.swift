@@ -11,6 +11,9 @@ import GoogleMaps
 import GooglePlaces
 import Firebase
 import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -40,6 +43,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // google sign-in initialization
         GIDSignIn.sharedInstance().clientID = FirebaseApp.app()?.options.clientID
+        
+        // facebook initialization
+        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
+        FBSDKSettings.setAppID(Config.facebookId)
         
         // go to home when logged in
         let userId = FirebaseManager.mAuth.currentUser?.uid
@@ -110,9 +117,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
-        return GIDSignIn.sharedInstance().handle(url,
-                                                 sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
-                                                 annotation: [:])
+        var handled = FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
+        if !handled {
+            handled = GIDSignIn.sharedInstance().handle(url,
+                                                        sourceApplication:options[UIApplicationOpenURLOptionsKey.sourceApplication] as? String,
+                                                        annotation: [:])
+        }
+        
+        return handled
     }
 
 }

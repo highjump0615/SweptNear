@@ -8,9 +8,10 @@
 
 import UIKit
 import IHKeyboardAvoiding
-import SVProgressHUD
 import Firebase
 import GoogleSignIn
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class SigninViewController: BaseViewController, UITextFieldDelegate {
     
@@ -73,6 +74,107 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
     }
     
     @IBAction func onButFacebook(_ sender: Any) {
+        // check connection
+        if Constants.reachability.connection == .none {
+            showConnectionError()
+            return
+        }
+        
+        showLoadingView()
+        
+        let login = FBSDKLoginManager()
+        login.logOut()
+        
+        login.logIn(withReadPermissions: ["email"], from: self) { (result, error) in
+            if let error = error {
+                self.showLoadingView(show: false)
+                self.alertOk(title: "Facebook Login Failed",
+                             message: error.localizedDescription,
+                             cancelButton: "OK",
+                             cancelHandler: nil)
+            }
+            else if let cancelled = result?.isCancelled, cancelled {
+                self.showLoadingView(show: false)
+            }
+            else if (FBSDKAccessToken.current() != nil){
+                let credential = FacebookAuthProvider.credential(withAccessToken: FBSDKAccessToken.current().tokenString)
+                Auth.auth().signIn(with: credential, completion: { (user, error) in
+                    if let req = FBSDKGraphRequest(graphPath: "me",
+                                                   parameters: ["fields":"email,name,first_name,last_name,picture"],
+                                                   tokenString: FBSDKAccessToken.current().tokenString,
+                                                   version: nil,
+                                                   httpMethod: "GET") {
+                        req.start(completionHandler: { (connection, result, ferror) in
+                            if(ferror == nil)
+                            {
+                                if let info = result as? [String:Any], let email = info["email"] as? String {
+                                    let imageURL = "https://graph.facebook.com/\(String(describing: info["id"]!))/picture?type=normal"
+                                    
+                                    if let error = error, let errorCode = AuthErrorCode(rawValue: error._code) {
+                                        if errorCode == AuthErrorCode.accountExistsWithDifferentCredential {
+                                            self.showLoadingView(show: false)
+                                            self.alertForOtherCredential(email: email)
+                                        }
+                                        else {
+                                            DispatchQueue.main.async {
+                                                self.showLoadingView(show: false)
+                                                self.alertOk(title: "Facebook Login Failed",
+                                                             message: error.localizedDescription,
+                                                             cancelButton: "OK",
+                                                             cancelHandler: nil)
+                                            }
+                                        }
+                                    }
+                                    else {
+                                        UserDefaults.standard.set("facebook", forKey: "lastSignedInMethod")
+                                        self.fetchUserInfo(userInfo: user,
+                                                           firstName: info["first_name"] as? String,
+                                                           lastName: info["last_name"] as? String,
+                                                           photoURL: imageURL,
+                                                           onFailed: {
+                                                            FirebaseManager.signOut()
+                                                            self.showLoadingView(show: false)
+                                        })
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                DispatchQueue.main.async {
+                                    self.showLoadingView(show: false)
+                                    self.alertOk(title: "Login Failed",
+                                                 message: "Can not log in with facebook. Please try again.",
+                                                 cancelButton: "OK",
+                                                 cancelHandler: nil)
+                                }
+                            }
+                        })
+                    }
+                    else {
+                        DispatchQueue.main.async {
+                            self.showLoadingView(show: false)
+                            self.alertOk(title: "Login",
+                                         message: "Can not log in with facebook. Please try again.",
+                                         cancelButton: "OK",
+                                         cancelHandler: nil)
+                        }
+                    }
+                    
+                    //                    let parameters:[String:String] = [:]
+                    //                    parameters["fields"] = "id,name,email"
+                    //
+                    //                    FBSDKGraphRequest.init(graphPath: "me", parameters: parameters).start(completionHandler: { (connection, result, error) in
+                    //
+                    //                    })
+                    
+                    
+                })
+            }
+            else {
+                self.showLoadingView(show: false)
+                print("Exception?")
+            }
+        }
     }
     
     @IBAction func onButGoogle(_ sender: Any) {
@@ -82,8 +184,7 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
             return
         }
         
-        SVProgressHUD.setContainerView(self.view)
-        SVProgressHUD.show()
+        showLoadingView()
         
         GIDSignIn.sharedInstance().signIn()
     }
@@ -133,15 +234,13 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
         }
         
         // show loading view
-        SVProgressHUD.dismiss()
-        SVProgressHUD.setContainerView(self.view)
-        SVProgressHUD.show()
+        showLoadingView()
         
         // user authentication
         FirebaseManager.mAuth.signIn(withEmail: email, password: password, completion: { (user, error) in
             
             if let error = error {
-                SVProgressHUD.dismiss()
+                self.showLoadingView(show: false)
                 
                 if let errorCode = AuthErrorCode(rawValue: error._code) {
                     if errorCode == AuthErrorCode.accountExistsWithDifferentCredential {
@@ -245,7 +344,7 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
 extension SigninViewController : GIDSignInDelegate, GIDSignInUIDelegate {
     func sign(_ signIn: GIDSignIn!, didSignInFor user: GIDGoogleUser!, withError error: Error!) {
         if let error = error {
-            SVProgressHUD.dismiss()
+            showLoadingView(show: false)
             
             alertOk(title: "Google Signin Failed",
                     message: error.localizedDescription,
@@ -260,23 +359,19 @@ extension SigninViewController : GIDSignInDelegate, GIDSignInUIDelegate {
         let lastName = user.profile.familyName ?? " "
         let picture = user.profile.imageURL(withDimension: 400).absoluteString
         
-        UserDefaults.standard.set(firstName, forKey: "firstName")
-        UserDefaults.standard.set(lastName, forKey: "lastName")
-        UserDefaults.standard.set(picture, forKey: "picture")
-        
         Auth.auth().fetchProviders(forEmail: email!, completion: { (providers, error) in
             
             if error == nil {
                 
                 if let provider = providers?[0], provider != "google.com" {
                     let providerName = (provider == "facebook.com" ? "Facebook" : "Email")
-                    SVProgressHUD.dismiss()
+                    self.showLoadingView(show: false)
                     
                     self.alert(title: "Google Signin",
                                message: "Sign in with Google will replace your previous \(providerName) signin. Are you sure want to proceed?", okButton: "OK",
                                cancelButton: "Cancel",
                                okHandler: { (_) in
-                        SVProgressHUD.show()
+                        self.showLoadingView()
                         self.continueGoogleSignIn(user: user,
                                                   email: email!,
                                                   firstName: firstName,
@@ -311,7 +406,8 @@ extension SigninViewController : GIDSignInDelegate, GIDSignInUIDelegate {
         Auth.auth().signIn(with: credential) { (user, error) in
             
             if let error = error {
-                SVProgressHUD.dismiss()
+                self.showLoadingView(show: false)
+
                 if let errorCode = AuthErrorCode(rawValue: error._code) {
                     if errorCode == AuthErrorCode.accountExistsWithDifferentCredential {
                         self.alertForOtherCredential(email: email)
@@ -332,6 +428,7 @@ extension SigninViewController : GIDSignInDelegate, GIDSignInUIDelegate {
                                lastName: lastName,
                                photoURL: photoURL,
                                onFailed: {
+                                self.showLoadingView(show: false)
                                 FirebaseManager.signOut()
             })
         }
