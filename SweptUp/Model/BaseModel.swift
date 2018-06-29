@@ -32,11 +32,16 @@ class BaseModel {
         return [:]
     }
     
-    func saveToDatabase(withID: String? = nil) {
-        let database = FirebaseManager.ref().child(tableName())
+    func saveToDatabase(withID: String? = nil, parentID: String? = nil) {
+        var strDb = tableName()
+        if let parent = parentID {
+            strDb += "/" + parent
+        }
         
-        if withID != nil && (withID?.isEmpty)! {
-            self.id = withID!
+        let database = FirebaseManager.ref().child(strDb)
+        
+        if let strId = withID, !strId.isEmpty {
+            self.id = strId
         }
         else if self.id.isEmpty {
             self.id = database.childByAutoId().key

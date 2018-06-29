@@ -8,6 +8,7 @@
 
 import UIKit
 import EmptyDataSet_Swift
+import Firebase
 
 class ProfileConstantCV {
     static let column: CGFloat = 3
@@ -33,6 +34,7 @@ class ProfileViewController: BaseViewController,
     
     var mUser: User?
     var mViewSent: ProfilePopupSent?
+    var mWink: Wink?
     
     @IBOutlet weak var mTableView: UITableView!
     
@@ -40,6 +42,7 @@ class ProfileViewController: BaseViewController,
     private let CELLID_USER_PHOTO = "ProfileUserPhotoCell"
     
     var mRefreshControl: UIRefreshControl = UIRefreshControl()
+    var mnFetchTask = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -77,8 +80,8 @@ class ProfileViewController: BaseViewController,
         mViewSent = ProfilePopupSent.getView() as? ProfilePopupSent
         self.view.addSubview(mViewSent!)
         
-        // fetch user photos
-        getPhotos(bRefresh: false)
+        // fetch user info
+        getUserInfo(bRefresh: false)
     }
 
     override func didReceiveMemoryWarning() {
@@ -109,16 +112,47 @@ class ProfileViewController: BaseViewController,
     /// fetch photos from user
     ///
     /// - Parameter bRefresh: <#bRefresh description#>
-    func getPhotos(bRefresh: Bool) {
+    func getUserInfo(bRefresh: Bool) {
         if !bRefresh {
             // show refreshing indicator manually
             mRefreshControl.beginRefreshing()
         }
         
+        mnFetchTask = 0
         mUser?.fetchPhotos {
-            self.mRefreshControl.endRefreshing()
+            self.stopRefreshing()
+            
+            if self.mUser!.isEqual(to: User.currentUser!) {
+                self.stopRefreshing()
+                self.mTableView.reloadData()
+            }
+            else {
+                // fetch wink status
+                self.fetchWinkStatus()
+            }
+        }
+    }
+    
+    func fetchWinkStatus() {
+        let userCurrent = User.currentUser!
+        
+        let winkRef = FirebaseManager.ref()
+            .child(Wink.TABLE_NAME)
+            .child(userCurrent.id)
+            .child(self.mUser!.id)
+        winkRef.observeSingleEvent(of: .value) { (snapshot) in
+            for ss in snapshot.children {
+                self.mWink = Wink(snapshot: ss as! DataSnapshot)
+                break
+            }
+            
+            self.stopRefreshing()
             self.mTableView.reloadData()
         }
+    }
+    
+    func stopRefreshing() {
+        self.mRefreshControl.endRefreshing()
     }
     
     /// report user
@@ -129,7 +163,7 @@ class ProfileViewController: BaseViewController,
     ///
     /// - Parameter sender: <#sender description#>
     @objc func refresh(sender: Any) {
-        getPhotos(bRefresh: true)
+        getUserInfo(bRefresh: true)
     }
     
     /// edit profile
@@ -142,8 +176,38 @@ class ProfileViewController: BaseViewController,
     
     /// send wink
     @objc func onButSend() {
+        let userCurrnet = User.currentUser!
+        
+        //
+        // create & save wink
+        //
+        mWink = Wink()
+        mWink!.senderId = userCurrnet.id
+        mWink!.sender = userCurrnet
+        
+        // key : sender_receiver
+        var strKey = "\(userCurrnet.id)/\(mUser!.id)"
+        mWink!.saveToDatabase(withID: nil, parentID: strKey)
+        
+        strKey = "\(mUser!.id)/\(userCurrnet.id)/"
+        mWink!.saveToDatabase(withID: nil, parentID: strKey)
+        
+        //
+        // create & save notification
+        //
+        let notificationNew = Notification()
+        notificationNew.type = Notification.TYPE_WINK
+        notificationNew.senderId = userCurrnet.id
+        notificationNew.sender = userCurrnet
+        
+        notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
+        
+        // show sent view
         mViewSent?.frame = self.view.bounds
         mViewSent?.showView(bShow: true, animated: true)
+        
+        // disable send button
+        mTableView.reloadData()
     }
 
     /*
@@ -169,7 +233,7 @@ class ProfileViewController: BaseViewController,
         if indexPath.row == 0 {
             // profile user
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as? ProfileUserCell
-            cellUser?.fillContent(user: mUser!)
+            cellUser?.fillContent(user: mUser!, wink: mWink)
             cellUser?.mButSend.addTarget(self, action: #selector(onButSend), for: .touchUpInside)
             
             cellItem = cellUser

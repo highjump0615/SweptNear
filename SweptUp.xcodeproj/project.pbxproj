@@ -37,6 +37,7 @@
 		C3382BF520D6359C008D0AE6 /* Config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF420D6359C008D0AE6 /* Config.swift */; };
 		C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3382BF620D63807008D0AE6 /* AboutViewController.xib */; };
 		C3382BF920D63AED008D0AE6 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3382BF820D63AED008D0AE6 /* AboutViewController.swift */; };
+		C34746C720E4EA9100814D56 /* Wink.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34746C620E4EA9100814D56 /* Wink.swift */; };
 		C34C9BE420E18EC300F165F8 /* ProfilePhotoCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C34C9BE320E18EC300F165F8 /* ProfilePhotoCollectionCell.swift */; };
 		C355F91620D3553C005F8F82 /* HomeUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91520D3553C005F8F82 /* HomeUserCell.xib */; };
 		C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */; };
@@ -135,6 +136,7 @@
 		C3382BF420D6359C008D0AE6 /* Config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Config.swift; sourceTree = "<group>"; };
 		C3382BF620D63807008D0AE6 /* AboutViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutViewController.xib; sourceTree = "<group>"; };
 		C3382BF820D63AED008D0AE6 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		C34746C620E4EA9100814D56 /* Wink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Wink.swift; sourceTree = "<group>"; };
 		C34C9BE320E18EC300F165F8 /* ProfilePhotoCollectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCollectionCell.swift; sourceTree = "<group>"; };
 		C355F91520D3553C005F8F82 /* HomeUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeUserCell.xib; sourceTree = "<group>"; };
 		C355F91C20D35CCF005F8F82 /* HomeMessageTitleCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HomeMessageTitleCell.xib; sourceTree = "<group>"; };
@@ -422,6 +424,7 @@
 				C355F92820D3765A005F8F82 /* Message.swift */,
 				C367755F20D7820900352B83 /* Notification.swift */,
 				C3F7AC8D20DF4D070081BE51 /* BaseModel.swift */,
+				C34746C620E4EA9100814D56 /* Wink.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -791,6 +794,7 @@
 			files = (
 				C3028ABA20DEBB550073E192 /* FirebaseManager.swift in Sources */,
 				C3028AB820DE49C10073E192 /* SignupCheckbox.swift in Sources */,
+				C34746C720E4EA9100814D56 /* Wink.swift in Sources */,
 				C368E5BA20CF09E2000DA7DC /* AppDelegate.swift in Sources */,
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3382BF520D6359C008D0AE6 /* Config.swift in Sources */,

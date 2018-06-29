@@ -23,6 +23,9 @@ class ProfileUserCell: UITableViewCell {
         mViewPhoto.layer.shadowOpacity = 0.7
         mViewPhoto.layer.shadowOffset = CGSize.zero
         mViewPhoto.layer.shadowRadius = 5
+        
+        mButSend.isHidden = true
+        mButIgnore.isHidden = true
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -38,10 +41,19 @@ class ProfileUserCell: UITableViewCell {
         mImgviewPhoto.makeRound()
     }
     
-    func fillContent(user: User) {
-        // show/hide wink & ignore buttons
-        mButSend.isHidden = user.isEqual(to: User.currentUser!)
-        mButIgnore.isHidden = user.isEqual(to: User.currentUser!)
+    func fillContent(user: User, wink: Wink?) {
+        let userCurrent = User.currentUser!
+        
+        // button text
+        if let w = wink {
+            if w.senderId == userCurrent.id {
+                // already sent wink
+                mButSend.setTitle("Sent Wink", for: .normal)
+                mButSend.makeEnable(enable: false)
+            }
+            
+            mButSend.isHidden = false
+        }
         
         // photo
         if let photoUrl = user.photoUrl {

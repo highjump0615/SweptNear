@@ -57,6 +57,9 @@ class User : BaseModel {
     var password = ""
     var location: CLLocation?
     
+    var winksSent: [Wink] = []
+    var winksReceived: [Wink] = []
+    
     override init() {
         super.init()
     }
