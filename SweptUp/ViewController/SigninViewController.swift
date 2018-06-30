@@ -255,8 +255,14 @@ class SigninViewController: BaseViewController, UITextFieldDelegate {
                 }
             }
             else {
-                // go to home page
-                self.goToMain()
+                self.fetchUserInfo(userInfo: user,
+                                   firstName: nil,
+                                   lastName: nil,
+                                   photoURL: nil,
+                                   onFailed: {
+                                    FirebaseManager.signOut()
+                                    self.showLoadingView(show: false)
+                })
             }
         })
     }

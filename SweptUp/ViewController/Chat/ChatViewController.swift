@@ -13,6 +13,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     
     var messages: [Message] = []
     
+    var mUser: User?
+    
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mViewInput: UIView!
     
@@ -43,7 +45,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         for i in 1...4 {
             let m = Message()
             if i % 2 == 0 {
-                m.userFrom = User()
+                m.sender = User()
             }
             messages.append(m)
         }
@@ -86,7 +88,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         let msg = messages[indexPath.row]
         
         var strCellId = "ChatFromCell"
-        if msg.userFrom == nil {
+        if msg.sender == nil {
             strCellId = "ChatToCell"
         }
             

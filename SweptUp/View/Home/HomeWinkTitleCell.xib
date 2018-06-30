@@ -53,6 +53,9 @@
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.90588235289999997" green="0.90588235289999997" blue="0.90588235289999997" alpha="1" colorSpace="calibratedRGB"/>
+            <connections>
+                <outlet property="mLblCount" destination="1nI-Le-jZy" id="YBQ-ZC-Gmc"/>
+            </connections>
             <point key="canvasLocation" x="-384" y="34"/>
         </tableViewCell>
     </objects>

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class Notification : BaseModel {
     static let TYPE_WINK = 0
@@ -24,6 +25,20 @@ class Notification : BaseModel {
     
     var senderId: String = ""
     var sender: User?
+    
+    override init() {
+        super.init()
+    }
+    
+    init(snapshot: DataSnapshot) {
+        super.init()
+        
+        let info = snapshot.value! as! [String: Any?]
+        
+        self.id = snapshot.key
+        self.senderId = info[Notification.FIELD_SENDER_ID] as! String
+        self.type = info[Notification.FIELD_TYPE] as! Int
+    }
     
     override func tableName() -> String {
         return Notification.TABLE_NAME

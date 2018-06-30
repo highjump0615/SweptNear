@@ -9,7 +9,9 @@
 import UIKit
 
 class HomeTitleCell: UITableViewCell {
-
+    
+    @IBOutlet weak var mLblCount: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code

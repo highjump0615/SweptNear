@@ -42,7 +42,6 @@ class ProfileViewController: BaseViewController,
     private let CELLID_USER_PHOTO = "ProfileUserPhotoCell"
     
     var mRefreshControl: UIRefreshControl = UIRefreshControl()
-    var mnFetchTask = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -115,10 +114,10 @@ class ProfileViewController: BaseViewController,
     func getUserInfo(bRefresh: Bool) {
         if !bRefresh {
             // show refreshing indicator manually
+            self.mTableView.contentOffset = CGPoint(x: 0, y: -self.mRefreshControl.frame.size.height);
             mRefreshControl.beginRefreshing()
         }
         
-        mnFetchTask = 0
         mUser?.fetchPhotos {
             self.stopRefreshing()
             
@@ -126,7 +125,7 @@ class ProfileViewController: BaseViewController,
                 self.stopRefreshing()
                 self.mTableView.reloadData()
             }
-            else {
+            else if self.mWink == nil {
                 // fetch wink status
                 self.fetchWinkStatus()
             }
@@ -141,9 +140,8 @@ class ProfileViewController: BaseViewController,
             .child(userCurrent.id)
             .child(self.mUser!.id)
         winkRef.observeSingleEvent(of: .value) { (snapshot) in
-            for ss in snapshot.children {
-                self.mWink = Wink(snapshot: ss as! DataSnapshot)
-                break
+            if snapshot.exists() {
+                self.mWink = Wink(snapshot: snapshot)
             }
             
             self.stopRefreshing()
@@ -176,37 +174,89 @@ class ProfileViewController: BaseViewController,
     
     /// send wink
     @objc func onButSend() {
-        let userCurrnet = User.currentUser!
+        let userCurrent = User.currentUser!
         
         //
-        // create & save wink
+        // check wink existence
         //
-        mWink = Wink()
-        mWink!.senderId = userCurrnet.id
-        mWink!.sender = userCurrnet
         
-        // key : sender_receiver
-        var strKey = "\(userCurrnet.id)/\(mUser!.id)"
-        mWink!.saveToDatabase(withID: nil, parentID: strKey)
-        
-        strKey = "\(mUser!.id)/\(userCurrnet.id)/"
-        mWink!.saveToDatabase(withID: nil, parentID: strKey)
-        
-        //
-        // create & save notification
-        //
-        let notificationNew = Notification()
-        notificationNew.type = Notification.TYPE_WINK
-        notificationNew.senderId = userCurrnet.id
-        notificationNew.sender = userCurrnet
-        
-        notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
-        
-        // show sent view
-        mViewSent?.frame = self.view.bounds
-        mViewSent?.showView(bShow: true, animated: true)
+        if mWink == nil {
+            //
+            // create & save wink
+            //
+            mWink = Wink()
+            mWink!.senderId = userCurrent.id
+            mWink!.sender = userCurrent
+            
+            // key : sender_receiver
+            var strKey = "\(userCurrent.id)/\(mUser!.id)"
+            mWink!.saveToDatabase(withID: strKey)
+            
+            strKey = "\(mUser!.id)/\(userCurrent.id)/"
+            mWink!.saveToDatabase(withID: strKey)
+            
+            //
+            // create & save notification
+            //
+            let notificationNew = Notification()
+            notificationNew.type = Notification.TYPE_WINK
+            notificationNew.senderId = userCurrent.id
+            notificationNew.sender = userCurrent
+            
+            notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
+            
+            // show sent view
+            mViewSent?.frame = self.view.bounds
+            mViewSent?.showView(bShow: true, animated: true)
+        }
+        else {
+            if mWink?.status == WinkStatus.waiting {
+                // wink back
+                mWink?.status = WinkStatus.winkback
+                
+                // update status to database
+                var strKey = "\(userCurrent.id)/\(mUser!.id)"
+                mWink?.saveToDatabase(fieldName: Wink.FIELD_STATUS, value: WinkStatus.winkback.rawValue, key: strKey)
+
+                strKey = "\(mUser!.id)/\(userCurrent.id)"
+                mWink?.saveToDatabase(fieldName: Wink.FIELD_STATUS, value: WinkStatus.winkback.rawValue, key: strKey)
+                
+                //
+                // create & save notification
+                //
+                let notificationNew = Notification()
+                notificationNew.type = Notification.TYPE_WINK_BACK
+                notificationNew.senderId = userCurrent.id
+                notificationNew.sender = userCurrent
+                
+                notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
+            }
+            else if mWink?.status == WinkStatus.winkback {
+                // already established, start chatting
+                let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+                chatVC.mUser = mUser
+                self.navigationController?.pushViewController(chatVC, animated: true)
+            }
+        }
         
         // disable send button
+        mTableView.reloadData()
+    }
+    
+    @objc func onButIgnore() {
+        mWink?.status = WinkStatus.ignored
+        
+        let userCurrent = User.currentUser!
+        
+        // update status to database
+        let database = FirebaseManager.ref().child(Wink.TABLE_NAME)
+        
+        var strKey = "\(userCurrent.id)/\(mUser!.id)"
+        database.child(strKey).child(Wink.FIELD_STATUS).setValue(WinkStatus.ignored.rawValue)
+        strKey = "\(mUser!.id)/\(userCurrent.id)"
+        database.child(strKey).child(Wink.FIELD_STATUS).setValue(WinkStatus.ignored.rawValue)
+        
+        // update buttons
         mTableView.reloadData()
     }
 
@@ -233,8 +283,14 @@ class ProfileViewController: BaseViewController,
         if indexPath.row == 0 {
             // profile user
             let cellUser = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as? ProfileUserCell
+            
             cellUser?.fillContent(user: mUser!, wink: mWink)
+            // hide buttons while fetching
+            if mRefreshControl.isRefreshing {
+                cellUser?.hideButtons()
+            }
             cellUser?.mButSend.addTarget(self, action: #selector(onButSend), for: .touchUpInside)
+            cellUser?.mButIgnore.addTarget(self, action: #selector(onButIgnore), for: .touchUpInside)
             
             cellItem = cellUser
         }

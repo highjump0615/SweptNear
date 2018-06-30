@@ -12,6 +12,7 @@ import Firebase
 enum WinkStatus : String {
     case waiting = "waiting"
     case ignored = "ignored"
+    case winkback = "winkback"
 }
 
 class Wink : BaseModel {
@@ -53,5 +54,12 @@ class Wink : BaseModel {
         dict[Wink.FIELD_STATUS] = self.status.rawValue
         
         return dict
+    }
+    
+    func saveToDatabase(fieldName: String, value: Any, key: String) {
+        // update status to database
+        let database = FirebaseManager.ref().child(Wink.TABLE_NAME)
+        
+        database.child(key).child(fieldName).setValue(value)
     }
 }

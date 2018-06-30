@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import Firebase
 
 class HomeConstantCV {
     static let column: CGFloat = 4
@@ -41,8 +42,10 @@ class HomeViewController: BaseViewController,
     
     private let CELLID_USER = "UserCell"
     
-    var usersWink: [Message] = []
-    var usersMessage: [Message] = []
+    var winks: [Wink] = []
+    var messages: [Message] = []
+    
+    var mRefreshControl: UIRefreshControl = UIRefreshControl()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,21 +61,20 @@ class HomeViewController: BaseViewController,
         initLocation()
         
         //
+        // init table view
+        //
+        mTableView.register(UINib(nibName: "HomeUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
+        
+        mRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
+        mTableView.addSubview(mRefreshControl)
+        
+        // update user info
+        updateUserInfo()
+        
+        //
         // init data
         //
-//        for _ in 1...10 {
-//            usersWink.append(Message())
-//        }
-//
-//        for i in 1...30 {
-//            let m = Message()
-//            if i < 10 {
-//                m.read = false
-//            }
-//            usersMessage.append(m)
-//        }
-        
-        mTableView.register(UINib(nibName: "HomeUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
+        getMainInfo(bRefresh: false)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -80,10 +82,12 @@ class HomeViewController: BaseViewController,
         
         hideNavbar(animated: true)
         
-        // update user info
-        updateUserInfo()
+        // update data
+        winks = winks.filter{$0.status == WinkStatus.waiting}
+        
+        mTableView.reloadData()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -95,6 +99,85 @@ class HomeViewController: BaseViewController,
         tabbarController.selectedIndex = index
         
         self.navigationController?.setViewControllers([tabbarController], animated: true)
+    }
+    
+    /// fetch photos from user
+    ///
+    /// - Parameter bRefresh: <#bRefresh description#>
+    func getMainInfo(bRefresh: Bool) {
+        if !bRefresh {
+            // show refreshing indicator manually
+            self.mTableView.contentOffset = CGPoint(x: 0, y: -self.mRefreshControl.frame.size.height);
+            mRefreshControl.beginRefreshing()
+        }
+        
+        let userCurrent = User.currentUser!
+        let winkRef = FirebaseManager.ref().child(Wink.TABLE_NAME).child(userCurrent.id)
+        let query = winkRef.queryOrdered(byChild: Wink.FIELD_STATUS).queryEqual(toValue: WinkStatus.waiting.rawValue)
+        query.observeSingleEvent(of: .value, with: { (snapshot) in
+            // notifications not found
+            if !snapshot.exists() {
+                self.stopRefreshing()
+                
+                self.getMessages()
+                return
+            }
+            
+            // clear list
+            self.winks.removeAll()
+            var nFetchCount = 0
+            
+            // parse wink
+            for wink in snapshot.children {
+                let w = Wink(snapshot: wink as! DataSnapshot)
+                self.winks.append(w)
+                
+                // fetch user
+                User.readFromDatabase(withId: w.senderId, completion: { (user) in
+                    w.sender = user
+                    
+                    nFetchCount += 1
+                    if nFetchCount == self.winks.count {
+                        self.getMessages()
+                    }
+                })
+            }
+        })
+    }
+    
+    func getMessages() {
+        let userCurrent = User.currentUser!
+        let msgRef = FirebaseManager.ref().child(Message.TABLE_NAME).child(userCurrent.id)
+        msgRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // msg not found
+            if !snapshot.exists() {
+                self.stopRefreshing()
+                return
+            }
+            
+            // clear list
+            self.messages.removeAll()
+            
+            // parse messages
+            for msg in snapshot.children {
+                let m = Message(snapshot: msg as! DataSnapshot)
+                self.messages.append(m)
+            }
+            
+            self.stopRefreshing()
+        })
+    }
+    
+    /// refresh table
+    ///
+    /// - Parameter sender: <#sender description#>
+    @objc func refresh(sender: Any) {
+        getMainInfo(bRefresh: true)
+    }
+    
+    func stopRefreshing() {
+        self.mRefreshControl.endRefreshing()
+        self.mTableView.reloadData()
     }
     
     @IBAction func onButSetting(_ sender: Any) {
@@ -128,7 +211,6 @@ class HomeViewController: BaseViewController,
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
     
-    
     /*
     // MARK: - Navigation
 
@@ -155,14 +237,20 @@ class HomeViewController: BaseViewController,
             // wink title
             if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeWinkTitleCell", owner: self, options: nil)
-                cellItem = nib?[0] as? UITableViewCell
+                let cellTitle = nib?[0] as? HomeTitleCell
+                cellTitle?.mLblCount.text = String(winks.count)
+                
+                cellItem = cellTitle
             }
         }
         else if indexPath.row == 2 {
-            // wink title
+            // message title
             if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeMessageTitleCell", owner: self, options: nil)
-                cellItem = nib?[0] as? UITableViewCell
+                let cellTitle = nib?[0] as? HomeTitleCell
+                cellTitle?.mLblCount.text = String(messages.count)
+                
+                cellItem = cellTitle
             }
         }
         else {
@@ -189,6 +277,7 @@ class HomeViewController: BaseViewController,
             
             // register nib
             cv?.register(UINib(nibName: "HomeUserCollectionCell", bundle: nil), forCellWithReuseIdentifier: "UserCollectionCell")
+            cv?.reloadData()
             
             cellItem = cellUser
         }
@@ -215,7 +304,7 @@ class HomeViewController: BaseViewController,
             
         case 3:
             // messaged users
-            let totalRow = max(ceil(CGFloat(usersMessage.count) / HomeConstantCV.column), 1)
+            let totalRow = max(ceil(CGFloat(messages.count) / HomeConstantCV.column), 1)
             return getItemsHeight(rowCount: Int(totalRow))
             
         default:
@@ -228,10 +317,10 @@ class HomeViewController: BaseViewController,
     //
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView.tag == TAG_CV_USER_WINK {
-            return usersWink.count
+            return winks.count
         }
         else {
-            return usersMessage.count
+            return messages.count
         }
     }
     
@@ -240,10 +329,10 @@ class HomeViewController: BaseViewController,
         
         // fill content
         if collectionView.tag == TAG_CV_USER_WINK {
-            cellItem.fillContent(data: usersWink[indexPath.row])
+            cellItem.fillContent(data: winks[indexPath.row])
         }
         else {
-            cellItem.fillContent(data: usersMessage[indexPath.row])
+            cellItem.fillContent(data: messages[indexPath.row])
         }
         
         return cellItem
@@ -256,9 +345,12 @@ class HomeViewController: BaseViewController,
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        // go to profile page
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        profileVC.mUser = User()
-        self.navigationController?.pushViewController(profileVC, animated: true)
+        if collectionView.tag == TAG_CV_USER_WINK {
+            // go to profile page
+            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+            profileVC.mWink = winks[indexPath.row]
+            profileVC.mUser = winks[indexPath.row].sender
+            self.navigationController?.pushViewController(profileVC, animated: true)
+        }
     }
 }

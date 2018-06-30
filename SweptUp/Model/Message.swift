@@ -7,9 +7,34 @@
 //
 
 import Foundation
+import Firebase
 
-class Message {
+class Message : BaseModel {
+    
+    //
+    // table info
+    //
+    static let TABLE_NAME = "messages"
+    static let FIELD_SENDER_ID = "senderId"
+    static let FIELD_TEXT = "text"
+
+    var text: String = ""
     var read: Bool = true
     
-    var userFrom: User?
+    var senderId: String = ""
+    var sender: User?
+    
+    override init() {
+        super.init()
+    }
+    
+    init(snapshot: DataSnapshot) {
+        super.init()
+        
+        let info = snapshot.value! as! [String: Any?]
+        
+        self.id = snapshot.key
+        self.senderId = info[Message.FIELD_SENDER_ID] as! String
+        self.text = info[Message.FIELD_TEXT] as! String
+    }
 }
