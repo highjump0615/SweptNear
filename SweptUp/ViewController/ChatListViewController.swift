@@ -8,10 +8,11 @@
 
 import UIKit
 import EmptyDataSet_Swift
+import Firebase
 
 class ChatListViewController: UITableViewController {
     
-    var messages: [Message] = []
+    var chats: [Chat] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,6 +27,7 @@ class ChatListViewController: UITableViewController {
         
         tableView.emptyDataSetView { (view) in
             view.titleLabelString(Utils.getAttributedString(text: "No messages yet"))
+                .verticalOffset(-100)
                 .shouldDisplay(true)
                 .shouldFadeIn(true)
         }
@@ -44,15 +46,32 @@ class ChatListViewController: UITableViewController {
     func getChatListInfo() {
         let userCurrent = User.currentUser!
         
-        let chatRef = FirebaseManager.ref().child(Chat.TABLE_NAME)
-        let query = chatRef.queryOrderedByKey().queryEqual(toValue: userCurrent.id)
+        let chatRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         
-        query.observeSingleEvent(of: .value) { (snapshot) in
-            if snapshot.exists() {
+        var nFetchCount = 0
+        var nFetchUserCount = 0
+
+        chatRef.observe(.childAdded) { (snapshot) in
+            if !snapshot.exists() {
+                return
             }
-//
-//            self.stopRefreshing()
-//            self.mTableView.reloadData()
+            
+            let chat = Chat(snapshot: snapshot)
+            nFetchCount += 1
+            
+            self.chats.append(chat)
+            
+            // set user related
+            User.readFromDatabase(withId: chat.id, completion: { (user) in
+                nFetchUserCount += 1
+                
+                chat.userRelated = user
+              
+                // update table
+                if nFetchCount == nFetchUserCount {
+                    self.tableView.reloadData()
+                }
+            })
         }
     }
     
@@ -71,13 +90,14 @@ class ChatListViewController: UITableViewController {
     // MARK: - UITableViewDataSource
     //
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return messages.count
+        return chats.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cellMsg = tableView.dequeueReusableCell(withIdentifier: "ChatListCell")        
+        let cellMsg = tableView.dequeueReusableCell(withIdentifier: "ChatListCell") as! ChatListCell
+        cellMsg.fillContent(chat: chats[indexPath.row])
         
-        return cellMsg!
+        return cellMsg
     }
     
     //
@@ -87,8 +107,10 @@ class ChatListViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // go to chat page
+        let chat = self.chats[indexPath.row]
         let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+        chatVC.mUser = chat.userRelated
+        chatVC.mChat = chat
         self.navigationController?.pushViewController(chatVC, animated: true)
     }
-
 }

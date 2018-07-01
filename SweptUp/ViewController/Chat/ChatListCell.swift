@@ -1,17 +1,17 @@
 //
-//  ChatCell.swift
+//  ChatListCell.swift
 //  SweptUp
 //
-//  Created by Administrator on 6/18/18.
+//  Created by Administrator on 7/2/18.
 //  Copyright © 2018 Administrator. All rights reserved.
 //
 
 import UIKit
 import SDWebImage
 
-class ChatCell: UITableViewCell {
+class ChatListCell: UITableViewCell {
     
-    @IBOutlet weak var mButUser: UIButton!
+    @IBOutlet weak var mButImg: UIButton!
     @IBOutlet weak var mLblName: UILabel!
     @IBOutlet weak var mLblText: UILabel!
     @IBOutlet weak var mLblTime: UILabel!
@@ -20,7 +20,7 @@ class ChatCell: UITableViewCell {
         super.awakeFromNib()
         // Initialization code
         
-        mButUser.makeRound()
+        mButImg.makeRound()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -29,29 +29,25 @@ class ChatCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func fillContent(msg: Message) {
-        let userCurrent = User.currentUser!
-        
-        if let user = msg.sender {
+    func fillContent(chat: Chat) {
+        if let user = chat.userRelated {
             // user photo
-            mButUser.sd_setImage(with: URL(string: user.photoUrl!),
+            mButImg.sd_setImage(with: URL(string: user.photoUrl!),
                                  for: .normal,
                                  placeholderImage: UIImage(named: "UserDefault"),
                                  options: .progressiveDownload,
                                  completed: nil)
             
             // user name
-            if !user.isEqual(to: userCurrent) {
-                mLblName.text = user.userFullName()
-            }
+            mLblName.text = user.userFullName()
         }
         
         // text
-        mLblText.text = msg.text
+        mLblText.text = chat.text
         
         // time
         // SENT 11:20 AM SEEN 11:25 AM
-        mLblTime.text = Utils.stringFromTimestamp(timestamp: msg.createdAt)
+        mLblTime.text = Utils.stringFromTimestampSimple(timestamp: chat.updatedAt)
     }
 
 }

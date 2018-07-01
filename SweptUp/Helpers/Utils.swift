@@ -48,4 +48,35 @@ class Utils {
                                   attributes: myAttribute)
     }
     
+    /// date formatted from unix timestamp
+    ///
+    /// - Parameter timestamp: <#timestamp description#>
+    /// - Returns: <#return value description#>
+    static func stringFromTimestamp(timestamp: Int64) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "hh:mm:ss a MM/dd/yyyy"
+
+        return dateFormatter.string(from: date)
+    }
+    
+    static func stringFromTimestampSimple(timestamp: Int64) -> String {
+        let date = Date(timeIntervalSince1970: TimeInterval(timestamp / 1000))
+        let now = Date()
+        
+        // compare date only
+        let dateFormatter = DateFormatter()
+        let order = Calendar.current.compare(now, to: date, toGranularity: .day)
+        
+        if order == .orderedSame {
+            // same day
+            dateFormatter.dateFormat = "hh:mm:ss"
+        }
+        else {
+            // date only
+            dateFormatter.dateFormat = "MM/dd/yyyy"
+        }
+        
+        return dateFormatter.string(from: date)
+    }
 }

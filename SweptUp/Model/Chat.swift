@@ -22,9 +22,12 @@ class Chat : BaseModel {
     var senderId: String = ""
     var sender: User?
     
-    var updatedAt: Int = 0
+    var updatedAt: Int64 = 0
     
     var text: String = ""
+    
+    // excluded
+    var userRelated: User?
     
     override init() {
         super.init()
@@ -35,7 +38,10 @@ class Chat : BaseModel {
         
         let info = snapshot.value! as! [String: Any?]
         
+        self.id = snapshot.key
         self.senderId = info[Chat.FIELD_SENDER_ID] as! String
+        self.text = info[Chat.FIELD_TEXT] as! String
+        self.updatedAt = info[Chat.FIELD_UPDATED_AT] as! Int64
     }
     
     override func tableName() -> String {

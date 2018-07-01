@@ -78,6 +78,7 @@
 		C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */; };
 		C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */; };
 		C3B5199320E75D8A00E9E4DA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5199220E75D8A00E9E4DA /* Chat.swift */; };
+		C3B5199720E980C000E9E4DA /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5199620E980C000E9E4DA /* ChatListCell.swift */; };
 		C3E421D120DB837C00FC7D17 /* ProfilePopupSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */; };
 		C3E421D320DB8AB800FC7D17 /* ProfilePopupSent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */; };
 		C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */; };
@@ -184,6 +185,7 @@
 		C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupCPasswordViewController.xib; sourceTree = "<group>"; };
 		C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCPasswordViewController.swift; sourceTree = "<group>"; };
 		C3B5199220E75D8A00E9E4DA /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
+		C3B5199620E980C000E9E4DA /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopupSent.xib; sourceTree = "<group>"; };
 		C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopupSent.swift; sourceTree = "<group>"; };
 		C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomView.swift; sourceTree = "<group>"; };
@@ -335,6 +337,7 @@
 			children = (
 				C367756620D7B5B500352B83 /* ChatViewController.swift */,
 				C367756E20D7EB1C00352B83 /* ChatCell.swift */,
+				C3B5199620E980C000E9E4DA /* ChatListCell.swift */,
 			);
 			path = Chat;
 			sourceTree = "<group>";
@@ -828,6 +831,7 @@
 				C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */,
 				C355F92320D36AB0005F8F82 /* HomeTitleCell.swift in Sources */,
 				C355F92720D36B09005F8F82 /* HomeUserCollectionCell.swift in Sources */,
+				C3B5199720E980C000E9E4DA /* ChatListCell.swift in Sources */,
 				C367756020D7820900352B83 /* Notification.swift in Sources */,
 				C3B332C620D1923100DFEC70 /* SignupEmailViewController.swift in Sources */,
 				C3E421D320DB8AB800FC7D17 /* ProfilePopupSent.swift in Sources */,

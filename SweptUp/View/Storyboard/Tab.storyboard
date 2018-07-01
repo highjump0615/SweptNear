@@ -317,20 +317,13 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListCell" rowHeight="66" id="pju-Z5-jsP">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="ChatListCell" rowHeight="66" id="pju-Z5-jsP" customClass="ChatListCell" customModule="SweptUp" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="66"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pju-Z5-jsP" id="zrc-Lg-zzJ">
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="65.666666666666671"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="jr4-zG-KWy">
-                                            <rect key="frame" x="20" y="11" width="44" height="44"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="44" id="PlY-YD-maJ"/>
-                                                <constraint firstAttribute="width" constant="44" id="mVg-Yz-OVP"/>
-                                            </constraints>
-                                        </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="John Williams" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAO-yr-Boa">
                                             <rect key="frame" x="80" y="7.9999999999999982" width="157" height="19.333333333333329"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
@@ -349,21 +342,38 @@
                                             <color key="textColor" red="0.18039215689999999" green="0.18039215689999999" blue="0.18039215689999999" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7zZ-1S-bkM">
+                                            <rect key="frame" x="20" y="11" width="44" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="44" id="Bge-RB-Qxt"/>
+                                                <constraint firstAttribute="width" constant="44" id="trs-sA-8h0"/>
+                                            </constraints>
+                                            <state key="normal" image="UserDefault"/>
+                                            <connections>
+                                                <action selector="mButImg:" destination="RKw-tN-zZb" eventType="touchUpInside" id="d4X-Uc-H7Q"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <constraints>
                                         <constraint firstItem="IAO-yr-Boa" firstAttribute="top" secondItem="zrc-Lg-zzJ" secondAttribute="top" constant="8" id="3eP-xY-7Ql"/>
-                                        <constraint firstItem="jr4-zG-KWy" firstAttribute="leading" secondItem="zrc-Lg-zzJ" secondAttribute="leading" constant="20" id="5At-xe-jDB"/>
                                         <constraint firstItem="evp-yG-v0d" firstAttribute="trailing" secondItem="nmW-m9-G8P" secondAttribute="trailing" id="JT7-wG-GpG"/>
                                         <constraint firstAttribute="trailing" secondItem="nmW-m9-G8P" secondAttribute="trailing" constant="12" id="Ncc-Cv-Qfq"/>
                                         <constraint firstItem="evp-yG-v0d" firstAttribute="leading" secondItem="IAO-yr-Boa" secondAttribute="leading" id="SOI-Ew-0aS"/>
-                                        <constraint firstItem="jr4-zG-KWy" firstAttribute="top" secondItem="zrc-Lg-zzJ" secondAttribute="top" constant="11" id="Xfh-3L-g3r"/>
+                                        <constraint firstItem="7zZ-1S-bkM" firstAttribute="leading" secondItem="zrc-Lg-zzJ" secondAttribute="leading" constant="20" id="UfS-hA-R6n"/>
+                                        <constraint firstItem="IAO-yr-Boa" firstAttribute="leading" secondItem="7zZ-1S-bkM" secondAttribute="trailing" constant="16" id="aqg-0u-7Zk"/>
                                         <constraint firstItem="nmW-m9-G8P" firstAttribute="centerY" secondItem="IAO-yr-Boa" secondAttribute="centerY" id="bcW-U7-iFd"/>
-                                        <constraint firstItem="IAO-yr-Boa" firstAttribute="leading" secondItem="jr4-zG-KWy" secondAttribute="trailing" constant="16" id="hqQ-hf-USA"/>
                                         <constraint firstItem="nmW-m9-G8P" firstAttribute="leading" secondItem="IAO-yr-Boa" secondAttribute="trailing" constant="10" id="mJd-dt-2SE"/>
+                                        <constraint firstItem="7zZ-1S-bkM" firstAttribute="top" secondItem="zrc-Lg-zzJ" secondAttribute="top" constant="11" id="sYg-Jc-39Z"/>
                                         <constraint firstItem="evp-yG-v0d" firstAttribute="top" secondItem="IAO-yr-Boa" secondAttribute="bottom" constant="7" id="xEm-mD-C3w"/>
                                         <constraint firstAttribute="bottom" secondItem="evp-yG-v0d" secondAttribute="bottom" constant="13.666666666666671" id="yho-e8-NLi"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="mButImg" destination="7zZ-1S-bkM" id="uP0-Yl-VO9"/>
+                                    <outlet property="mLblName" destination="IAO-yr-Boa" id="ZJW-hU-Kh6"/>
+                                    <outlet property="mLblText" destination="evp-yG-v0d" id="pDQ-ar-RV6"/>
+                                    <outlet property="mLblTime" destination="nmW-m9-G8P" id="YhZ-a3-XCX"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -376,6 +386,7 @@
                     </tabBarItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="21u-y3-5rq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="RKw-tN-zZb" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="476.81159420289856" y="-651.35869565217399"/>
         </scene>
@@ -419,6 +430,6 @@
         <image name="TabMap" width="29" height="28"/>
         <image name="TabNotification" width="30" height="32"/>
         <image name="TabSetting" width="33" height="33"/>
-        <image name="UserDefault" width="73" height="73"/>
+        <image name="UserDefault" width="100" height="100"/>
     </resources>
 </document>
