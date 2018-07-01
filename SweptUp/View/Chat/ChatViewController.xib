@@ -14,6 +14,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChatViewController" customModule="SweptUp" customModuleProvider="target">
             <connections>
                 <outlet property="mTableView" destination="z7o-qs-IF2" id="IZy-XS-66T"/>
+                <outlet property="mTextField" destination="cQL-RG-IDw" id="qNC-Sv-nhM"/>
                 <outlet property="mViewInput" destination="NHZ-6M-jNd" id="kFc-3N-JPg"/>
                 <outlet property="view" destination="iN0-l3-epB" id="OWQ-Wc-aYo"/>
             </connections>
@@ -47,6 +48,9 @@
                                 <constraint firstAttribute="width" secondItem="Nuv-zQ-kR9" secondAttribute="height" id="O0G-dd-hum"/>
                             </constraints>
                             <state key="normal" image="ChatSend"/>
+                            <connections>
+                                <action selector="onButSend:" destination="-1" eventType="touchUpInside" id="wRH-ry-x0R"/>
+                            </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-RG-IDw">
                             <rect key="frame" x="54" y="8" width="267" height="30"/>
@@ -54,6 +58,9 @@
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="send"/>
+                            <connections>
+                                <outlet property="delegate" destination="-1" id="VHT-Ec-2il"/>
+                            </connections>
                         </textField>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

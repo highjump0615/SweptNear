@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import EmptyDataSet_Swift
 
 class ChatListViewController: UITableViewController {
     
@@ -18,12 +19,16 @@ class ChatListViewController: UITableViewController {
         //
         // init data
         //
-        for _ in 1...3 {
-            messages.append(Message())
-        }
+        getChatListInfo()
         
         // hide empty cells
         tableView.tableFooterView = UIView()
+        
+        tableView.emptyDataSetView { (view) in
+            view.titleLabelString(Utils.getAttributedString(text: "No messages yet"))
+                .shouldDisplay(true)
+                .shouldFadeIn(true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -34,6 +39,21 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Messages"
+    }
+    
+    func getChatListInfo() {
+        let userCurrent = User.currentUser!
+        
+        let chatRef = FirebaseManager.ref().child(Chat.TABLE_NAME)
+        let query = chatRef.queryOrderedByKey().queryEqual(toValue: userCurrent.id)
+        
+        query.observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+            }
+//
+//            self.stopRefreshing()
+//            self.mTableView.reloadData()
+        }
     }
     
 

@@ -75,7 +75,7 @@ class User : BaseModel {
     }
     
     override func toDictionary() -> [String: Any] {
-        var dict: [String: Any] = [:]
+        var dict = super.toDictionary()
 
         dict[User.FIELD_EMAIL] = self.email
         dict[User.FIELD_FIRSTNAME] = self.firstName

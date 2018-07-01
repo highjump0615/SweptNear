@@ -16,10 +16,10 @@ class BaseModel {
     static let FIELD_DATE = "createdAt"
     
     var id = ""
-    var createdAt: Int
+    var createdAt: Int64
     
     init() {
-        createdAt = 0
+        createdAt = FirebaseManager.getServerLongTime()
     }
     
     func tableName() -> String {
@@ -28,8 +28,10 @@ class BaseModel {
     }
     
     func toDictionary() -> [String: Any] {
-        // virtual func
-        return [:]
+        var dict: [String: Any] = [:]
+        dict[BaseModel.FIELD_DATE] = createdAt
+        
+        return dict
     }
     
     func saveToDatabase(withID: String? = nil, parentID: String? = nil) {

@@ -1,28 +1,30 @@
 //
-//  Message.swift
+//  Caht.swift
 //  SweptUp
 //
-//  Created by Administrator on 6/15/18.
+//  Created by Administrator on 6/30/18.
 //  Copyright © 2018 Administrator. All rights reserved.
 //
 
 import Foundation
 import Firebase
 
-class Message : BaseModel {
+class Chat : BaseModel {
     
     //
     // table info
     //
-    static let TABLE_NAME = "messages"
+    static let TABLE_NAME = "chats"
     static let FIELD_SENDER_ID = "senderId"
     static let FIELD_TEXT = "text"
-
-    var text: String = ""
-    var read: Bool = true
+    static let FIELD_UPDATED_AT = "updatedAt"
     
     var senderId: String = ""
     var sender: User?
+    
+    var updatedAt: Int = 0
+    
+    var text: String = ""
     
     override init() {
         super.init()
@@ -33,20 +35,19 @@ class Message : BaseModel {
         
         let info = snapshot.value! as! [String: Any?]
         
-        self.id = snapshot.key
-        self.senderId = info[Message.FIELD_SENDER_ID] as! String
-        self.text = info[Message.FIELD_TEXT] as! String
+        self.senderId = info[Chat.FIELD_SENDER_ID] as! String
     }
     
     override func tableName() -> String {
-        return Message.TABLE_NAME
+        return Chat.TABLE_NAME
     }
     
     override func toDictionary() -> [String: Any] {
         var dict = super.toDictionary()
         
-        dict[Message.FIELD_SENDER_ID] = self.senderId
-        dict[Message.FIELD_TEXT] = text
+        dict[Chat.FIELD_SENDER_ID] = self.senderId
+        dict[Chat.FIELD_TEXT] = text
+        dict[Chat.FIELD_UPDATED_AT] = FirebaseManager.getServerLongTime()
         
         return dict
     }

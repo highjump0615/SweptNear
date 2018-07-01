@@ -48,7 +48,7 @@ class Wink : BaseModel {
     }
     
     override func toDictionary() -> [String: Any] {
-        var dict: [String: Any] = [:]
+        var dict = super.toDictionary()
         
         dict[Wink.FIELD_SENDER_ID] = self.senderId
         dict[Wink.FIELD_STATUS] = self.status.rawValue

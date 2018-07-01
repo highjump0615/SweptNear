@@ -8,15 +8,18 @@
 
 import UIKit
 import IHKeyboardAvoiding
+import Firebase
 
 class ChatViewController: BaseViewController, UITableViewDataSource, UITableViewDelegate {
     
     var messages: [Message] = []
     
     var mUser: User?
+    var mChat: Chat?
     
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mViewInput: UIView!
+    @IBOutlet weak var mTextField: UITextField!
     
     private let CELLID_CHAT_TO = "ChatToCell"
     private let CELLID_CHAT_FROM = "ChatFromCell"
@@ -39,16 +42,13 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         // keyboard avoiding
         KeyboardAvoiding.avoidingView = mViewInput
         
+        showNavbar()
+        
         //
         // init data
         //
-        for i in 1...4 {
-            let m = Message()
-            if i % 2 == 0 {
-                m.sender = User()
-            }
-            messages.append(m)
-        }
+        fetchChat()
+        getMessages()
     }
 
     override func didReceiveMemoryWarning() {
@@ -63,10 +63,119 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         self.title = "Chat"
     }
     
+    func fetchChat() {
+        let userCurrent = User.currentUser!
+        
+        if mChat != nil {
+            // already fetched, return
+            return
+        }
+        
+        // fetch chat room
+        let db = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id).child(mUser!.id)
+        db.observeSingleEvent(of: .value) { (snapshot) in
+            if !snapshot.exists() {
+                return
+            }
+            
+            self.mChat = Chat(snapshot: snapshot)
+        }
+    }
+    
+    func getMessages() {
+        let userCurrent = User.currentUser!
+        
+        let db = FirebaseManager.ref().child(Message.TABLE_NAME).child(userCurrent.id).child(mUser!.id)
+        db.observe(.childAdded, with: { (snapshot) in
+            let msg = Message(snapshot: snapshot)
+            msg.id = snapshot.key
+            
+            // set user
+            msg.sender = msg.senderId == userCurrent.id ? userCurrent : self.mUser
+            
+            var isExist = false
+            for aMsg in self.messages {
+                if aMsg.isEqual(to: msg) {
+                    isExist = true
+                    break
+                }
+            }
+
+            if !isExist {
+                DispatchQueue.main.async {
+                    self.messages.append(msg)
+                    
+                    self.updateTable()
+                }
+            }
+        })
+    }
+    
     @objc func onButReport() {
     }
     
+    @IBAction func onButSend(_ sender: Any) {
+        self.view.endEditing(true)
 
+        // send
+        let text = mTextField.text!
+        if text.isEmpty {
+            return
+        }
+        
+        //
+        // update chat info
+        //
+        let userCurrent = User.currentUser!
+        if mChat == nil {
+            mChat = Chat()
+            mChat?.senderId = userCurrent.id
+        }
+        mChat?.text = text
+        
+        mChat?.saveToDatabase(withID: mUser?.id, parentID: userCurrent.id)
+        mChat?.saveToDatabase(withID: userCurrent.id, parentID: mUser?.id)
+        
+        // add new mesage
+        let msgNew = Message()
+        msgNew.senderId = userCurrent.id
+        msgNew.sender = userCurrent
+        msgNew.text = text
+        
+        var strKey = "\(mUser!.id)/\(userCurrent.id)"
+        msgNew.saveToDatabase(withID: nil, parentID: strKey)
+        
+        strKey = "\(userCurrent.id)/\(mUser!.id)"
+        msgNew.saveToDatabase(withID: nil, parentID: strKey)
+        
+        self.messages.append(msgNew)
+        
+        // clear textfield
+        self.mTextField.text = ""
+        
+        // update table
+        updateTable()
+    }
+    
+    func updateTable() {
+        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+        mTableView.insertRows(at: [indexPath], with: .automatic)
+        
+        self.tableViewScrollToBottom(animated: true)
+    }
+    
+    func tableViewScrollToBottom(animated: Bool) {
+        let time = animated ? 300 : 0
+        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(time)) {
+            
+            if self.mTableView.contentSize.height > self.mTableView.frame.size.height {
+                let bottomOffset = CGPoint(x: 0,
+                                           y: self.mTableView.contentSize.height - self.mTableView.frame.size.height)
+                self.mTableView.setContentOffset(bottomOffset, animated: false)
+            }
+        }
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -86,16 +195,26 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let msg = messages[indexPath.row]
+        let userCurrent = User.currentUser!
         
         var strCellId = "ChatFromCell"
-        if msg.sender == nil {
+        if msg.senderId == userCurrent.id {
             strCellId = "ChatToCell"
         }
             
         let cellItem = tableView.dequeueReusableCell(withIdentifier: strCellId) as! ChatCell
         cellItem.backgroundColor = UIColor.clear
+        cellItem.fillContent(msg: msg)
 
         return cellItem
     }
+}
+
+extension ChatViewController : UITextFieldDelegate {
     
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        onButSend(mTextField)
+        
+        return true
+    }
 }

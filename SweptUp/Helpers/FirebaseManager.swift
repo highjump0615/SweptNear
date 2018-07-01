@@ -57,6 +57,11 @@ class FirebaseManager {
         }
     }
     
+    static func getServerLongTime() -> Int64 {
+        let estimatedServerTimeMs = NSDate().timeIntervalSince1970 * 1000 + ServerOffset
+        return Int64(estimatedServerTimeMs)
+    }
+    
     static func signOut() {
         // Log out
         do {

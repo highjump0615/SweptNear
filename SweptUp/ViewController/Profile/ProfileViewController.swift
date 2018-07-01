@@ -105,7 +105,7 @@ class ProfileViewController: BaseViewController,
         // title
         self.title = "Profile Information"
         
-        mTableView.reloadData()
+        reloadTable(sender: self)
     }
     
     /// fetch photos from user
@@ -119,15 +119,16 @@ class ProfileViewController: BaseViewController,
         }
         
         mUser?.fetchPhotos {
-            self.stopRefreshing()
             
             if self.mUser!.isEqual(to: User.currentUser!) {
                 self.stopRefreshing()
-                self.mTableView.reloadData()
             }
             else if self.mWink == nil {
                 // fetch wink status
                 self.fetchWinkStatus()
+            }
+            else {
+                self.stopRefreshing()
             }
         }
     }
@@ -145,12 +146,16 @@ class ProfileViewController: BaseViewController,
             }
             
             self.stopRefreshing()
-            self.mTableView.reloadData()
         }
     }
     
     func stopRefreshing() {
         self.mRefreshControl.endRefreshing()
+        perform(#selector(reloadTable), with: nil, afterDelay: 0.4)
+    }
+    
+    @objc func reloadTable(sender: Any) {
+        self.mTableView.reloadData()
     }
     
     /// report user
@@ -240,7 +245,13 @@ class ProfileViewController: BaseViewController,
         }
         
         // disable send button
-        mTableView.reloadData()
+        updateUserCell()
+    }
+    
+    /// update user cell
+    func updateUserCell() {
+        let indexPath = IndexPath(row: 0, section: 0)
+        mTableView.reloadRows(at: [indexPath], with: .none)
     }
     
     @objc func onButIgnore() {
@@ -257,7 +268,7 @@ class ProfileViewController: BaseViewController,
         database.child(strKey).child(Wink.FIELD_STATUS).setValue(WinkStatus.ignored.rawValue)
         
         // update buttons
-        mTableView.reloadData()
+        updateUserCell()
     }
 
     /*

@@ -43,7 +43,7 @@ class HomeViewController: BaseViewController,
     private let CELLID_USER = "UserCell"
     
     var winks: [Wink] = []
-    var messages: [Message] = []
+    var chats: [Chat] = []
     
     var mRefreshControl: UIRefreshControl = UIRefreshControl()
     
@@ -147,7 +147,7 @@ class HomeViewController: BaseViewController,
     
     func getMessages() {
         let userCurrent = User.currentUser!
-        let msgRef = FirebaseManager.ref().child(Message.TABLE_NAME).child(userCurrent.id)
+        let msgRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         msgRef.observeSingleEvent(of: .value, with: { (snapshot) in
             // msg not found
             if !snapshot.exists() {
@@ -156,15 +156,33 @@ class HomeViewController: BaseViewController,
             }
             
             // clear list
-            self.messages.removeAll()
+            self.chats.removeAll()
+            var nFetchCount = 0
             
             // parse messages
             for msg in snapshot.children {
-                let m = Message(snapshot: msg as! DataSnapshot)
-                self.messages.append(m)
+                let c = Chat(snapshot: msg as! DataSnapshot)
+                
+                // only add received message
+                if c.senderId == userCurrent.id {
+                    continue
+                }
+                self.chats.append(c)
+                
+                // fetch user
+                User.readFromDatabase(withId: c.senderId, completion: { (user) in
+                    c.sender = user
+                    
+                    nFetchCount += 1
+                    if nFetchCount == self.chats.count {
+                        self.stopRefreshing()
+                    }
+                })
             }
             
-            self.stopRefreshing()
+            if self.chats.isEmpty {
+                self.stopRefreshing()
+            }
         })
     }
     
@@ -248,7 +266,7 @@ class HomeViewController: BaseViewController,
             if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeMessageTitleCell", owner: self, options: nil)
                 let cellTitle = nib?[0] as? HomeTitleCell
-                cellTitle?.mLblCount.text = String(messages.count)
+                cellTitle?.mLblCount.text = String(chats.count)
                 
                 cellItem = cellTitle
             }
@@ -304,7 +322,7 @@ class HomeViewController: BaseViewController,
             
         case 3:
             // messaged users
-            let totalRow = max(ceil(CGFloat(messages.count) / HomeConstantCV.column), 1)
+            let totalRow = max(ceil(CGFloat(chats.count) / HomeConstantCV.column), 1)
             return getItemsHeight(rowCount: Int(totalRow))
             
         default:
@@ -320,7 +338,7 @@ class HomeViewController: BaseViewController,
             return winks.count
         }
         else {
-            return messages.count
+            return chats.count
         }
     }
     
@@ -332,7 +350,7 @@ class HomeViewController: BaseViewController,
             cellItem.fillContent(data: winks[indexPath.row])
         }
         else {
-            cellItem.fillContent(data: messages[indexPath.row])
+            cellItem.fillContent(data: chats[indexPath.row])
         }
         
         return cellItem
@@ -351,6 +369,12 @@ class HomeViewController: BaseViewController,
             profileVC.mWink = winks[indexPath.row]
             profileVC.mUser = winks[indexPath.row].sender
             self.navigationController?.pushViewController(profileVC, animated: true)
+        }
+        else {
+            // go to chat page
+            let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
+            chatVC.mUser = chats[indexPath.row].sender
+            self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }
 }

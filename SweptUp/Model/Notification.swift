@@ -45,7 +45,7 @@ class Notification : BaseModel {
     }
     
     override func toDictionary() -> [String: Any] {
-        var dict: [String: Any] = [:]
+        var dict = super.toDictionary()
         
         dict[Notification.FIELD_SENDER_ID] = self.senderId
         dict[Notification.FIELD_TYPE] = self.type

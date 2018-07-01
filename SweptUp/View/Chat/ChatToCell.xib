@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -28,7 +27,7 @@
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0HD-b3-MJS">
                                     <rect key="frame" x="0.0" y="0.0" width="18.5" height="12.5"/>
-                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="12"/>
+                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="12"/>
                                     <color key="textColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
@@ -59,32 +58,39 @@
                     <color key="textColor" red="0.58431372549019611" green="0.58431372549019611" blue="0.60784313725490191" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="UserDefault" translatesAutoresizingMaskIntoConstraints="NO" id="w2X-c1-uFO">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kVG-TH-PIo">
                     <rect key="frame" x="281" y="0.0" width="54" height="54"/>
                     <constraints>
-                        <constraint firstAttribute="width" secondItem="w2X-c1-uFO" secondAttribute="height" id="TZJ-wX-iZh"/>
-                        <constraint firstAttribute="width" constant="54" id="Zps-Pm-z11"/>
+                        <constraint firstAttribute="width" constant="54" id="FrF-rt-Waz"/>
+                        <constraint firstAttribute="height" constant="54" id="Or6-hJ-IV2"/>
                     </constraints>
-                </imageView>
+                    <state key="normal" image="UserDefault"/>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="kVG-TH-PIo" secondAttribute="trailing" constant="12" id="26p-pd-8Ml"/>
+                <constraint firstItem="kVG-TH-PIo" firstAttribute="leading" secondItem="Zek-Nb-g0G" secondAttribute="trailing" id="4Xl-gj-gzH"/>
                 <constraint firstItem="Zek-Nb-g0G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="74" id="7Ov-hk-sFD"/>
                 <constraint firstItem="Aao-7A-TTI" firstAttribute="top" secondItem="Zek-Nb-g0G" secondAttribute="bottom" constant="2" id="KcN-ti-50R"/>
-                <constraint firstItem="w2X-c1-uFO" firstAttribute="leading" secondItem="Zek-Nb-g0G" secondAttribute="trailing" id="dKn-j0-2nE"/>
+                <constraint firstItem="kVG-TH-PIo" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="NGv-zX-5fO"/>
                 <constraint firstItem="Aao-7A-TTI" firstAttribute="leading" secondItem="Zek-Nb-g0G" secondAttribute="leading" id="grf-l4-riG"/>
-                <constraint firstItem="w2X-c1-uFO" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="pFR-jl-OL3"/>
                 <constraint firstItem="Zek-Nb-g0G" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="r3i-hc-NWS"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Aao-7A-TTI" secondAttribute="bottom" constant="10" id="uaj-yg-J4m"/>
-                <constraint firstItem="w2X-c1-uFO" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" constant="-12" id="v7p-ig-dKK"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="mButUser" destination="kVG-TH-PIo" id="2jW-UH-xO1"/>
+                <outlet property="mLblName" destination="0HD-b3-MJS" id="HaW-AZ-fiJ"/>
+                <outlet property="mLblText" destination="mcY-vZ-IRd" id="gjh-iS-Nnu"/>
+                <outlet property="mLblTime" destination="Aao-7A-TTI" id="Eg1-5f-c3o"/>
+            </connections>
             <point key="canvasLocation" x="10.5" y="-245"/>
         </view>
     </objects>
     <resources>
         <image name="ChatBubbleTo" width="30" height="44"/>
-        <image name="UserDefault" width="73" height="73"/>
+        <image name="UserDefault" width="100" height="100"/>
     </resources>
 </document>

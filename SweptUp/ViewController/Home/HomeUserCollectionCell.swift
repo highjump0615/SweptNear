@@ -15,9 +15,15 @@ class HomeUserCollectionCell: UICollectionViewCell {
     @IBOutlet weak var mImgViewUser: UIImageView!
     
     func fillContent(data: BaseModel) {
-        if data is Message {
-            let msg = data as! Message
-            mViewBg.isHidden = msg.read
+        if data is Chat {
+            let c = data as! Chat
+            if let photoUrl = c.sender?.photoUrl {
+                mImgViewUser.sd_setImage(with: URL(string: photoUrl),
+                                         placeholderImage: UIImage(named: "UserDefault"),
+                                         options: .progressiveDownload,
+                                         completed: nil)
+            }
+//            mViewBg.isHidden = msg.read
         }
         else {
             let wink = data as! Wink
@@ -26,7 +32,7 @@ class HomeUserCollectionCell: UICollectionViewCell {
                                          placeholderImage: UIImage(named: "UserDefault"),
                                          options: .progressiveDownload,
                                          completed: nil)
-            }            
+            }
         }
     }
     

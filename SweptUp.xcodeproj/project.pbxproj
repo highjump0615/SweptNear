@@ -77,6 +77,7 @@
 		C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */; };
 		C3B332CF20D1A10000DFEC70 /* SignupCPasswordViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */; };
 		C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */; };
+		C3B5199320E75D8A00E9E4DA /* Chat.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5199220E75D8A00E9E4DA /* Chat.swift */; };
 		C3E421D120DB837C00FC7D17 /* ProfilePopupSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */; };
 		C3E421D320DB8AB800FC7D17 /* ProfilePopupSent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */; };
 		C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */; };
@@ -182,6 +183,7 @@
 		C3B332CC20D19E7900DFEC70 /* SignupPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupPasswordViewController.swift; sourceTree = "<group>"; };
 		C3B332CE20D1A0FF00DFEC70 /* SignupCPasswordViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SignupCPasswordViewController.xib; sourceTree = "<group>"; };
 		C3B332D020D1A12000DFEC70 /* SignupCPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignupCPasswordViewController.swift; sourceTree = "<group>"; };
+		C3B5199220E75D8A00E9E4DA /* Chat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chat.swift; sourceTree = "<group>"; };
 		C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopupSent.xib; sourceTree = "<group>"; };
 		C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopupSent.swift; sourceTree = "<group>"; };
 		C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomView.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 				C367755F20D7820900352B83 /* Notification.swift */,
 				C3F7AC8D20DF4D070081BE51 /* BaseModel.swift */,
 				C34746C620E4EA9100814D56 /* Wink.swift */,
+				C3B5199220E75D8A00E9E4DA /* Chat.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -799,6 +802,7 @@
 				C3B332C420D1921300DFEC70 /* SignupBaseViewController.swift in Sources */,
 				C3382BF520D6359C008D0AE6 /* Config.swift in Sources */,
 				C3382BE720D5F907008D0AE6 /* MainTabbarController.swift in Sources */,
+				C3B5199320E75D8A00E9E4DA /* Chat.swift in Sources */,
 				C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
 				C34C9BE420E18EC300F165F8 /* ProfilePhotoCollectionCell.swift in Sources */,
