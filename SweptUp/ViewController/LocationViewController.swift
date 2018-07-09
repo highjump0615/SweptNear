@@ -13,14 +13,27 @@ import GeoFire
 class LocationViewController: BaseViewController {
 
     @IBOutlet weak var mViewMap: GMSMapView!
+    @IBOutlet weak var mViewTopbar: UIView!
+    @IBOutlet weak var mViewFilter: UIView!
+    @IBOutlet weak var mConstraintFilterBottom: NSLayoutConstraint!
+    
+    @IBOutlet weak var mLblDistance: UILabel!
+    @IBOutlet weak var mSliderDistance: UISlider!
     
     var users: [User] = []
+    var mqueryLocation: GFCircleQuery? = nil
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         initLocation()
         initMap()
+        
+        let colorGray = UIColor(red: 75/255.0, green: 75/255.0, blue: 75/255.0, alpha: 0.4)
+        self.mViewTopbar.addBottomBorderWithColor(color: colorGray, width: 1.0)
+        
+        // init distance filter
+        onDistanceChanged(self.view)        
     }
 
     override func didReceiveMemoryWarning() {
@@ -69,7 +82,63 @@ class LocationViewController: BaseViewController {
         marker.map = mViewMap
     }
     
-
+    @IBAction func onButFilter(_ sender: Any) {
+        // show/hide distance slider
+        UIView.animate(withDuration: 0.3) {
+            if self.mConstraintFilterBottom.constant == 0 {
+               self.mConstraintFilterBottom.constant = self.mViewFilter.frame.height
+            }
+            else {
+                self.mConstraintFilterBottom.constant = 0
+            }
+            
+            self.view .layoutIfNeeded()
+        }
+    }
+    
+    @IBAction func onSliderTouchUp(_ sender: Any) {
+        //
+        // load users in the area
+        //
+        let locationsRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
+        let geoFire = GeoFire(firebaseRef: locationsRef)
+        let userCurrent = User.currentUser
+        
+        if let location = self.mViewMap.myLocation {
+            mqueryLocation?.removeAllObservers()
+            
+            mqueryLocation = geoFire.query(at: CLLocation(latitude: location.coordinate.latitude,
+                                                         longitude: location.coordinate.longitude),
+                                          withRadius: Double(mSliderDistance.value))
+            mqueryLocation?.observe(.keyEntered) { (key, location) in
+                print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
+                
+                if key == userCurrent?.id { return } //ignore me
+                
+                User.readFromDatabase(withId: key, completion: { (user) in
+                    if let user = user {
+                        if let _ = self.users.index(where: {$0.id == key}) {
+                        }
+                        else {
+                            self.users.append(user)
+                            
+                            // add user to map
+                            self.addMarkerOnMap(location: location, userInfo: user)
+                        }
+                    }
+                })
+            }
+            
+            mqueryLocation?.observeReady {
+                print("ready")
+            }
+        }
+    }
+    
+    @IBAction func onDistanceChanged(_ sender: Any) {
+        mLblDistance.text = "Maximum of \(mSliderDistance.value) km"
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -93,40 +162,27 @@ class LocationViewController: BaseViewController {
 
 extension LocationViewController: GMSMapViewDelegate {
     
+    /// init done
+    ///
+    /// - Parameters:
+    ///   - mapView: <#mapView description#>
+    ///   - position: <#position description#>
     func mapView(_ mapView: GMSMapView, idleAt position: GMSCameraPosition) {
-        //
-        // load users in the area
-        //
-        let locationsRef = FirebaseManager.ref().child(User.TABLE_NAME_GEOLOCATION)
-        let geoFire = GeoFire(firebaseRef: locationsRef)
-        let centerLocation = mapView.getCenterCoordinate()
-        let userCurrent = User.currentUser
-        let radius = mapView.getRadius() / 1000.0 // in kilometers
-        
-        let query = geoFire.query(at: CLLocation(latitude: centerLocation.latitude,
-                                                 longitude: centerLocation.longitude),
-                                  withRadius: radius)
-        query.observe(.keyEntered) { (key, location) in
-            print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
-            
-            if key == userCurrent?.id { return } //ignore me
-            
-            User.readFromDatabase(withId: key, completion: { (user) in
-                if let user = user {
-                    if let _ = self.users.index(where: {$0.id == key}) {
-                    }
-                    else {
-                        self.users.append(user)
-                        
-                        // add user to map
-                        self.addMarkerOnMap(location: location, userInfo: user)
-                    }
-                }
-            })
+        // fetch near users only for the first time
+        if mqueryLocation == nil {
+            onSliderTouchUp(self.view)
         }
+    }
+    
+    func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {
         
-        query.observeReady {
-            print("ready")
+    }
+    
+    func mapView(_ mapView: GMSMapView, willMove gesture: Bool) {
+        // hide distance slider
+        UIView.animate(withDuration: 0.3) {
+            self.mConstraintFilterBottom.constant = 0
+            self.view .layoutIfNeeded()
         }
     }
     
