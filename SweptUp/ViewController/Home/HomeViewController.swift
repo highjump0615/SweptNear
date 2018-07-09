@@ -195,6 +195,10 @@ class HomeViewController: BaseViewController,
     
     func stopRefreshing() {
         self.mRefreshControl.endRefreshing()
+        perform(#selector(reloadTable), with: nil, afterDelay: 0.4)
+    }
+    
+    @objc func reloadTable(sender: Any) {
         self.mTableView.reloadData()
     }
     

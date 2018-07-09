@@ -28,7 +28,7 @@ class NotificationListCell: UITableViewCell {
         switch data.type {
         case Notification.TYPE_WINK:
             mImgViewIcon.image = UIImage (named: "HomeWink")
-            mLblNotice.text = "You have 2 winks"
+            mLblNotice.text = "You have a wink"
             
         case Notification.TYPE_WINK_BACK:
             mImgViewIcon.image = UIImage (named: "SettingProfile")

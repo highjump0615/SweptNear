@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class NotificationViewController: UITableViewController {
     
@@ -15,17 +16,13 @@ class NotificationViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        // hide empty cells
+        tableView.tableFooterView = UIView()
+        
         //
         // init data
         //
-        for i in 1...3 {
-            let nn = Notification()
-            nn.type = i - 1
-            notifications.append(nn)
-        }
-        
-        // hide empty cells
-        tableView.tableFooterView = UIView()
+        getNotifications()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,6 +35,37 @@ class NotificationViewController: UITableViewController {
         self.tabBarController?.navigationItem.title = "Notifications"
     }
     
+    func getNotifications() {
+        let userCurrent = User.currentUser!
+        
+        let notificationRef = FirebaseManager.ref().child(Notification.TABLE_NAME).child(userCurrent.id)
+        
+        var nFetchCount = 0
+        var nFetchUserCount = 0
+        
+        notificationRef.observe(.childAdded) { (snapshot) in
+            if !snapshot.exists() {
+                return
+            }
+            
+            let nn = Notification(snapshot: snapshot)
+            nFetchCount += 1
+            
+            self.notifications.append(nn)
+            
+            // set user related
+            User.readFromDatabase(withId: nn.senderId, completion: { (user) in
+                nFetchUserCount += 1
+                
+                nn.sender = user
+                
+                // update table
+                if nFetchCount == nFetchUserCount {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -74,14 +102,13 @@ class NotificationViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         // winks
-        if indexPath.row == 0 || indexPath.row == 1 {
+        let notify = notifications[indexPath.row]
+        
+        if notify.type == Notification.TYPE_WINK || notify.type == Notification.TYPE_WINK_BACK {
             // go to profile page
             let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            profileVC.mUser = User()
+            profileVC.mUser = notify.sender
             self.navigationController?.pushViewController(profileVC, animated: true)
-        }
-        else {
-            tabBarController?.selectedIndex = 0
         }
     }
 
