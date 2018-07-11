@@ -148,15 +148,6 @@ class LocationViewController: BaseViewController {
         // Pass the selected object to the new view controller.
     }
     */
-    
-    //
-    // MARK: - CLLocationManagerDelegate
-    //
-    override func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        super.locationManager(manager, didUpdateLocations: locations)
-        
-        showMyLocation()
-    }
 
 }
 

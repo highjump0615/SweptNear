@@ -64,7 +64,7 @@ class BaseViewController: UIViewController {
         self.locationManager.requestWhenInUseAuthorization()
         
         locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
+        locationManager.desiredAccuracy = kCLLocationAccuracyKilometer
         locationManager.startUpdatingLocation()
     }
 
@@ -88,9 +88,16 @@ extension BaseViewController: CLLocationManagerDelegate {
         
         print("\(location.coordinate.latitude) \(location.coordinate.longitude)")
         
-        // update user location
-        User.currentUser?.update(location: location, completion: { (error) in
-            //ignore error message here
-        })
+        if let user = User.currentUser {
+            if location.coordinate.latitude == user.location?.coordinate.latitude &&
+                location.coordinate.longitude == user.location?.coordinate.longitude {
+                return
+            }
+            
+            // update user location
+            User.currentUser?.update(location: location, completion: { (error) in
+                //ignore error message here
+            })
+        }        
     }
 }
