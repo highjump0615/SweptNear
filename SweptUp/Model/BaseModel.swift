@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Firebase
 
 class BaseModel {
     
@@ -34,7 +35,7 @@ class BaseModel {
         return dict
     }
     
-    func saveToDatabase(withID: String? = nil, parentID: String? = nil) {
+    private func getDatabaseRef(withID: String? = nil, parentID: String? = nil) -> DatabaseReference {
         var strDb = tableName()
         if let parent = parentID {
             strDb += "/" + parent
@@ -49,7 +50,29 @@ class BaseModel {
             self.id = database.childByAutoId().key
         }
         
-        database.child(self.id).setValue(self.toDictionary())
+        return database.child(self.id)
+    }
+    
+    /// save entire object to database
+    ///
+    /// - Parameters:
+    ///   - withID: <#withID description#>
+    ///   - parentID: <#parentID description#>
+    func saveToDatabase(withID: String? = nil, parentID: String? = nil) {
+        let db = getDatabaseRef(withID: withID, parentID: parentID)
+        db.setValue(self.toDictionary())
+    }
+    
+    /// save child value to databse
+    ///
+    /// - Parameters:
+    ///   - withField: <#withField description#>
+    ///   - value: <#value description#>
+    ///   - withID: <#withID description#>
+    ///   - parentID: <#parentID description#>
+    func saveToDatabase(withField: String?, value: Any, withID: String? = nil, parentID: String? = nil) {
+        let db = getDatabaseRef(withID: withID, parentID: parentID)
+        db.child(withField!).setValue(value)
     }
     
     func isEqual(to: BaseModel) -> Bool {

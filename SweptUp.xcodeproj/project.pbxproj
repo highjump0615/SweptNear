@@ -121,6 +121,7 @@
 		C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCell.xib; sourceTree = "<group>"; };
 		C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCollectionCell.xib; sourceTree = "<group>"; };
 		C323524520DD9006007D12A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C32BB40C20F605BE008BCCD7 /* SweptUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SweptUp.entitlements; sourceTree = "<group>"; };
 		C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
@@ -367,6 +368,7 @@
 		C368E5B820CF09E2000DA7DC /* SweptUp */ = {
 			isa = PBXGroup;
 			children = (
+				C32BB40C20F605BE008BCCD7 /* SweptUp.entitlements */,
 				C323524520DD9006007D12A7 /* GoogleService-Info.plist */,
 				C3959F0720CFDE1E00B42B7A /* Helpers */,
 				C3959F0120CF8D3C00B42B7A /* Resource */,
@@ -583,6 +585,11 @@
 				TargetAttributes = {
 					C368E5B520CF09E2000DA7DC = {
 						CreatedOnToolsVersion = 9.4;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					C368E5C920CF09E3000DA7DC = {
 						CreatedOnToolsVersion = 9.4;
@@ -1015,6 +1022,8 @@
 			baseConfigurationReference = 325AA4F2CFB485482211DA90 /* Pods-SweptUp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SweptUp/SweptUp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77T398MMB5;
 				INFOPLIST_FILE = SweptUp/Info.plist;
@@ -1025,6 +1034,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.SweptUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -1035,6 +1046,8 @@
 			baseConfigurationReference = 76901E17569DFDEE9D26D16C /* Pods-SweptUp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = SweptUp/SweptUp.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 77T398MMB5;
 				INFOPLIST_FILE = SweptUp/Info.plist;
@@ -1045,6 +1058,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.brainyapps.SweptUp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

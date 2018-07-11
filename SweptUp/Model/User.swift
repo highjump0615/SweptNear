@@ -30,6 +30,7 @@ class User : BaseModel {
     static let FIELD_TYPE = "type"
     static let FIELD_BANNED = "banned"
     static let FIELD_AVAILABLE = "available"
+    static let FIELD_TOKEN = "token"
     
     static let TABLE_NAME_PHOTOS = "photos"
     static let TABLE_NAME_GEOLOCATION = "geolocations"
@@ -45,11 +46,11 @@ class User : BaseModel {
     var photoUrl: String?
     var banned: Bool = false
     
+    var token: String?
+    
     // wink available
     var available: Bool = true
     var photos: [String] = []
-    
-    var deviceToken: String?
     
     //
     // excludes

@@ -58,7 +58,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
     }
     
-    var mPhotoUrls = User.currentUser!.photos
+    var mPhotoUrls: [String] = []
     var mPhotosOther: [UIImage] = []
     var muploadPhotoIndex = 0
     var mPhotoUpdated = false
@@ -75,6 +75,11 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
         mTextGender.attributedPlaceholder = NSAttributedString(string: "Gender",
                                                                  attributes: [NSAttributedStringKey.foregroundColor: Constants.gColorGray])
+        
+        // init data
+        if let user = User.currentUser {
+            mPhotoUrls = user.photos
+        }
 
         // collection view
         mCollectionView.register(UINib(nibName: "ProfilePhotoCollectionCell", bundle: nil), forCellWithReuseIdentifier: CELLID_USER_PHOTO)
@@ -90,8 +95,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         tap.numberOfTapsRequired = 1
         mViewPhoto.isUserInteractionEnabled = true
         mViewPhoto.addGestureRecognizer(tap)
-        
-        // init data
+                
         if type == SignupProfileViewController.FROM_PROFILE {
             // edit profile
             
@@ -123,7 +127,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         }
         
         // keyboard avoiding
-        KeyboardAvoiding.avoidingView = self.view
+        KeyboardAvoiding.avoidingView = mStackViewInput
     }
 
     override func didReceiveMemoryWarning() {
@@ -153,7 +157,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     
     func updatePhotosList() {
         let nCount = collectionView(mCollectionView, numberOfItemsInSection: 0)
-        
+
         mCollectionView.contentInset = UIEdgeInsets(top: 0,
                                                     left: nCount > 0 ? mStackViewInput.frame.origin.x : 0,
                                                     bottom: 0,
