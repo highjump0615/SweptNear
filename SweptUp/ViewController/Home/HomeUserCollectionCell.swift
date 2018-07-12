@@ -15,6 +15,8 @@ class HomeUserCollectionCell: UICollectionViewCell {
     @IBOutlet weak var mImgViewUser: UIImageView!
     
     func fillContent(data: BaseModel) {
+        mViewBg.isHidden = true
+        
         if data is Chat {
             let c = data as! Chat
             if let photoUrl = c.sender?.photoUrl {
@@ -23,7 +25,7 @@ class HomeUserCollectionCell: UICollectionViewCell {
                                          options: .progressiveDownload,
                                          completed: nil)
             }
-//            mViewBg.isHidden = msg.read
+            mViewBg.isHidden = c.isRead()
         }
         else {
             let wink = data as! Wink

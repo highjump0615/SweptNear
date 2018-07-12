@@ -12,6 +12,8 @@ import Firebase
 class NotificationViewController: UITableViewController {
     
     var notifications: [Notification] = []
+    
+    var mDbRef: DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,10 +21,12 @@ class NotificationViewController: UITableViewController {
         // hide empty cells
         tableView.tableFooterView = UIView()
         
-        //
-        // init data
-        //
-        getNotifications()
+        tableView.emptyDataSetView { (view) in
+            view.titleLabelString(Utils.getAttributedString(text: "No notifications yet"))
+                .verticalOffset(-100)
+                .shouldDisplay(true)
+                .shouldFadeIn(true)
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,17 +37,29 @@ class NotificationViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Notifications"
+        
+        //
+        // init data
+        //
+        getNotifications()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        mDbRef?.removeAllObservers()
     }
     
     func getNotifications() {
         let userCurrent = User.currentUser!
+        self.notifications.removeAll()
         
-        let notificationRef = FirebaseManager.ref().child(Notification.TABLE_NAME).child(userCurrent.id)
+        mDbRef = FirebaseManager.ref().child(Notification.TABLE_NAME).child(userCurrent.id)
         
         var nFetchCount = 0
         var nFetchUserCount = 0
         
-        notificationRef.observe(.childAdded) { (snapshot) in
+        mDbRef?.observe(.childAdded) { (snapshot) in
             if !snapshot.exists() {
                 return
             }

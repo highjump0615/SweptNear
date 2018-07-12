@@ -17,6 +17,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     var mUser: User?
     var mChat: Chat?
     
+    var mDbRef: DatabaseReference?
+    
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mViewInput: UIView!
     @IBOutlet weak var mTextField: UITextField!
@@ -48,9 +50,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         // init data
         //
         fetchChat()
-        getMessages()
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -61,6 +62,15 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         
         // title
         self.title = "Chat"
+        
+        getMessages()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // remove observer
+        mDbRef?.removeAllObservers()
     }
     
     func fetchChat() {
@@ -68,6 +78,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         
         if mChat != nil {
             // already fetched, return
+            mChat?.markRead(withID: userCurrent.id, parentId: mUser!.id)
             return
         }
         
@@ -79,14 +90,18 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
             }
             
             self.mChat = Chat(snapshot: snapshot)
+            // mark chat read
+            self.mChat?.markRead(withID: self.mUser!.id, parentId: userCurrent.id)
         }
     }
     
     func getMessages() {
         let userCurrent = User.currentUser!
         
-        let db = FirebaseManager.ref().child(Message.TABLE_NAME).child(userCurrent.id).child(mUser!.id)
-        db.observe(.childAdded, with: { (snapshot) in
+        self.messages.removeAll()
+        
+        mDbRef = FirebaseManager.ref().child(Message.TABLE_NAME).child(userCurrent.id).child(mUser!.id)
+        mDbRef?.observe(.childAdded, with: { (snapshot) in
             let msg = Message(snapshot: snapshot)
             msg.id = snapshot.key
             
@@ -129,8 +144,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         let userCurrent = User.currentUser!
         if mChat == nil {
             mChat = Chat()
-            mChat?.senderId = userCurrent.id
         }
+        mChat?.senderId = userCurrent.id
         mChat?.text = text
         
         mChat?.saveToDatabase(withID: mUser?.id, parentID: userCurrent.id)

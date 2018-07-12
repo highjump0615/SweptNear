@@ -308,6 +308,7 @@
 		C355F92A20D39EC5005F8F82 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				C368E5C220CF09E3000DA7DC /* LaunchScreen.storyboard */,
 				C368E5BD20CF09E2000DA7DC /* Main.storyboard */,
 				C355F92B20D39F1C005F8F82 /* Tab.storyboard */,
 			);
@@ -377,7 +378,6 @@
 				C3959EFE20CF86CE00B42B7A /* ViewController */,
 				C368E5B920CF09E2000DA7DC /* AppDelegate.swift */,
 				C368E5C020CF09E3000DA7DC /* Assets.xcassets */,
-				C368E5C220CF09E3000DA7DC /* LaunchScreen.storyboard */,
 				C368E5C520CF09E3000DA7DC /* Info.plist */,
 			);
 			path = SweptUp;

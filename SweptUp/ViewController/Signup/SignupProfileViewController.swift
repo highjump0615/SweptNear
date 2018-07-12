@@ -44,10 +44,11 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
     @IBOutlet weak var mStackViewInput: UIStackView!
     @IBOutlet weak var mCollectionView: UICollectionView!
     @IBOutlet weak var mConstraintCollectionHeight: NSLayoutConstraint!
-    
-    var date: Date = Date() {
+
+    private let mstrDateFormat = "yyyy/MM/dd"
+    var mDate: Date = Date() {
         didSet {
-            mTextBirthday.text = date.toString(format: "yyyy/MM/dd")
+            mTextBirthday.text = mDate.toString(format: mstrDateFormat)
         }
     }
     
@@ -122,12 +123,18 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             
             mTextFirstName.text = user.firstName
             mTextLastName.text = user.lastName
-            mTextBirthday.text = user.birthday
+            
+            // date from string
+            if let strBirthday = user.birthday {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = self.mstrDateFormat
+                mDate = dateFormatter.date(from: strBirthday)!
+            }
             mTextGender.text = user.gender
         }
         
         // keyboard avoiding
-        KeyboardAvoiding.avoidingView = mStackViewInput
+        KeyboardAvoiding.setAvoidingView(self.view, withTriggerView: mTextLastName)
     }
 
     override func didReceiveMemoryWarning() {
@@ -428,9 +435,12 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         if textField == mTextBirthday {
             self.view.endEditing(true)
             
-            ActionSheetDatePicker.show(withTitle: "Choose birthday(optional):", datePickerMode: .date, selectedDate: date, doneBlock: { (picker, date, view) in
+            ActionSheetDatePicker.show(withTitle: "Choose birthday(optional):",
+                                       datePickerMode: .date,
+                                       selectedDate: mDate,
+                                       doneBlock: { (picker, date, view) in
                 if let date = date as? Date {
-                    self.date = date
+                    self.mDate = date
                 }
             }, cancel: { (picker) in
                 

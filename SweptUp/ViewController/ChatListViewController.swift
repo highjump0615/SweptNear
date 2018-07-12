@@ -13,14 +13,11 @@ import Firebase
 class ChatListViewController: UITableViewController {
     
     var chats: [Chat] = []
+    
+    var mDbRef: DatabaseReference?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //
-        // init data
-        //
-        getChatListInfo()
         
         // hide empty cells
         tableView.tableFooterView = UIView()
@@ -41,17 +38,29 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Messages"
+        
+        //
+        // init data
+        //
+        getChatListInfo()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        mDbRef?.removeAllObservers()
     }
     
     func getChatListInfo() {
         let userCurrent = User.currentUser!
+        self.chats.removeAll()
         
-        let chatRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
+        mDbRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         
         var nFetchCount = 0
         var nFetchUserCount = 0
 
-        chatRef.observe(.childAdded) { (snapshot) in
+        mDbRef?.observe(.childAdded) { (snapshot) in
             if !snapshot.exists() {
                 return
             }

@@ -270,7 +270,7 @@ class HomeViewController: BaseViewController,
             if cellItem == nil {
                 let nib = Bundle.main.loadNibNamed("HomeMessageTitleCell", owner: self, options: nil)
                 let cellTitle = nib?[0] as? HomeTitleCell
-                cellTitle?.mLblCount.text = String(chats.count)
+                cellTitle?.mLblCount.text = String(chats.filter({$0.isRead() == false}).count)
                 
                 cellItem = cellTitle
             }
@@ -378,6 +378,7 @@ class HomeViewController: BaseViewController,
             // go to chat page
             let chatVC = ChatViewController(nibName: "ChatViewController", bundle: nil)
             chatVC.mUser = chats[indexPath.row].sender
+            chatVC.mChat = chats[indexPath.row]
             self.navigationController?.pushViewController(chatVC, animated: true)
         }
     }

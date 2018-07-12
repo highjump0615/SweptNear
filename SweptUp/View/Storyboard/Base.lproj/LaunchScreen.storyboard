@@ -29,12 +29,11 @@
                                 </constraints>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="afj-jv-PZi" secondAttribute="trailing" constant="114" id="3eH-Tz-miv"/>
                             <constraint firstItem="GUC-HJ-kPi" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="548-HE-APq"/>
                             <constraint firstItem="GUC-HJ-kPi" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="MwG-NR-cPB"/>
-                            <constraint firstItem="GUC-HJ-kPi" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Q5J-0Z-nH7"/>
+                            <constraint firstItem="GUC-HJ-kPi" firstAttribute="bottom" secondItem="Ze5-6b-2t3" secondAttribute="bottom" id="Q5J-0Z-nH7"/>
                             <constraint firstItem="GUC-HJ-kPi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="SA6-6E-iDF"/>
                             <constraint firstItem="afj-jv-PZi" firstAttribute="centerY" secondItem="6Tk-OE-BBY" secondAttribute="centerY" id="eof-LL-ic3"/>
                             <constraint firstItem="afj-jv-PZi" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="113" id="sr0-JB-lnQ"/>
