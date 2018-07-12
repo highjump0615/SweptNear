@@ -219,6 +219,11 @@ class ProfileViewController: BaseViewController,
             
             notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
             
+            // send notification to user
+            Notification.sendPushNotification(receiver: mUser!,
+                                              message: notificationNew.notificationDescription(),
+                                              title: userCurrent.userFullName())
+            
             // show sent view
             mViewSent?.frame = self.view.bounds
             mViewSent?.showView(bShow: true, animated: true)
@@ -244,6 +249,11 @@ class ProfileViewController: BaseViewController,
                 notificationNew.sender = userCurrent
                 
                 notificationNew.saveToDatabase(withID: nil, parentID: mUser?.id)
+                
+                // send notification to user
+                Notification.sendPushNotification(receiver: mUser!,
+                                                  message: notificationNew.notificationDescription(),
+                                                  title: userCurrent.userFullName())
             }
             else if mWink?.status == WinkStatus.winkback {
                 // already established, start chatting

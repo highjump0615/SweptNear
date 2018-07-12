@@ -178,13 +178,23 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         
         // update table
         updateTable()
+        
+        // send notification to user
+        Notification.sendPushNotification(receiver: mUser!,
+                                          message: text,
+                                          title: userCurrent.userFullName())
     }
     
-    func updateTable() {
-        let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
-        mTableView.insertRows(at: [indexPath], with: .automatic)
+    func updateTable(animated: Bool = false) {
+        if animated {
+            let indexPath = IndexPath(row: self.messages.count - 1, section: 0)
+            mTableView.insertRows(at: [indexPath], with: .automatic)
+        }
+        else {
+            mTableView.reloadData()
+        }
         
-        self.tableViewScrollToBottom(animated: true)
+        self.tableViewScrollToBottom(animated: false)
     }
     
     func tableViewScrollToBottom(animated: Bool) {
@@ -194,7 +204,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
             if self.mTableView.contentSize.height > self.mTableView.frame.size.height {
                 let bottomOffset = CGPoint(x: 0,
                                            y: self.mTableView.contentSize.height - self.mTableView.frame.size.height)
-                self.mTableView.setContentOffset(bottomOffset, animated: false)
+                self.mTableView.setContentOffset(bottomOffset, animated: true)
             }
         }
     }

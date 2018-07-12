@@ -25,21 +25,22 @@ class NotificationListCell: UITableViewCell {
     }
 
     func fillContent(data: Notification) {
+        let strDesc = data.notificationDescription()
+        
         switch data.type {
         case Notification.TYPE_WINK:
             mImgViewIcon.image = UIImage (named: "HomeWink")
-            mLblNotice.text = "You have a wink"
             
         case Notification.TYPE_WINK_BACK:
             mImgViewIcon.image = UIImage (named: "SettingProfile")
-            mLblNotice.text = "A user winked you back"
             
         case Notification.TYPE_MESSAGE:
             mImgViewIcon.image = UIImage (named: "HomeMail")
-            mLblNotice.text = "You have 4 unread messages"
             
         default:
             break
         }
+        
+        mLblNotice.text = strDesc
     }
 }

@@ -28,6 +28,11 @@ class ChatListViewController: UITableViewController {
                 .shouldDisplay(true)
                 .shouldFadeIn(true)
         }
+        
+        //
+        // init data
+        //
+        getChatListInfo()
     }
 
     override func didReceiveMemoryWarning() {
@@ -38,22 +43,14 @@ class ChatListViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Messages"
-        
-        //
-        // init data
-        //
-        getChatListInfo()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        mDbRef?.removeAllObservers()
     }
     
     func getChatListInfo() {
         let userCurrent = User.currentUser!
-        self.chats.removeAll()
         
         mDbRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         
@@ -68,14 +65,13 @@ class ChatListViewController: UITableViewController {
             let chat = Chat(snapshot: snapshot)
             nFetchCount += 1
             
-            self.chats.append(chat)
-            
             // set user related
             User.readFromDatabase(withId: chat.id, completion: { (user) in
                 nFetchUserCount += 1
                 
                 chat.userRelated = user
-              
+                self.chats.append(chat)
+                
                 // update table
                 if nFetchCount == nFetchUserCount {
                     self.tableView.reloadData()
@@ -83,6 +79,7 @@ class ChatListViewController: UITableViewController {
             })
         }
     }
+    
     
 
     /*

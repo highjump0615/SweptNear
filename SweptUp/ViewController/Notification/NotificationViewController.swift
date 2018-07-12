@@ -27,6 +27,11 @@ class NotificationViewController: UITableViewController {
                 .shouldDisplay(true)
                 .shouldFadeIn(true)
         }
+        
+        //
+        // init data
+        //
+        getNotifications()
     }
 
     override func didReceiveMemoryWarning() {
@@ -37,17 +42,10 @@ class NotificationViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Notifications"
-        
-        //
-        // init data
-        //
-        getNotifications()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        
-        mDbRef?.removeAllObservers()
     }
     
     func getNotifications() {
@@ -67,13 +65,12 @@ class NotificationViewController: UITableViewController {
             let nn = Notification(snapshot: snapshot)
             nFetchCount += 1
             
-            self.notifications.append(nn)
-            
             // set user related
             User.readFromDatabase(withId: nn.senderId, completion: { (user) in
                 nFetchUserCount += 1
                 
                 nn.sender = user
+                self.notifications.append(nn)
                 
                 // update table
                 if nFetchCount == nFetchUserCount {

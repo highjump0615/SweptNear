@@ -8,6 +8,7 @@
 
 import Foundation
 import Firebase
+import Alamofire
 
 class Notification : BaseModel {
     static let TYPE_WINK = 0
@@ -51,5 +52,63 @@ class Notification : BaseModel {
         dict[Notification.FIELD_TYPE] = self.type
         
         return dict
+    }
+    
+    func notificationDescription() -> String {
+        var strDesc = ""
+        
+        switch type {
+        case Notification.TYPE_WINK:
+            strDesc = "You have a wink"
+            
+        case Notification.TYPE_WINK_BACK:
+            strDesc = "A user winked you back"
+
+        default:
+            break
+        }
+        
+        return strDesc
+    }
+    
+    /// send push notification to specific user
+    ///
+    /// - Parameters:
+    ///   - receiver: <#receiver description#>
+    ///   - message: <#message description#>
+    ///   - title: <#title description#>
+    static func sendPushNotification(receiver: User, message: String = "", title: String = "") {
+        let url = "https://fcm.googleapis.com/fcm/send"
+        
+        if let deviceToken = receiver.token {
+            let headers: HTTPHeaders = ["Authorization": "key=\(Config.fcmAuthKey)",
+                                        "Content-Type": "application/json"]
+            let parameters : Parameters = ["notification":
+                [
+                    "title": title,
+                    "body" : message,
+                    "sound" : "default"
+                ],
+               "to":deviceToken]
+            
+            print(headers)
+            print(parameters)
+            
+            Alamofire.request(url,
+                              method: .post,
+                              parameters: parameters,
+                              encoding: JSONEncoding.default,
+                              headers: headers)
+                .validate()
+                .responseJSON(completionHandler: { (response) in
+                    switch response.result {
+                    case .success(let val):
+                        print(val)
+                    case .failure(let val):
+                        print(val)
+                    }
+            })
+            
+        }
     }
 }
