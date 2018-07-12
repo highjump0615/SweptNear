@@ -64,7 +64,7 @@ class SettingsViewController: UITableViewController {
             composeVC.mailComposeDelegate = self
             
             // Configure the fields of the interface.
-            composeVC.setToRecipients(["support@impact.com"])
+            composeVC.setToRecipients(["jameso1777@yahoo.com"])
             composeVC.setSubject("Report a bug")
             composeVC.setMessageBody("", isHTML: false)
             
