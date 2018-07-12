@@ -36,9 +36,9 @@
                     <rect key="frame" x="0.0" y="557" width="375" height="46"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PcF-vt-sTa">
-                            <rect key="frame" x="4" y="0.0" width="46" height="46"/>
+                            <rect key="frame" x="4" y="0.0" width="0.0" height="46"/>
                             <constraints>
-                                <constraint firstAttribute="width" secondItem="PcF-vt-sTa" secondAttribute="height" id="BoK-dJ-68e"/>
+                                <constraint firstAttribute="width" id="sXs-UF-Dea"/>
                             </constraints>
                             <state key="normal" image="ChatPlus"/>
                         </button>
@@ -53,7 +53,7 @@
                             </connections>
                         </button>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Type message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cQL-RG-IDw">
-                            <rect key="frame" x="54" y="8" width="267" height="30"/>
+                            <rect key="frame" x="16" y="8" width="305" height="30"/>
                             <color key="backgroundColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -72,7 +72,7 @@
                         <constraint firstItem="Nuv-zQ-kR9" firstAttribute="top" secondItem="NHZ-6M-jNd" secondAttribute="top" id="R6x-7j-s9k"/>
                         <constraint firstAttribute="trailing" secondItem="Nuv-zQ-kR9" secondAttribute="trailing" constant="4" id="TZh-Fz-s5K"/>
                         <constraint firstItem="PcF-vt-sTa" firstAttribute="leading" secondItem="NHZ-6M-jNd" secondAttribute="leading" constant="4" id="US4-Hl-Efg"/>
-                        <constraint firstItem="cQL-RG-IDw" firstAttribute="leading" secondItem="PcF-vt-sTa" secondAttribute="trailing" constant="4" id="Y3n-b7-Np1"/>
+                        <constraint firstItem="cQL-RG-IDw" firstAttribute="leading" secondItem="PcF-vt-sTa" secondAttribute="trailing" constant="12" id="Y3n-b7-Np1"/>
                         <constraint firstItem="PcF-vt-sTa" firstAttribute="top" secondItem="NHZ-6M-jNd" secondAttribute="top" id="fxS-DF-suE"/>
                         <constraint firstItem="cQL-RG-IDw" firstAttribute="centerY" secondItem="NHZ-6M-jNd" secondAttribute="centerY" id="v0l-Dg-2qC"/>
                     </constraints>

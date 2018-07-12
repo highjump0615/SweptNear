@@ -28,7 +28,6 @@ class ProfilePopupSent: BaseCustomView {
     override func awakeFromNib() {
         super.awakeFromNib()
         
-        self.alpha = 0
         mViewMain.layer.masksToBounds = true
         mViewMain.layer.cornerRadius = 5
     }
@@ -37,22 +36,6 @@ class ProfilePopupSent: BaseCustomView {
         super.layoutSubviews()
         
         mViewWink.makeRound()
-    }
-    
-    func showView(bShow: Bool, animated: Bool) {
-        if (animated) {
-            UIView.animate(withDuration: 0.3,
-                           animations: {
-                            self.isHidden = false
-                            self.alpha = bShow ? 1 : 0
-            }) { (finished) in
-                self.isHidden = !bShow
-            }
-        }
-        else {
-            self.alpha = bShow ? 1 : 0
-            self.isHidden = !bShow
-        }
     }
     
     @IBAction func onButClose(_ sender: Any) {

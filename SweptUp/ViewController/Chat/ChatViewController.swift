@@ -16,6 +16,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     
     var mUser: User?
     var mChat: Chat?
+    var mViewReport: ProfilePopupReport?
     
     var mDbRef: DatabaseReference?
     
@@ -45,6 +46,10 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         KeyboardAvoiding.avoidingView = mViewInput
         
         showNavbar()
+        
+        // init report user popup view
+        mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
+        self.view.addSubview(mViewReport!)
         
         //
         // init data
@@ -127,6 +132,9 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     }
     
     @objc func onButReport() {
+        // show report view
+        mViewReport?.frame = self.view.bounds
+        mViewReport?.showView(bShow: true, animated: true)
     }
     
     @IBAction func onButSend(_ sender: Any) {

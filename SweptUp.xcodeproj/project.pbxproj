@@ -61,6 +61,9 @@
 		C368E5C420CF09E3000DA7DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C368E5C220CF09E3000DA7DC /* LaunchScreen.storyboard */; };
 		C368E5CF20CF09E3000DA7DC /* SweptUpTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368E5CE20CF09E3000DA7DC /* SweptUpTests.swift */; };
 		C368E5DA20CF09E3000DA7DC /* SweptUpUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C368E5D920CF09E3000DA7DC /* SweptUpUITests.swift */; };
+		C3778D2A20F7267B00CD82D8 /* ProfilePopupReport.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3778D2920F7267B00CD82D8 /* ProfilePopupReport.xib */; };
+		C3778D2C20F72CFA00CD82D8 /* ProfilePopupReport.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3778D2B20F72CFA00CD82D8 /* ProfilePopupReport.swift */; };
+		C3778D2E20F7339F00CD82D8 /* Report.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3778D2D20F7339F00CD82D8 /* Report.swift */; };
 		C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */ = {isa = PBXBuildFile; fileRef = C3959F0320CF8DAE00B42B7A /* background.jpg */; };
 		C3959F0620CFD7FC00B42B7A /* OnboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */; };
 		C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3959F0820CFDE3300B42B7A /* Extensions.swift */; };
@@ -169,6 +172,9 @@
 		C368E5D520CF09E3000DA7DC /* SweptUpUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SweptUpUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C368E5D920CF09E3000DA7DC /* SweptUpUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SweptUpUITests.swift; sourceTree = "<group>"; };
 		C368E5DB20CF09E3000DA7DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C3778D2920F7267B00CD82D8 /* ProfilePopupReport.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopupReport.xib; sourceTree = "<group>"; };
+		C3778D2B20F72CFA00CD82D8 /* ProfilePopupReport.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopupReport.swift; sourceTree = "<group>"; };
+		C3778D2D20F7339F00CD82D8 /* Report.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Report.swift; sourceTree = "<group>"; };
 		C3959F0320CF8DAE00B42B7A /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
 		C3959F0520CFD7FC00B42B7A /* OnboardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardViewController.swift; sourceTree = "<group>"; };
 		C3959F0820CFDE3300B42B7A /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
@@ -255,6 +261,7 @@
 				C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */,
 				C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */,
 				C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */,
+				C3778D2920F7267B00CD82D8 /* ProfilePopupReport.xib */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -267,6 +274,7 @@
 				C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */,
 				C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */,
 				C34C9BE320E18EC300F165F8 /* ProfilePhotoCollectionCell.swift */,
+				C3778D2B20F72CFA00CD82D8 /* ProfilePopupReport.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -433,6 +441,7 @@
 				C3F7AC8D20DF4D070081BE51 /* BaseModel.swift */,
 				C34746C620E4EA9100814D56 /* Wink.swift */,
 				C3B5199220E75D8A00E9E4DA /* Chat.swift */,
+				C3778D2D20F7339F00CD82D8 /* Report.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -647,6 +656,7 @@
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
 				C318CDE320D80E08001CA213 /* ProfilePhotoCollectionCell.xib in Resources */,
 				C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */,
+				C3778D2A20F7267B00CD82D8 /* ProfilePopupReport.xib in Resources */,
 				C355F91F20D35E97005F8F82 /* HomeUserCollectionCell.xib in Resources */,
 				C3B332BB20D182DF00DFEC70 /* Lobster1.3.otf in Resources */,
 				C318CDDC20D80662001CA213 /* ProfileUserCell.xib in Resources */,
@@ -691,6 +701,7 @@
 				"${BUILT_PRODUCTS_DIR}/GeoFire/GeoFire.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/IHKeyboardAvoiding/IHKeyboardAvoiding.framework",
+				"${BUILT_PRODUCTS_DIR}/KMPlaceholderTextView/KMPlaceholderTextView.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
@@ -710,6 +721,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GeoFire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IHKeyboardAvoiding.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KMPlaceholderTextView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
@@ -814,6 +826,7 @@
 				C3382BE720D5F907008D0AE6 /* MainTabbarController.swift in Sources */,
 				C3B5199320E75D8A00E9E4DA /* Chat.swift in Sources */,
 				C367756320D79B4B00352B83 /* NotificationListCell.swift in Sources */,
+				C3778D2E20F7339F00CD82D8 /* Report.swift in Sources */,
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
 				C34C9BE420E18EC300F165F8 /* ProfilePhotoCollectionCell.swift in Sources */,
 				C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */,
@@ -821,6 +834,7 @@
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
 				C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */,
 				C3382BED20D60B11008D0AE6 /* ChatListViewController.swift in Sources */,
+				C3778D2C20F72CFA00CD82D8 /* ProfilePopupReport.swift in Sources */,
 				C367756F20D7EB1C00352B83 /* ChatCell.swift in Sources */,
 				C3F7AC8E20DF4D070081BE51 /* BaseModel.swift in Sources */,
 				C3382BEB20D608D0008D0AE6 /* LocationViewController.swift in Sources */,

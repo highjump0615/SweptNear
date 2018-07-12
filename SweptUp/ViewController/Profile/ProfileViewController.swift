@@ -34,6 +34,7 @@ class ProfileViewController: BaseViewController,
     
     var mUser: User?
     var mViewSent: ProfilePopupSent?
+    var mViewReport: ProfilePopupReport?
     var mWink: Wink?
     
     @IBOutlet weak var mTableView: UITableView!
@@ -72,10 +73,15 @@ class ProfileViewController: BaseViewController,
                                                                 style: .plain,
                                                                 target: self,
                                                                 action: #selector(onButReport))
+            
+            // init report user popup view
+            mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
+            self.view.addSubview(mViewReport!)
         }
         
         showNavbar()
         
+        // init wink sent popup view
         mViewSent = ProfilePopupSent.getView() as? ProfilePopupSent
         self.view.addSubview(mViewSent!)
         
@@ -160,6 +166,9 @@ class ProfileViewController: BaseViewController,
     
     /// report user
     @objc func onButReport() {
+        // show report view
+        mViewReport?.frame = self.view.bounds
+        mViewReport?.showView(bShow: true, animated: true)
     }
     
     /// refresh table

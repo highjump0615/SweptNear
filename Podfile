@@ -26,6 +26,8 @@ target 'SweptUp' do
   pod 'GoogleMaps'
   pod 'GooglePlaces'
   pod 'ActionSheetPicker-3.0'
+  
+  pod 'KMPlaceholderTextView', '~> 1.3.0'
 
   target 'SweptUpTests' do
     inherit! :search_paths
