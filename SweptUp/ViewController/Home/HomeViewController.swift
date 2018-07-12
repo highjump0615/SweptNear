@@ -212,18 +212,31 @@ class HomeViewController: BaseViewController,
         gotoTabbarController(index: 1)
     }
     
+    /// switch for availability has changed
+    ///
+    /// - Parameter sender: <#sender description#>
+    @IBAction func onSwitchChanged(_ sender: Any) {
+        let user = User.currentUser!
+        
+        user.available = mSwitch.isOn
+        user.saveToDatabase(withField: User.FIELD_AVAILABLE, value: user.available)
+    }
+    
     /// update current user info
     func updateUserInfo() {
-        let user = User.currentUser
+        let user = User.currentUser!
         
         // photo
-        if let photoUrl = user?.photoUrl {
+        if let photoUrl = user.photoUrl {
             mButProfile.sd_setImage(with: URL(string: photoUrl),
                                     for: .normal,
                                     placeholderImage: UIImage(named: "UserDefault"),
                                     options: .progressiveDownload,
                                     completed: nil)
         }
+        
+        // availability
+        mSwitch.setOn(user.available, animated: true)
     }
     
     @IBAction func onButProfile(_ sender: Any) {

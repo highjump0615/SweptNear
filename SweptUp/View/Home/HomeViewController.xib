@@ -36,6 +36,9 @@
                         </label>
                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Djj-kB-qJP">
                             <rect key="frame" x="361" y="6.6666666666666679" width="51" height="31.000000000000004"/>
+                            <connections>
+                                <action selector="onSwitchChanged:" destination="-1" eventType="valueChanged" id="pUh-EM-lZs"/>
+                            </connections>
                         </switch>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wLb-PD-P7l">
                             <rect key="frame" x="327" y="0.0" width="44" height="44"/>
@@ -119,6 +122,6 @@
     <resources>
         <image name="HomeScan" width="65" height="65"/>
         <image name="HomeSetting" width="25" height="25"/>
-        <image name="UserDefault" width="73" height="73"/>
+        <image name="UserDefault" width="100" height="100"/>
     </resources>
 </document>

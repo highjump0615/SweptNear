@@ -117,6 +117,11 @@ class LocationViewController: BaseViewController {
                 
                 User.readFromDatabase(withId: key, completion: { (user) in
                     if let user = user {
+                        // only shows available user
+                        if !user.available {
+                            return
+                        }
+                        
                         if let _ = self.users.index(where: {$0.id == key}) {
                         }
                         else {

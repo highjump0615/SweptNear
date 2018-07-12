@@ -85,6 +85,7 @@ class User : BaseModel {
         dict[User.FIELD_GENDER] = self.gender
         dict[User.FIELD_PHOTO] = self.photoUrl
         dict[User.FIELD_BANNED] = self.banned
+        dict[User.FIELD_AVAILABLE] = self.available
         
         return dict
     }
@@ -109,6 +110,11 @@ class User : BaseModel {
             user.gender = info[User.FIELD_GENDER] as? String
             user.photoUrl = info[User.FIELD_PHOTO] as? String
             user.banned = info[User.FIELD_BANNED] as! Bool
+            
+            // availability
+            if let availability = info[User.FIELD_AVAILABLE] {
+                user.available = availability as! Bool
+            }
             
             completion(user)
         })

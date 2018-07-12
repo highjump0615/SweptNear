@@ -78,7 +78,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         
         if mChat != nil {
             // already fetched, return
-            mChat?.markRead(withID: userCurrent.id, parentId: mUser!.id)
+            mChat?.markRead(withID: self.mUser!.id, parentId: userCurrent.id)
             return
         }
         
