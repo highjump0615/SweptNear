@@ -19,6 +19,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     var mViewReport: ProfilePopupReport?
     
     var mDbRef: DatabaseReference?
+    var mKeyboardHeight: CGFloat = 0.0
     
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mViewInput: UIView!
@@ -43,7 +44,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         mTableView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: 0, right: 0)
         
         // keyboard avoiding
-        KeyboardAvoiding.avoidingView = mViewInput
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillAppear(notification:)), name: .UIKeyboardWillShow, object: nil)
         
         showNavbar()
         
@@ -55,6 +56,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         // init data
         //
         fetchChat()
+        
+        getMessages()
     }
     
     override func didReceiveMemoryWarning() {
@@ -67,15 +70,56 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         
         // title
         self.title = "Chat"
-        
-        getMessages()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+    }
+    
+    func getKeyboardHeight(notification: NSNotification?) -> CGFloat {
+        guard let keyboardFrame = notification?.userInfo?[UIKeyboardFrameEndUserInfoKey] as? NSValue else {
+            return 0
+        }
         
-        // remove observer
-        mDbRef?.removeAllObservers()
+        let keyboardHeight: CGFloat
+        if #available(iOS 11.0, *) {
+            keyboardHeight = keyboardFrame.cgRectValue.height - self.view.safeAreaInsets.bottom
+        } else {
+            keyboardHeight = keyboardFrame.cgRectValue.height
+        }
+        
+        return keyboardHeight
+    }
+    
+    @objc
+    func keyboardWillAppear(notification: NSNotification?) {
+        if mKeyboardHeight > 0 {
+            // already showing keyboard, return
+            return
+        }
+
+        var frmView = self.view.frame
+        mKeyboardHeight = getKeyboardHeight(notification: notification)
+        frmView.size = CGSize(width: frmView.width, height: frmView.height - mKeyboardHeight)
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.view.frame = frmView
+        }) { (finished) in
+            self.tableViewScrollToBottom(animated: false)
+        }
+    }
+    
+    func keyboardWillDisappear() {
+        var frmView = self.view.frame
+        frmView.size = CGSize(width: frmView.width, height: frmView.height + mKeyboardHeight)
+        
+        UIView.animate(withDuration: 0.3,
+                       animations: {
+                        self.view.frame = frmView
+        })
+        
+        mKeyboardHeight = 0
     }
     
     func fetchChat() {
@@ -209,6 +253,13 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         }
     }
     
+    /// go to user profile
+    @objc func onButUser(sender: UIButton) {
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.mUser = messages[sender.tag].sender
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -238,6 +289,9 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         let cellItem = tableView.dequeueReusableCell(withIdentifier: strCellId) as! ChatCell
         cellItem.backgroundColor = UIColor.clear
         cellItem.fillContent(msg: msg)
+        
+        cellItem.mButUser.tag = indexPath.row
+        cellItem.mButUser.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
 
         return cellItem
     }
@@ -247,6 +301,12 @@ extension ChatViewController : UITextFieldDelegate {
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         onButSend(mTextField)
+        
+        return true
+    }
+    
+    func textFieldShouldEndEditing(_ textField: UITextField) -> Bool {
+        keyboardWillDisappear()
         
         return true
     }

@@ -44,7 +44,7 @@ class BaseModel {
         let database = FirebaseManager.ref().child(strDb)
         
         if let strId = withID, !strId.isEmpty {
-            self.id = strId
+//            self.id = strId
         }
         else if self.id.isEmpty {
             self.id = database.childByAutoId().key

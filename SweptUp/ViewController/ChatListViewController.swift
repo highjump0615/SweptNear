@@ -78,9 +78,32 @@ class ChatListViewController: UITableViewController {
                 }
             })
         }
+        
+        mDbRef?.observe(.childChanged, with: { (snapshot) in
+            // update the chat
+            let aaa = snapshot.key
+            if let chat = self.chats.first(where: {$0.id == snapshot.key}) {
+                let chatNew = Chat(snapshot: snapshot)
+                // not updated content, return
+                if chat.updatedAt == chatNew.updatedAt {
+                    return
+                }
+                
+                chat.updatedAt = chatNew.updatedAt
+                chat.readAt = chatNew.readAt
+                chat.text = chatNew.text
+                
+                self.tableView.reloadData()
+            }
+        })
     }
     
-    
+    /// go to user profile
+    @objc func onButUser(sender: UIButton) {
+        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+        profileVC.mUser = chats[sender.tag].userRelated
+        self.navigationController?.pushViewController(profileVC, animated: true)
+    }
 
     /*
     // MARK: - Navigation
@@ -102,6 +125,8 @@ class ChatListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cellMsg = tableView.dequeueReusableCell(withIdentifier: "ChatListCell") as! ChatListCell
         cellMsg.fillContent(chat: chats[indexPath.row])
+        cellMsg.mButImg.tag = indexPath.row
+        cellMsg.mButImg.addTarget(self, action: #selector(onButUser), for: .touchUpInside)
         
         return cellMsg
     }
