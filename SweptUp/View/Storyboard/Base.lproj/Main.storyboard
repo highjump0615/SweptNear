@@ -73,7 +73,7 @@ nearby location?</string>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YZz-MY-BvE">
                                                         <rect key="frame" x="88.666666666666671" y="37.999999999999993" width="236.66666666666663" height="81.333333333333314"/>
                                                         <string key="text">Locate singles and connect 
-with them in an instance!
+with them in an instant!
 Welcome to Swept Up! Sign up
 now and start chatting!</string>
                                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>

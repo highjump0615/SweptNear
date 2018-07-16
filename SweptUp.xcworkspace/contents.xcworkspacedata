@@ -2,7 +2,7 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:SweptUp.xcodeproj">
+      location = "absolute:/Volumes/WORK/Project/BrainyApps/SweptUp/Source/SweptUp/SweptUp.xcodeproj">
    </FileRef>
    <FileRef
       location = "group:Pods/Pods.xcodeproj">
