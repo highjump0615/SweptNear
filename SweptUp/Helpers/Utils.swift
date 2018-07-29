@@ -79,4 +79,21 @@ class Utils {
         
         return dateFormatter.string(from: date)
     }
+    
+    static func getMainViewController() -> UIViewController {
+        let userCurrent = User.currentUser!
+        
+        var vc: UIViewController
+        
+        // go to home page with new navigation
+        if userCurrent.type == User.USER_TYPE_ADMIN {
+            let storyboard = UIStoryboard(name: "Admin", bundle: nil)
+            vc = storyboard.instantiateViewController(withIdentifier: "homeController")
+        }
+        else {
+            vc = HomeViewController(nibName: "HomeViewController", bundle: nil)
+        }
+        
+        return vc
+    }
 }

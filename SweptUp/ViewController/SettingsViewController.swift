@@ -90,6 +90,7 @@ class SettingsViewController: UITableViewController {
             
         case 6:
             FirebaseManager.signOut()
+            User.currentUser = nil
             
             // go to sign in page
             let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)

@@ -10,12 +10,10 @@ import Foundation
 import CoreLocation
 import GeoFire
 
-enum UserType : String {
-    case user = "user"
-    case admin = "admin"
-}
-
 class User : BaseModel {
+    
+    static let USER_TYPE_NORMAL = 0
+    static let USER_TYPE_ADMIN = 1
     
     //
     // table info
@@ -45,6 +43,7 @@ class User : BaseModel {
     var gender: String?
     var photoUrl: String?
     var banned: Bool = false
+    var type = User.USER_TYPE_NORMAL
     
     var token: String?
     
@@ -87,6 +86,7 @@ class User : BaseModel {
         dict[User.FIELD_BANNED] = self.banned
         dict[User.FIELD_AVAILABLE] = self.available
         dict[User.FIELD_TOKEN] = self.token
+        dict[User.FIELD_TYPE] = self.type
         
         return dict
     }
@@ -110,12 +110,21 @@ class User : BaseModel {
             user.birthday = info[User.FIELD_BIRTHDAY] as? String
             user.gender = info[User.FIELD_GENDER] as? String
             user.photoUrl = info[User.FIELD_PHOTO] as? String
-            user.banned = info[User.FIELD_BANNED] as! Bool
             user.token = info[User.FIELD_TOKEN] as? String
+            
+            // banned
+            if let b = info[User.FIELD_BANNED] {
+                user.banned = b as! Bool
+            }
             
             // availability
             if let availability = info[User.FIELD_AVAILABLE] {
                 user.available = availability as! Bool
+            }
+            
+            // type
+            if let t = info[User.FIELD_TYPE] {
+                user.type = t as! Int
             }
             
             completion(user)

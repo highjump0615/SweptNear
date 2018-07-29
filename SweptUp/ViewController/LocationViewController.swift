@@ -122,6 +122,16 @@ class LocationViewController: BaseViewController {
                             return
                         }
                         
+                        // ignore banned user
+                        if !user.banned {
+                            return
+                        }
+                        
+                        // ignore admin user
+                        if user.type == User.USER_TYPE_ADMIN {
+                            return
+                        }
+                        
                         if let _ = self.users.index(where: {$0.id == key}) {
                         }
                         else {

@@ -34,8 +34,7 @@ class BaseViewController: UIViewController {
     
     /// go to main page according to user type
     func goToMain() {
-        // go to home page with new navigation
-        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)        
+        let homeVC = Utils.getMainViewController()
         self.navigationController?.setViewControllers([homeVC], animated: true)
     }
     

@@ -68,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     
                     if user != nil {
                         // go to home page
-                        let homeVC = HomeViewController(nibName: "HomeViewController", bundle: nil)
+                        let homeVC = Utils.getMainViewController()
                         nav.setViewControllers([homeVC], animated: true)
                         UIApplication.shared.delegate?.window??.rootViewController = nav
                     }
