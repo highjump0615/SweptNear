@@ -125,7 +125,7 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
             mTextLastName.text = user.lastName
             
             // date from string
-            if let strBirthday = user.birthday {
+            if let strBirthday = user.birthday, !strBirthday.isEmpty {
                 let dateFormatter = DateFormatter()
                 dateFormatter.dateFormat = self.mstrDateFormat
                 mDate = dateFormatter.date(from: strBirthday)!

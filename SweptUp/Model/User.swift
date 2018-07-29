@@ -105,8 +105,17 @@ class User : BaseModel {
             let user = User(withId: snapshot.key)
             
             user.email = info[User.FIELD_EMAIL] as! String
-            user.firstName = info[User.FIELD_FIRSTNAME] as! String
-            user.lastName = info[User.FIELD_LASTNAME] as! String
+            
+            // first name
+            if let firstName = info[User.FIELD_FIRSTNAME] {
+                user.firstName = firstName as! String
+            }
+            
+            // last name
+            if let lastName = info[User.FIELD_LASTNAME] {
+                user.lastName = lastName as! String
+            }
+            
             user.birthday = info[User.FIELD_BIRTHDAY] as? String
             user.gender = info[User.FIELD_GENDER] as? String
             user.photoUrl = info[User.FIELD_PHOTO] as? String

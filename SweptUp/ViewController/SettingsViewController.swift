@@ -30,6 +30,15 @@ class SettingsViewController: UITableViewController {
         }
         self.tabBarController?.navigationItem.title = "Settings"
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        // title
+        if User.currentUser?.type == User.USER_TYPE_ADMIN {
+            self.title = " "
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -49,9 +58,16 @@ class SettingsViewController: UITableViewController {
         
         switch indexPath.row {
         case 0:
-            // go to profile page
-            let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-            self.navigationController?.pushViewController(profileVC, animated: true)
+            if userCurrent?.type == User.USER_TYPE_ADMIN {
+                // go to admin edit profile page
+                let profileVC = AdminEditProfileViewController(nibName: "AdminEditProfileViewController", bundle: nil)
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            }
+            else {
+                // go to profile page
+                let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
+                self.navigationController?.pushViewController(profileVC, animated: true)
+            }
             
         case 1:
             if userCurrent?.type == User.USER_TYPE_ADMIN {

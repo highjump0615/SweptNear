@@ -84,6 +84,8 @@
 		C3B5199720E980C000E9E4DA /* ChatListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3B5199620E980C000E9E4DA /* ChatListCell.swift */; };
 		C3C9180E210D0CA100431ADD /* Admin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C3C9180D210D0CA100431ADD /* Admin.storyboard */; };
 		C3C91813210D12FF00431ADD /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */; };
+		C3C91816210DDAF400431ADD /* AdminEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */; };
+		C3C91818210DDE5E00431ADD /* AdminEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */; };
 		C3E421D120DB837C00FC7D17 /* ProfilePopupSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */; };
 		C3E421D320DB8AB800FC7D17 /* ProfilePopupSent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */; };
 		C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */; };
@@ -197,6 +199,8 @@
 		C3B5199620E980C000E9E4DA /* ChatListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatListCell.swift; sourceTree = "<group>"; };
 		C3C9180D210D0CA100431ADD /* Admin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Admin.storyboard; sourceTree = "<group>"; };
 		C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
+		C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminEditProfileViewController.xib; sourceTree = "<group>"; };
+		C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditProfileViewController.swift; sourceTree = "<group>"; };
 		C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopupSent.xib; sourceTree = "<group>"; };
 		C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopupSent.swift; sourceTree = "<group>"; };
 		C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomView.swift; sourceTree = "<group>"; };
@@ -455,6 +459,7 @@
 		C3959F0020CF86E200B42B7A /* View */ = {
 			isa = PBXGroup;
 			children = (
+				C3C91814210DDAE200431ADD /* Admin */,
 				C318CDDA20D80649001CA213 /* Profile */,
 				C367756820D7C49F00352B83 /* Chat */,
 				C355F92A20D39EC5005F8F82 /* Storyboard */,
@@ -531,6 +536,15 @@
 			isa = PBXGroup;
 			children = (
 				C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */,
+				C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */,
+			);
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		C3C91814210DDAE200431ADD /* Admin */ = {
+			isa = PBXGroup;
+			children = (
+				C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -666,6 +680,7 @@
 				C367756A20D7C72A00352B83 /* ChatFromCell.xib in Resources */,
 				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
 				C3C9180E210D0CA100431ADD /* Admin.storyboard in Resources */,
+				C3C91816210DDAF400431ADD /* AdminEditProfileViewController.xib in Resources */,
 				C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
@@ -880,6 +895,7 @@
 				C3959F0F20D05FD600B42B7A /* SigninViewController.swift in Sources */,
 				C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */,
 				C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */,
+				C3C91818210DDE5E00431ADD /* AdminEditProfileViewController.swift in Sources */,
 				C367756720D7B5B500352B83 /* ChatViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
