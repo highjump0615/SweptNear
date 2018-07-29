@@ -36,6 +36,12 @@ class AdminHomeViewController: UITableViewController {
         // title
         self.title = "Main Menu"
     }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.title = " "
+    }
 
     // MARK: - Table view data source
 
@@ -99,6 +105,12 @@ class AdminHomeViewController: UITableViewController {
         tableView.deselectRow(at: indexPath, animated: true)
         
         switch indexPath.row {
+            
+        case 2: // settings
+            // go to settings page
+            let storyboard = UIStoryboard(name: "Admin", bundle: nil)
+            let settingVC = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController
+            self.navigationController?.pushViewController(settingVC, animated: true)
             
         default:
             break

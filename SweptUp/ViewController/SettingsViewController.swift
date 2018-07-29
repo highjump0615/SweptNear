@@ -25,6 +25,9 @@ class SettingsViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         // title
+        if User.currentUser?.type == User.USER_TYPE_ADMIN {
+            self.title = "Settings"
+        }
         self.tabBarController?.navigationItem.title = "Settings"
     }
 
@@ -42,6 +45,8 @@ class SettingsViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
+        let userCurrent = User.currentUser
+        
         switch indexPath.row {
         case 0:
             // go to profile page
@@ -49,9 +54,15 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.pushViewController(profileVC, animated: true)
             
         case 1:
-            // rate the app
-            Utils.rateApp(appId: Config.appId, completion: { (_) in
-            })
+            if userCurrent?.type == User.USER_TYPE_ADMIN {
+                // log out
+                doSignOut()
+            }
+            else {
+                // rate the app
+                Utils.rateApp(appId: Config.appId, completion: { (_) in
+                })
+            }
             
         case 2:
             // Send feedback
@@ -89,16 +100,20 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.pushViewController(termVC, animated: true)
             
         case 6:
-            FirebaseManager.signOut()
-            User.currentUser = nil
-            
-            // go to sign in page
-            let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
-            self.navigationController?.setViewControllers([signinVC], animated: true)
+            doSignOut()
             
         default:
             break
         }
+    }
+    
+    private func doSignOut() {
+        FirebaseManager.signOut()
+        User.currentUser = nil
+        
+        // go to sign in page
+        let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+        self.navigationController?.setViewControllers([signinVC], animated: true)
     }
 }
 
