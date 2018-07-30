@@ -86,6 +86,10 @@
 		C3C91813210D12FF00431ADD /* AdminHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */; };
 		C3C91816210DDAF400431ADD /* AdminEditProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */; };
 		C3C91818210DDE5E00431ADD /* AdminEditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */; };
+		C3C9181A210E4E5C00431ADD /* AdminUsersViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C91819210E4E5C00431ADD /* AdminUsersViewController.xib */; };
+		C3C9181C210E501000431ADD /* AdminUsersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9181B210E501000431ADD /* AdminUsersViewController.swift */; };
+		C3C9181E210E622200431ADD /* AdminUserCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3C9181D210E622200431ADD /* AdminUserCell.xib */; };
+		C3C91820210E629300431ADD /* AdminUserCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3C9181F210E629300431ADD /* AdminUserCell.swift */; };
 		C3E421D120DB837C00FC7D17 /* ProfilePopupSent.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */; };
 		C3E421D320DB8AB800FC7D17 /* ProfilePopupSent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */; };
 		C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */; };
@@ -201,6 +205,10 @@
 		C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminHomeViewController.swift; sourceTree = "<group>"; };
 		C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminEditProfileViewController.xib; sourceTree = "<group>"; };
 		C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminEditProfileViewController.swift; sourceTree = "<group>"; };
+		C3C91819210E4E5C00431ADD /* AdminUsersViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminUsersViewController.xib; sourceTree = "<group>"; };
+		C3C9181B210E501000431ADD /* AdminUsersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUsersViewController.swift; sourceTree = "<group>"; };
+		C3C9181D210E622200431ADD /* AdminUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminUserCell.xib; sourceTree = "<group>"; };
+		C3C9181F210E629300431ADD /* AdminUserCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminUserCell.swift; sourceTree = "<group>"; };
 		C3E421D020DB837C00FC7D17 /* ProfilePopupSent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePopupSent.xib; sourceTree = "<group>"; };
 		C3E421D220DB8AB800FC7D17 /* ProfilePopupSent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePopupSent.swift; sourceTree = "<group>"; };
 		C3EEF7EC20DBA2E9003A529E /* BaseCustomView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseCustomView.swift; sourceTree = "<group>"; };
@@ -537,6 +545,8 @@
 			children = (
 				C3C91812210D12FF00431ADD /* AdminHomeViewController.swift */,
 				C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */,
+				C3C9181B210E501000431ADD /* AdminUsersViewController.swift */,
+				C3C9181F210E629300431ADD /* AdminUserCell.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -545,6 +555,8 @@
 			isa = PBXGroup;
 			children = (
 				C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */,
+				C3C91819210E4E5C00431ADD /* AdminUsersViewController.xib */,
+				C3C9181D210E622200431ADD /* AdminUserCell.xib */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -670,6 +682,7 @@
 				C3028ABC20DEEA070073E192 /* SigninViewController.xib in Resources */,
 				C3959F0420CF8DAE00B42B7A /* background.jpg in Resources */,
 				C355F91620D3553C005F8F82 /* HomeUserCell.xib in Resources */,
+				C3C9181A210E4E5C00431ADD /* AdminUsersViewController.xib in Resources */,
 				C368E5C120CF09E3000DA7DC /* Assets.xcassets in Resources */,
 				C3FF90A020D3266D00AEFC2F /* HomeWinkTitleCell.xib in Resources */,
 				C355F91D20D35CCF005F8F82 /* HomeMessageTitleCell.xib in Resources */,
@@ -681,6 +694,7 @@
 				C3382BF720D63807008D0AE6 /* AboutViewController.xib in Resources */,
 				C3C9180E210D0CA100431ADD /* Admin.storyboard in Resources */,
 				C3C91816210DDAF400431ADD /* AdminEditProfileViewController.xib in Resources */,
+				C3C9181E210E622200431ADD /* AdminUserCell.xib in Resources */,
 				C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
@@ -862,6 +876,7 @@
 				C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */,
 				C3C91813210D12FF00431ADD /* AdminHomeViewController.swift in Sources */,
 				C34C9BE420E18EC300F165F8 /* ProfilePhotoCollectionCell.swift in Sources */,
+				C3C9181C210E501000431ADD /* AdminUsersViewController.swift in Sources */,
 				C318CDD920D80468001CA213 /* ProfileViewController.swift in Sources */,
 				C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */,
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
@@ -876,6 +891,7 @@
 				C3382BF120D60BBA008D0AE6 /* SettingsViewController.swift in Sources */,
 				C3342B9320D26B0900CAFD8D /* TermsViewController.swift in Sources */,
 				C3959F0920CFDE3300B42B7A /* Extensions.swift in Sources */,
+				C3C91820210E629300431ADD /* AdminUserCell.swift in Sources */,
 				C3342B9720D274C900CAFD8D /* HomeViewController.swift in Sources */,
 				C355F92920D3765A005F8F82 /* Message.swift in Sources */,
 				C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */,

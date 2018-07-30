@@ -60,23 +60,27 @@ class ProfileViewController: BaseViewController,
         mRefreshControl.tintColor = UIColor.white
         mTableView.addSubview(mRefreshControl)
         
+        let userCurrent = User.currentUser!
+        
         // right bar button
-        if (mUser?.isEqual(to: User.currentUser!))! {
-            // edit profile
-            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
-                                                                target: self,
-                                                                action: #selector(onButEdit))
-        }
-        else {
-            // report
-            navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ChatReport"),
-                                                                style: .plain,
-                                                                target: self,
-                                                                action: #selector(onButReport))
-            
-            // init report user popup view
-            mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
-            self.view.addSubview(mViewReport!)
+        if (userCurrent.type == User.USER_TYPE_NORMAL) {
+            if (mUser?.isEqual(to: User.currentUser!))! {
+                // edit profile
+                navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit,
+                                                                    target: self,
+                                                                    action: #selector(onButEdit))
+            }
+            else {
+                // report
+                navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ChatReport"),
+                                                                    style: .plain,
+                                                                    target: self,
+                                                                    action: #selector(onButReport))
+                
+                // init report user popup view
+                mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
+                self.view.addSubview(mViewReport!)
+            }
         }
         
         showNavbar()

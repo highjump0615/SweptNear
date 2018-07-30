@@ -106,7 +106,12 @@ class AdminHomeViewController: UITableViewController {
         
         switch indexPath.row {
             
-        case 2: // settings
+        case 0:
+            // go to users page
+            let userVC = AdminUsersViewController(nibName: "AdminUsersViewController", bundle: nil)
+            self.navigationController?.pushViewController(userVC, animated: true)
+            
+        case 2:
             // go to settings page
             let storyboard = UIStoryboard(name: "Admin", bundle: nil)
             let settingVC = storyboard.instantiateViewController(withIdentifier: "settingsController") as! SettingsViewController

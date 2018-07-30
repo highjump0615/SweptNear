@@ -65,6 +65,11 @@ class ProfileUserCell: UITableViewCell {
             return
         }
         
+        // if admin, return directly
+        if (userCurrent.type == User.USER_TYPE_ADMIN) {
+            return
+        }
+        
         if let w = wink {
             if w.status == WinkStatus.waiting {
                 if w.senderId == userCurrent.id {

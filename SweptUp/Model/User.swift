@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import GeoFire
+import Firebase
 
 class User : BaseModel {
     
@@ -70,6 +71,46 @@ class User : BaseModel {
         self.id = withId
     }
     
+    init(snapshot: DataSnapshot) {
+        super.init()
+        
+        let info = snapshot.value! as! [String: Any?]
+        
+        self.id = snapshot.key
+        
+        self.email = info[User.FIELD_EMAIL] as! String
+        
+        // first name
+        if let firstName = info[User.FIELD_FIRSTNAME] {
+            self.firstName = firstName as! String
+        }
+        
+        // last name
+        if let lastName = info[User.FIELD_LASTNAME] {
+            self.lastName = lastName as! String
+        }
+        
+        self.birthday = info[User.FIELD_BIRTHDAY] as? String
+        self.gender = info[User.FIELD_GENDER] as? String
+        self.photoUrl = info[User.FIELD_PHOTO] as? String
+        self.token = info[User.FIELD_TOKEN] as? String
+        
+        // banned
+        if let b = info[User.FIELD_BANNED] {
+            self.banned = b as! Bool
+        }
+        
+        // availability
+        if let availability = info[User.FIELD_AVAILABLE] {
+            self.available = availability as! Bool
+        }
+        
+        // type
+        if let t = info[User.FIELD_TYPE] {
+            self.type = t as! Int
+        }
+    }
+    
     override func tableName() -> String {
         return User.TABLE_NAME
     }
@@ -101,40 +142,7 @@ class User : BaseModel {
                 return
             }
             
-            let info = snapshot.value! as! [String: Any?]
-            let user = User(withId: snapshot.key)
-            
-            user.email = info[User.FIELD_EMAIL] as! String
-            
-            // first name
-            if let firstName = info[User.FIELD_FIRSTNAME] {
-                user.firstName = firstName as! String
-            }
-            
-            // last name
-            if let lastName = info[User.FIELD_LASTNAME] {
-                user.lastName = lastName as! String
-            }
-            
-            user.birthday = info[User.FIELD_BIRTHDAY] as? String
-            user.gender = info[User.FIELD_GENDER] as? String
-            user.photoUrl = info[User.FIELD_PHOTO] as? String
-            user.token = info[User.FIELD_TOKEN] as? String
-            
-            // banned
-            if let b = info[User.FIELD_BANNED] {
-                user.banned = b as! Bool
-            }
-            
-            // availability
-            if let availability = info[User.FIELD_AVAILABLE] {
-                user.available = availability as! Bool
-            }
-            
-            // type
-            if let t = info[User.FIELD_TYPE] {
-                user.type = t as! Int
-            }
+            let user = User(snapshot: snapshot)
             
             completion(user)
         })
