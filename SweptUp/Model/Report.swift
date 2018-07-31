@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class Report: BaseModel {
 
@@ -22,8 +23,25 @@ class Report: BaseModel {
     var senderId: String = ""
     var sender: User?
     
+    var user: User?
+    
     override func tableName() -> String {
         return Report.TABLE_NAME
+    }
+    
+    override init() {
+        super.init()
+    }
+    
+    init(snapshot: DataSnapshot) {
+        super.init()
+        
+        let info = snapshot.value! as! [String: Any?]
+        
+        self.id = snapshot.key
+        
+        self.description = info[Report.FIELD_DESC] as! String
+        self.senderId = info[Report.FIELD_SENDER_ID] as! String
     }
     
     override func toDictionary() -> [String: Any] {

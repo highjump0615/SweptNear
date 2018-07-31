@@ -111,6 +111,11 @@ class AdminHomeViewController: UITableViewController {
             let userVC = AdminUsersViewController(nibName: "AdminUsersViewController", bundle: nil)
             self.navigationController?.pushViewController(userVC, animated: true)
             
+        case 1:
+            // go to users page
+            let reportVC = AdminReportViewController(nibName: "AdminReportViewController", bundle: nil)
+            self.navigationController?.pushViewController(reportVC, animated: true)
+            
         case 2:
             // go to settings page
             let storyboard = UIStoryboard(name: "Admin", bundle: nil)

@@ -20,6 +20,10 @@
 		C318CDE120D80C91001CA213 /* ProfilePhotoCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */; };
 		C318CDE320D80E08001CA213 /* ProfilePhotoCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */; };
 		C323524620DD9006007D12A7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C323524520DD9006007D12A7 /* GoogleService-Info.plist */; };
+		C32782D8210F9B35002E5EE2 /* AdminReportDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32782D7210F9B35002E5EE2 /* AdminReportDetailViewController.xib */; };
+		C32782DA210FA3E3002E5EE2 /* AdminReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32782D9210FA3E3002E5EE2 /* AdminReportDetailViewController.swift */; };
+		C32782DC210FA54E002E5EE2 /* AdminReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32782DB210FA54E002E5EE2 /* AdminReportViewController.xib */; };
+		C32782DE210FA62A002E5EE2 /* AdminReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32782DD210FA62A002E5EE2 /* AdminReportViewController.swift */; };
 		C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */; };
 		C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */; };
 		C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */; };
@@ -132,6 +136,10 @@
 		C318CDE020D80C91001CA213 /* ProfilePhotoCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCell.xib; sourceTree = "<group>"; };
 		C318CDE220D80E08001CA213 /* ProfilePhotoCollectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfilePhotoCollectionCell.xib; sourceTree = "<group>"; };
 		C323524520DD9006007D12A7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C32782D7210F9B35002E5EE2 /* AdminReportDetailViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminReportDetailViewController.xib; sourceTree = "<group>"; };
+		C32782D9210FA3E3002E5EE2 /* AdminReportDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminReportDetailViewController.swift; sourceTree = "<group>"; };
+		C32782DB210FA54E002E5EE2 /* AdminReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminReportViewController.xib; sourceTree = "<group>"; };
+		C32782DD210FA62A002E5EE2 /* AdminReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminReportViewController.swift; sourceTree = "<group>"; };
 		C32BB40C20F605BE008BCCD7 /* SweptUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SweptUp.entitlements; sourceTree = "<group>"; };
 		C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
@@ -547,6 +555,8 @@
 				C3C91817210DDE5E00431ADD /* AdminEditProfileViewController.swift */,
 				C3C9181B210E501000431ADD /* AdminUsersViewController.swift */,
 				C3C9181F210E629300431ADD /* AdminUserCell.swift */,
+				C32782D9210FA3E3002E5EE2 /* AdminReportDetailViewController.swift */,
+				C32782DD210FA62A002E5EE2 /* AdminReportViewController.swift */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -557,6 +567,8 @@
 				C3C91815210DDAF400431ADD /* AdminEditProfileViewController.xib */,
 				C3C91819210E4E5C00431ADD /* AdminUsersViewController.xib */,
 				C3C9181D210E622200431ADD /* AdminUserCell.xib */,
+				C32782D7210F9B35002E5EE2 /* AdminReportDetailViewController.xib */,
+				C32782DB210FA54E002E5EE2 /* AdminReportViewController.xib */,
 			);
 			path = Admin;
 			sourceTree = "<group>";
@@ -695,6 +707,8 @@
 				C3C9180E210D0CA100431ADD /* Admin.storyboard in Resources */,
 				C3C91816210DDAF400431ADD /* AdminEditProfileViewController.xib in Resources */,
 				C3C9181E210E622200431ADD /* AdminUserCell.xib in Resources */,
+				C32782D8210F9B35002E5EE2 /* AdminReportDetailViewController.xib in Resources */,
+				C32782DC210FA54E002E5EE2 /* AdminReportViewController.xib in Resources */,
 				C318CDD520D80143001CA213 /* ProfileViewController.xib in Resources */,
 				C368E5BF20CF09E2000DA7DC /* Main.storyboard in Resources */,
 				C3B332CB20D19E5600DFEC70 /* SignupPasswordViewController.xib in Resources */,
@@ -881,6 +895,7 @@
 				C3EEF7ED20DBA2E9003A529E /* BaseCustomView.swift in Sources */,
 				C355F92520D36AF1005F8F82 /* HomeUserCell.swift in Sources */,
 				C3382BF320D62CFA008D0AE6 /* Utils.swift in Sources */,
+				C32782DE210FA62A002E5EE2 /* AdminReportViewController.swift in Sources */,
 				C3382BED20D60B11008D0AE6 /* ChatListViewController.swift in Sources */,
 				C3778D2C20F72CFA00CD82D8 /* ProfilePopupReport.swift in Sources */,
 				C367756F20D7EB1C00352B83 /* ChatCell.swift in Sources */,
@@ -894,6 +909,7 @@
 				C3C91820210E629300431ADD /* AdminUserCell.swift in Sources */,
 				C3342B9720D274C900CAFD8D /* HomeViewController.swift in Sources */,
 				C355F92920D3765A005F8F82 /* Message.swift in Sources */,
+				C32782DA210FA3E3002E5EE2 /* AdminReportDetailViewController.swift in Sources */,
 				C3B332CD20D19E7900DFEC70 /* SignupPasswordViewController.swift in Sources */,
 				C318CDDF20D80A87001CA213 /* ProfileUserCell.swift in Sources */,
 				C3B332D120D1A12000DFEC70 /* SignupCPasswordViewController.swift in Sources */,
