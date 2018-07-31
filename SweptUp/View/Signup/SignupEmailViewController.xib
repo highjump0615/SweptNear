@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_5" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SignupEmailViewController" customModule="SweptUp" customModuleProvider="target">
+            <connections>
+                <outlet property="mButNext" destination="KJf-ce-91t" id="HYX-5h-SIy"/>
+                <outlet property="mCheckViewNotUse" destination="IME-PK-9QI" id="h9p-f6-CZa"/>
+                <outlet property="mCheckViewValid" destination="VWe-s6-gy1" id="86e-gD-Akm"/>
+                <outlet property="mTextEmail" destination="odN-EV-AB3" id="kh0-Bg-Pl9"/>
+                <outlet property="mViewInput" destination="m4E-bu-SlL" id="QsE-Wa-5EV"/>
+                <outlet property="view" destination="iN0-l3-epB" id="mEq-cX-LUq"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="KeyboardDismissingView" customModule="IHKeyboardAvoiding">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="672"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="m4E-bu-SlL">
+                    <rect key="frame" x="62" y="107" width="290" height="44"/>
+                    <subviews>
+                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Enter your email address" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="odN-EV-AB3">
+                            <rect key="frame" x="13" y="0.0" width="264" height="44"/>
+                            <nil key="textColor"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                            <textInputTraits key="textInputTraits" keyboardType="emailAddress" returnKeyType="next" textContentType="email"/>
+                            <connections>
+                                <action selector="onTextChanged:" destination="-1" eventType="editingChanged" id="Wbg-Qe-ppz"/>
+                                <outlet property="delegate" destination="-1" id="bXn-NZ-KN1"/>
+                            </connections>
+                        </textField>
+                    </subviews>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="m4E-bu-SlL" secondAttribute="height" multiplier="145:22" id="5Ka-Yd-0JE"/>
+                        <constraint firstItem="odN-EV-AB3" firstAttribute="top" secondItem="m4E-bu-SlL" secondAttribute="top" id="Jn7-pk-u0u"/>
+                        <constraint firstAttribute="trailing" secondItem="odN-EV-AB3" secondAttribute="trailing" constant="13" id="Sce-9e-YzC"/>
+                        <constraint firstAttribute="bottom" secondItem="odN-EV-AB3" secondAttribute="bottom" id="voC-VO-Y7x"/>
+                        <constraint firstItem="odN-EV-AB3" firstAttribute="leading" secondItem="m4E-bu-SlL" secondAttribute="leading" constant="13" id="xEd-XE-cjX"/>
+                    </constraints>
+                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="V7W-Mz-omQ">
+                    <rect key="frame" x="75" y="169" width="108" height="50.666666666666657"/>
+                    <subviews>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="VWe-s6-gy1" customClass="SignupCheckbox" customModule="SweptUp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="0.0" width="108" height="20.333333333333332"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckItemNotChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Jmf-Bb-ZP2">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="20.333333333333332"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Valid email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TKC-jC-IDE">
+                                    <rect key="frame" x="26" y="0.0" width="82" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0039215686274509803" green="0.0039215686274509803" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="IME-PK-9QI" customClass="SignupCheckbox" customModule="SweptUp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="30.333333333333314" width="108" height="20.333333333333329"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckItemNotChecked" translatesAutoresizingMaskIntoConstraints="NO" id="g7l-6a-fG1">
+                                    <rect key="frame" x="0.0" y="0.0" width="16" height="20.333333333333332"/>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Not in use" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="glc-rC-Qcn">
+                                    <rect key="frame" x="26" y="0.0" width="82" height="20.333333333333332"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                        </stackView>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KJf-ce-91t">
+                    <rect key="frame" x="68.333333333333343" y="576.33333333333337" width="277.33333333333326" height="46"/>
+                    <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Next">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="onButNext:" destination="-1" eventType="touchUpInside" id="Rpk-St-9vh"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="KJf-ce-91t" secondAttribute="bottom" multiplier="1.08" id="Hw3-SK-zGP"/>
+                <constraint firstItem="KJf-ce-91t" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="Xme-1j-jph"/>
+                <constraint firstItem="m4E-bu-SlL" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.7" id="YWb-Ed-eId"/>
+                <constraint firstItem="m4E-bu-SlL" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="107" id="Yjc-jl-Rnl"/>
+                <constraint firstItem="V7W-Mz-omQ" firstAttribute="leading" secondItem="odN-EV-AB3" secondAttribute="leading" id="eBV-jD-Uzq"/>
+                <constraint firstItem="V7W-Mz-omQ" firstAttribute="top" secondItem="m4E-bu-SlL" secondAttribute="bottom" constant="18" id="gO0-WY-zD5"/>
+                <constraint firstItem="KJf-ce-91t" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.67" id="jVi-FJ-d82"/>
+                <constraint firstItem="m4E-bu-SlL" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="paI-di-GfY"/>
+                <constraint firstItem="KJf-ce-91t" firstAttribute="width" secondItem="KJf-ce-91t" secondAttribute="height" multiplier="277:46" id="yQ2-sy-FIB"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="CheckItemNotChecked" width="16" height="15"/>
+    </resources>
+</document>

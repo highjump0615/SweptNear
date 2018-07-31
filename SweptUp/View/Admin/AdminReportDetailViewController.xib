@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AdminReportDetailViewController" customModule="SweptUp" customModuleProvider="target">
+            <connections>
+                <outlet property="mButDelete" destination="h14-ns-pbJ" id="fT3-hQ-BEw"/>
+                <outlet property="mButReporter" destination="SGO-H6-leZ" id="Po3-IC-Xw9"/>
+                <outlet property="mLblDesc" destination="nje-Lh-04w" id="vfW-Bj-yIb"/>
+                <outlet property="mViewReporter" destination="ViP-Qy-SJd" id="vkZ-2l-J3j"/>
+                <outlet property="view" destination="iN0-l3-epB" id="zjf-UL-yqj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REASON FOR REPORT:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PkM-sS-IEC">
+                    <rect key="frame" x="18" y="86" width="149" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Far far away, behind the word mountains, far from the countries" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nje-Lh-04w">
+                    <rect key="frame" x="16" y="119" width="343" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView hidden="YES" opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="ViP-Qy-SJd">
+                    <rect key="frame" x="212.5" y="176" width="146.5" height="30"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REPORTED BY:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ys-qK-LRE">
+                            <rect key="frame" x="0.0" y="0.0" width="97.5" height="30"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="calibratedWhite"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SGO-H6-leZ">
+                            <rect key="frame" x="101.5" y="0.0" width="45" height="30"/>
+                            <state key="normal" title="James">
+                                <color key="titleColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="onButReporter:" destination="-1" eventType="touchUpInside" id="JaP-Ib-Oh4"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                </stackView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="h14-ns-pbJ">
+                    <rect key="frame" x="62" y="579" width="251.5" height="42"/>
+                    <color key="backgroundColor" red="0.48627450979999998" green="0.086274509799999996" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <state key="normal" title="Delete Report">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="onButDelete:" destination="-1" eventType="touchUpInside" id="k2W-Oe-2iZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="nje-Lh-04w" secondAttribute="trailing" constant="16" id="2Rn-5U-au5"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="h14-ns-pbJ" secondAttribute="bottom" constant="46" id="2fP-wI-JBK"/>
+                <constraint firstItem="ViP-Qy-SJd" firstAttribute="top" secondItem="nje-Lh-04w" secondAttribute="bottom" constant="16" id="GAm-Zg-wPz"/>
+                <constraint firstItem="nje-Lh-04w" firstAttribute="top" secondItem="PkM-sS-IEC" secondAttribute="bottom" constant="16" id="I7e-1O-Cab"/>
+                <constraint firstItem="PkM-sS-IEC" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="22" id="IQu-Pl-Pe3"/>
+                <constraint firstItem="nje-Lh-04w" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="IQy-Xb-2cA"/>
+                <constraint firstItem="ViP-Qy-SJd" firstAttribute="trailing" secondItem="nje-Lh-04w" secondAttribute="trailing" id="Xzj-Ty-did"/>
+                <constraint firstItem="h14-ns-pbJ" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="hRv-oU-iNj"/>
+                <constraint firstItem="h14-ns-pbJ" firstAttribute="width" secondItem="iN0-l3-epB" secondAttribute="width" multiplier="0.67" id="pUZ-kC-IGG"/>
+                <constraint firstItem="h14-ns-pbJ" firstAttribute="width" secondItem="h14-ns-pbJ" secondAttribute="height" multiplier="277:46" id="ww7-rf-G5c"/>
+                <constraint firstItem="PkM-sS-IEC" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="18" id="zFh-QL-6Tr"/>
+            </constraints>
+            <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>
