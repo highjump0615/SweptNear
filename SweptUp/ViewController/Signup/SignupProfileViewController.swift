@@ -435,15 +435,28 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         if textField == mTextBirthday {
             self.view.endEditing(true)
             
+            // min date
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy/MM/dd"
+            let dateMin = formatter.date(from: "1950/01/01")
+            
+            // max date
+            let dateCurrent = Date()
+            let calendar = Calendar.current
+            let components = calendar.dateComponents([.year, .month, .day], from: dateCurrent)
+            let maxYear = components.year! - 18
+            let dateMax = formatter.date(from: "\(maxYear)/12/31")
+            
             ActionSheetDatePicker.show(withTitle: "Choose birthday(optional):",
                                        datePickerMode: .date,
                                        selectedDate: mDate,
+                                       minimumDate: dateMin,
+                                       maximumDate: dateMax,
                                        doneBlock: { (picker, date, view) in
                 if let date = date as? Date {
                     self.mDate = date
                 }
             }, cancel: { (picker) in
-                
             }, origin: self.view)
             
             return false
