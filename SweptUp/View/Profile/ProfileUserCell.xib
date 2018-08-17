@@ -40,6 +40,13 @@
                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                     </button>
+                    <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hWN-6h-Ah0">
+                        <rect key="frame" x="14" y="11" width="32" height="30"/>
+                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                        <state key="normal" title="BAN">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </state>
+                    </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-7f-njC">
                         <rect key="frame" x="153.5" y="65" width="166" height="165.5"/>
                         <subviews>
@@ -64,7 +71,9 @@
                     <constraint firstItem="0gB-wh-ThV" firstAttribute="leading" secondItem="XV5-v7-xV7" secondAttribute="leading" constant="14" id="Dgl-hQ-Yp2"/>
                     <constraint firstItem="0gB-wh-ThV" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" constant="14" id="ELI-gV-N1j"/>
                     <constraint firstItem="qsx-d0-0zc" firstAttribute="top" secondItem="XV5-v7-xV7" secondAttribute="top" id="JQR-me-aH0"/>
+                    <constraint firstItem="hWN-6h-Ah0" firstAttribute="leading" secondItem="0gB-wh-ThV" secondAttribute="leading" id="ZNA-yT-H80"/>
                     <constraint firstItem="a8y-7f-njC" firstAttribute="width" secondItem="XV5-v7-xV7" secondAttribute="width" multiplier="0.35" id="cBN-58-MWn"/>
+                    <constraint firstItem="hWN-6h-Ah0" firstAttribute="centerY" secondItem="0gB-wh-ThV" secondAttribute="centerY" id="cIS-sX-VaQ"/>
                     <constraint firstAttribute="trailing" secondItem="WGc-oT-JyW" secondAttribute="trailing" constant="14" id="dbA-PY-CeX"/>
                     <constraint firstAttribute="bottom" secondItem="a8y-7f-njC" secondAttribute="bottom" priority="999" constant="18" id="jEA-sU-Njp"/>
                     <constraint firstItem="a8y-7f-njC" firstAttribute="centerX" secondItem="XV5-v7-xV7" secondAttribute="centerX" id="osX-aQ-ndj"/>
@@ -72,6 +81,7 @@
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="mButBan" destination="hWN-6h-Ah0" id="nWd-ze-l04"/>
                 <outlet property="mButIgnore" destination="WGc-oT-JyW" id="Frg-Ck-JTY"/>
                 <outlet property="mButSend" destination="0gB-wh-ThV" id="e90-uL-zrP"/>
                 <outlet property="mImgviewPhoto" destination="HAc-fh-FFf" id="965-Ay-VWV"/>

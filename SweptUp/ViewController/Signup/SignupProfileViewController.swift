@@ -362,7 +362,6 @@ class SignupProfileViewController: SignupBaseViewController, UITextFieldDelegate
         user?.lastName = getLastName()
         user?.birthday = mTextBirthday.text!
         user?.gender = mTextGender.text
-        user?.gender = mTextGender.text
         
         if mPhotoUpdated {
             user?.photos = mPhotoUrls

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SVProgressHUD
 
 class AdminReportDetailViewController: BaseViewController {
     
@@ -15,6 +16,7 @@ class AdminReportDetailViewController: BaseViewController {
     @IBOutlet weak var mLblDesc: UILabel!
     @IBOutlet weak var mButReporter: UIButton!
     @IBOutlet weak var mButDelete: UIButton!
+    @IBOutlet weak var mButBan: UIButton!
     
     @IBOutlet weak var mViewReporter: UIStackView!
     
@@ -76,6 +78,18 @@ class AdminReportDetailViewController: BaseViewController {
         prevVC.getReportInfo(bRefresh: false)
         
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @IBAction func onButBan(_ sender: Any) {
+        if let user = mReport?.user, !user.banned {
+            user.banned = true
+            user.saveToDatabase(withField: User.FIELD_BANNED, value: true)
+
+            // show notice
+            SVProgressHUD.setContainerView(self.view)
+            SVProgressHUD.setDefaultMaskType(.gradient)
+            SVProgressHUD.showSuccess(withStatus: "Banned user successfully")
+        }
     }
     
     @IBAction func onButReporter(_ sender: Any) {

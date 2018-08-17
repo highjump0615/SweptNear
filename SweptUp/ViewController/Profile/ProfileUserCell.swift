@@ -14,6 +14,7 @@ class ProfileUserCell: UITableViewCell {
     @IBOutlet weak var mButSend: UIButton!
     @IBOutlet weak var mButIgnore: UIButton!
     @IBOutlet weak var mImgviewPhoto: UIImageView!
+    @IBOutlet weak var mButBan: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -41,6 +42,7 @@ class ProfileUserCell: UITableViewCell {
     func hideButtons() {
         mButSend.isHidden = true
         mButIgnore.isHidden = true
+        mButBan.isHidden = true
     }
     
     func fillContent(user: User, wink: Wink?) {
@@ -67,6 +69,9 @@ class ProfileUserCell: UITableViewCell {
         
         // if admin, return directly
         if (userCurrent.type == User.USER_TYPE_ADMIN) {
+            mButBan.isHidden = false
+            mButBan.setTitle(user.banned ? "Unban User" : "Ban User", for: .normal)
+            
             return
         }
         
