@@ -63,7 +63,7 @@ class BaseModel {
         db.setValue(self.toDictionary())
     }
     
-    /// save child value to databse
+    /// save child value to database
     ///
     /// - Parameters:
     ///   - withField: <#withField description#>
@@ -73,6 +73,22 @@ class BaseModel {
     func saveToDatabase(withField: String?, value: Any, withID: String? = nil, parentID: String? = nil) {
         let db = getDatabaseRef(withID: withID, parentID: parentID)
         db.child(withField!).setValue(value)
+    }
+    
+    /// read child value from database
+    ///
+    /// - Parameters:
+    ///   - withField: <#withField description#>
+    ///   - completion: <#completion description#>
+    func readFromDatabaseChild(withField: String, completion: @escaping((Any?)->())) {
+        getDatabaseRef().child(withField).observeSingleEvent(of: .value, with: { (snapshot) in
+            // user not found
+            if !snapshot.exists() {
+                return
+            }
+            
+            completion(snapshot.value)
+        })
     }
     
     func isEqual(to: BaseModel) -> Bool {

@@ -86,6 +86,29 @@ class HomeViewController: BaseViewController,
         winks = winks.filter{$0.status == WinkStatus.waiting}
         
         mTableView.reloadData()
+        
+        // check user availability
+        User.currentUser?.readFromDatabaseChild(withField: User.FIELD_BANNED, completion: { (value) in
+            if let banned = value as? Bool {
+                User.currentUser?.banned = banned
+                
+                if banned {
+                    // Force log out
+                    self.alertOk(title: "Account disabled",
+                                 message: "You are banned, contact to Administrator to continue using",
+                                 cancelButton: "Ok",
+                                 cancelHandler: { (action) in
+                                    // sign out
+                                    FirebaseManager.signOut()
+                                    User.currentUser = nil
+                                    
+                                    // go to sign in page
+                                    let signinVC = SigninViewController(nibName: "SigninViewController", bundle: nil)
+                                    self.navigationController?.setViewControllers([signinVC], animated: true)
+                    })
+                }
+            }
+        })
     }
     
     override func didReceiveMemoryWarning() {

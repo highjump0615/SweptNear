@@ -44,6 +44,7 @@ class LocationViewController: BaseViewController {
     override func viewWillAppear(_ animated: Bool) {
         // title
         self.tabBarController?.navigationItem.title = "Location"
+        mqueryLocation = nil
     }
     
     func initMap() {
@@ -123,7 +124,7 @@ class LocationViewController: BaseViewController {
                         }
                         
                         // ignore banned user
-                        if !user.banned {
+                        if user.banned {
                             return
                         }
                         

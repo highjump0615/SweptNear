@@ -293,6 +293,18 @@ class ProfileViewController: BaseViewController,
         // update buttons
         updateUserCell()
     }
+    
+    @objc func onButBan() {
+        if let user = mUser {
+            let banned = user.banned
+            
+            user.banned = !banned
+            user.saveToDatabase(withField: User.FIELD_BANNED, value: !banned)
+        
+            // update buttons
+            updateUserCell()
+        }
+    }
 
     /*
     // MARK: - Navigation
@@ -325,6 +337,7 @@ class ProfileViewController: BaseViewController,
             }
             cellUser?.mButSend.addTarget(self, action: #selector(onButSend), for: .touchUpInside)
             cellUser?.mButIgnore.addTarget(self, action: #selector(onButIgnore), for: .touchUpInside)
+            cellUser?.mButBan.addTarget(self, action: #selector(onButBan), for: .touchUpInside)
             
             cellItem = cellUser
         }
