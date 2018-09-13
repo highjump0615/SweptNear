@@ -138,6 +138,10 @@ class HomeViewController: BaseViewController,
         let winkRef = FirebaseManager.ref().child(Wink.TABLE_NAME).child(userCurrent.id)
         let query = winkRef.queryOrdered(byChild: Wink.FIELD_STATUS).queryEqual(toValue: WinkStatus.waiting.rawValue)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // clear list
+            self.winks.removeAll()
+            
             // notifications not found
             if !snapshot.exists() {
                 self.stopRefreshing()
@@ -146,8 +150,6 @@ class HomeViewController: BaseViewController,
                 return
             }
             
-            // clear list
-            self.winks.removeAll()
             var nFetchCount = 0
             
             // parse wink
@@ -172,14 +174,15 @@ class HomeViewController: BaseViewController,
         let userCurrent = User.currentUser!
         let msgRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         msgRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // clear list
+            self.chats.removeAll()
+            
             // msg not found
             if !snapshot.exists() {
                 self.stopRefreshing()
                 return
             }
             
-            // clear list
-            self.chats.removeAll()
             var nFetchCount = 0
             
             // parse messages

@@ -158,14 +158,14 @@ class User : BaseModel {
     func fetchPhotos(completion: @escaping(()->())) {
         let photoRef = FirebaseManager.ref().child(User.TABLE_NAME_PHOTOS).child(self.id)
         photoRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // clear list
+            self.photos.removeAll()
+            
             // photos not found
             if !snapshot.exists() {
                 completion()
                 return
             }
-            
-            // clear list
-            self.photos.removeAll()
             
             // parse photos
             if let aryPhoto = snapshot.value! as? [Any] {
