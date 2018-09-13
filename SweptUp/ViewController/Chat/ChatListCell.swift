@@ -32,11 +32,13 @@ class ChatListCell: UITableViewCell {
     func fillContent(chat: Chat) {
         if let user = chat.userRelated {
             // user photo
-            mButImg.sd_setImage(with: URL(string: user.photoUrl!),
-                                 for: .normal,
-                                 placeholderImage: UIImage(named: "UserDefault"),
-                                 options: .progressiveDownload,
-                                 completed: nil)
+            if let photoUrl = user.photoUrl {
+                mButImg.sd_setImage(with: URL(string: photoUrl),
+                                     for: .normal,
+                                     placeholderImage: UIImage(named: "UserDefault"),
+                                     options: .progressiveDownload,
+                                     completed: nil)
+            }
             
             // user name
             mLblName.text = user.userFullName()

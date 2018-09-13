@@ -69,10 +69,14 @@ class LocationViewController: BaseViewController {
         let markerWidth = 30.0
         let markerImgView = UIImageView(frame: CGRect(x: 0, y: 0,
                                                       width: markerWidth, height: markerWidth))
-        markerImgView.sd_setImage(with: URL(string: userInfo.photoUrl!),
-                                  placeholderImage: UIImage(named: "UserDefault"),
-                                  options: .progressiveDownload,
-                                  completed: nil)
+        markerImgView.image = UIImage(named: "UserDefault")
+        
+        if let photoUrl = userInfo.photoUrl {
+            markerImgView.sd_setImage(with: URL(string: photoUrl),
+                                      placeholderImage: UIImage(named: "UserDefault"),
+                                      options: .progressiveDownload,
+                                      completed: nil)
+        }
         markerImgView.makeRoundBorder(width: 1.0, color: Constants.gColorTheme)
         
         // Creates a marker in the center of the map.

@@ -129,6 +129,7 @@
 		C3028AB720DE49C10073E192 /* SignupCheckbox.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupCheckbox.swift; sourceTree = "<group>"; };
 		C3028AB920DEBB550073E192 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C3028ABB20DEEA070073E192 /* SigninViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SigninViewController.xib; sourceTree = "<group>"; };
+		C30B4730214A1A1400A2B566 /* Location.gpx */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Location.gpx; sourceTree = "<group>"; };
 		C318CDD420D80143001CA213 /* ProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
 		C318CDD820D80468001CA213 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		C318CDDB20D80662001CA213 /* ProfileUserCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileUserCell.xib; sourceTree = "<group>"; };
@@ -412,6 +413,7 @@
 				C368E5B920CF09E2000DA7DC /* AppDelegate.swift */,
 				C368E5C020CF09E3000DA7DC /* Assets.xcassets */,
 				C368E5C520CF09E3000DA7DC /* Info.plist */,
+				C30B4730214A1A1400A2B566 /* Location.gpx */,
 			);
 			path = SweptUp;
 			sourceTree = "<group>";
