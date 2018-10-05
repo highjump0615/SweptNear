@@ -68,9 +68,6 @@ class HomeViewController: BaseViewController,
         mRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         mTableView.addSubview(mRefreshControl)
         
-        // update user info
-        updateUserInfo()
-        
         //
         // init data
         //
@@ -81,6 +78,9 @@ class HomeViewController: BaseViewController,
         super.viewWillAppear(animated)
         
         hideNavbar(animated: true)
+        
+        // update user info
+        updateUserInfo()
         
         // update data
         winks = winks.filter{$0.status == WinkStatus.waiting}

@@ -81,7 +81,6 @@ class ChatListViewController: UITableViewController {
         
         mDbRef?.observe(.childChanged, with: { (snapshot) in
             // update the chat
-            let aaa = snapshot.key
             if let chat = self.chats.first(where: {$0.id == snapshot.key}) {
                 let chatNew = Chat(snapshot: snapshot)
                 // not updated content, return
