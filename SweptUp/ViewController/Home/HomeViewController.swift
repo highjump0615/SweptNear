@@ -33,7 +33,7 @@ class HomeViewController: BaseViewController,
                         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var mLblTitle: UILabel!
-    @IBOutlet weak var mSwitch: UISwitch!
+    
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mButProfile: UIButton!
     
@@ -54,7 +54,6 @@ class HomeViewController: BaseViewController,
         // init controls
         //
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
-        mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
         self.title = " "
         mButProfile.makeRound()
         
@@ -238,16 +237,6 @@ class HomeViewController: BaseViewController,
         gotoTabbarController(index: 1)
     }
     
-    /// switch for availability has changed
-    ///
-    /// - Parameter sender: <#sender description#>
-    @IBAction func onSwitchChanged(_ sender: Any) {
-        let user = User.currentUser!
-        
-        user.available = mSwitch.isOn
-        user.saveToDatabase(withField: User.FIELD_AVAILABLE, value: user.available)
-    }
-    
     /// update current user info
     func updateUserInfo() {
         let user = User.currentUser!
@@ -260,9 +249,6 @@ class HomeViewController: BaseViewController,
                                     options: .progressiveDownload,
                                     completed: nil)
         }
-        
-        // availability
-        mSwitch.setOn(user.available, animated: true)
     }
     
     @IBAction func onButProfile(_ sender: Any) {

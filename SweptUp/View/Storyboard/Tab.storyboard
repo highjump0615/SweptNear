@@ -258,10 +258,10 @@
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="u4h-v4-VH7">
-                                <rect key="frame" x="0.0" y="-28" width="414" height="69"/>
+                                <rect key="frame" x="0.0" y="-70" width="414" height="111"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search Radius" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5l7-J5-ff2">
-                                        <rect key="frame" x="8" y="8" width="93" height="17"/>
+                                        <rect key="frame" x="8" y="8" width="92.333333333333329" height="17"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -281,17 +281,45 @@
                                             <action selector="onSliderTouchUp:" destination="lY3-x8-IGb" eventType="touchUpInside" id="IUP-F9-fk0"/>
                                         </connections>
                                     </slider>
+                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="4wK-Ou-ENV" customClass="SignupCheckbox" customModule="SweptUp" customModuleProvider="target">
+                                        <rect key="frame" x="15.999999999999986" y="77" width="240.66666666666663" height="20.333333333333329"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CheckItemNotChecked" translatesAutoresizingMaskIntoConstraints="NO" id="Fp0-fJ-adD">
+                                                <rect key="frame" x="0.0" y="0.0" width="16" height="20.333333333333332"/>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do not show me on the map" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mXN-YI-qeJ">
+                                                <rect key="frame" x="25.999999999999986" y="0.0" width="214.66666666666663" height="20.333333333333332"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <color key="textColor" red="0.0039215686269999999" green="0.0039215686269999999" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                    </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EsP-Cv-bWN">
+                                        <rect key="frame" x="15.999999999999986" y="69.666666666666671" width="240.66666666666663" height="35"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="35" id="xH5-6x-men"/>
+                                        </constraints>
+                                        <connections>
+                                            <action selector="onButAvailable:" destination="lY3-x8-IGb" eventType="touchUpInside" id="goj-oR-ftn"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.91764705882352937" green="0.9137254901960784" blue="0.9137254901960784" alpha="0.78835081335616441" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="4wK-Ou-ENV" secondAttribute="bottom" constant="14" id="C4i-EL-6Oj"/>
                                     <constraint firstItem="5l7-J5-ff2" firstAttribute="top" secondItem="u4h-v4-VH7" secondAttribute="top" constant="8" id="Eco-s1-qRR"/>
+                                    <constraint firstItem="EsP-Cv-bWN" firstAttribute="width" secondItem="4wK-Ou-ENV" secondAttribute="width" id="ILE-4s-lUj"/>
+                                    <constraint firstItem="EsP-Cv-bWN" firstAttribute="centerX" secondItem="4wK-Ou-ENV" secondAttribute="centerX" id="L9p-Fr-fWo"/>
                                     <constraint firstAttribute="trailing" secondItem="71u-ys-7Kt" secondAttribute="trailing" constant="8" id="NmJ-eG-8lt"/>
                                     <constraint firstItem="71u-ys-7Kt" firstAttribute="top" secondItem="u4h-v4-VH7" secondAttribute="top" constant="8" id="RYM-J4-GxQ"/>
                                     <constraint firstAttribute="trailing" secondItem="Zfn-1z-aiv" secondAttribute="trailing" constant="16" id="TSa-6J-Whs"/>
-                                    <constraint firstAttribute="bottom" secondItem="Zfn-1z-aiv" secondAttribute="bottom" constant="8" id="iM1-Uc-e4D"/>
+                                    <constraint firstItem="EsP-Cv-bWN" firstAttribute="centerY" secondItem="4wK-Ou-ENV" secondAttribute="centerY" id="cZa-df-ood"/>
+                                    <constraint firstItem="4wK-Ou-ENV" firstAttribute="leading" secondItem="Zfn-1z-aiv" secondAttribute="leading" id="gva-XV-edY"/>
                                     <constraint firstItem="Zfn-1z-aiv" firstAttribute="top" secondItem="5l7-J5-ff2" secondAttribute="bottom" constant="6" id="keC-ha-lKX"/>
                                     <constraint firstItem="5l7-J5-ff2" firstAttribute="leading" secondItem="u4h-v4-VH7" secondAttribute="leading" constant="8" id="toa-zf-zry"/>
                                     <constraint firstItem="Zfn-1z-aiv" firstAttribute="leading" secondItem="u4h-v4-VH7" secondAttribute="leading" constant="16" id="wVg-vC-9cx"/>
+                                    <constraint firstItem="4wK-Ou-ENV" firstAttribute="top" secondItem="Zfn-1z-aiv" secondAttribute="bottom" constant="16" id="yjh-BD-Kgd"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UzU-y9-TtJ">
@@ -308,7 +336,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MAP" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2sc-ga-PN7">
-                                        <rect key="frame" x="189" y="10" width="36" height="21"/>
+                                        <rect key="frame" x="189" y="10.333333333333334" width="36" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -344,6 +372,7 @@
                         <inset key="imageInsets" minX="0.0" minY="5" maxX="0.0" maxY="-5"/>
                     </tabBarItem>
                     <connections>
+                        <outlet property="mCheckAvailble" destination="4wK-Ou-ENV" id="L8Q-EW-Vbf"/>
                         <outlet property="mConstraintFilterBottom" destination="Pjf-fc-VRX" id="YUg-dh-H1i"/>
                         <outlet property="mLblDistance" destination="71u-ys-7Kt" id="Rm7-zt-foy"/>
                         <outlet property="mSliderDistance" destination="Zfn-1z-aiv" id="G9H-Ch-YUp"/>
@@ -354,7 +383,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e9V-ZK-E5W" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="476.25" y="31.690140845070424"/>
+            <point key="canvasLocation" x="475.36231884057975" y="30.978260869565219"/>
         </scene>
         <!--Chat List View Controller-->
         <scene sceneID="f7Y-9C-UAX">
@@ -464,6 +493,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="CheckItemNotChecked" width="16" height="15"/>
         <image name="HomeWink" width="23" height="23"/>
         <image name="LocationMenu" width="17" height="14"/>
         <image name="SettingAbout" width="19" height="18"/>
