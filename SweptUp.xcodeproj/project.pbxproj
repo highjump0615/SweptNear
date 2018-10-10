@@ -24,6 +24,7 @@
 		C32782DA210FA3E3002E5EE2 /* AdminReportDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32782D9210FA3E3002E5EE2 /* AdminReportDetailViewController.swift */; };
 		C32782DC210FA54E002E5EE2 /* AdminReportViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C32782DB210FA54E002E5EE2 /* AdminReportViewController.xib */; };
 		C32782DE210FA62A002E5EE2 /* AdminReportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32782DD210FA62A002E5EE2 /* AdminReportViewController.swift */; };
+		C32D2ACF216E345400CBBC0E /* ReportHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = C32D2ACE216E345400CBBC0E /* ReportHelper.swift */; };
 		C332310F20D81C5A000652A5 /* ProfilePhotoCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */; };
 		C3342B8D20D2564A00CAFD8D /* SignupProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */; };
 		C3342B8F20D2640800CAFD8D /* SignupProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */; };
@@ -142,6 +143,7 @@
 		C32782DB210FA54E002E5EE2 /* AdminReportViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdminReportViewController.xib; sourceTree = "<group>"; };
 		C32782DD210FA62A002E5EE2 /* AdminReportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminReportViewController.swift; sourceTree = "<group>"; };
 		C32BB40C20F605BE008BCCD7 /* SweptUp.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = SweptUp.entitlements; sourceTree = "<group>"; };
+		C32D2ACE216E345400CBBC0E /* ReportHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReportHelper.swift; sourceTree = "<group>"; };
 		C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePhotoCell.swift; sourceTree = "<group>"; };
 		C3342B8C20D2564A00CAFD8D /* SignupProfileViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupProfileViewController.xib; sourceTree = "<group>"; };
 		C3342B8E20D2640800CAFD8D /* SignupProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupProfileViewController.swift; sourceTree = "<group>"; };
@@ -294,6 +296,7 @@
 		C318CDDD20D80A6E001CA213 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				C32D2ACE216E345400CBBC0E /* ReportHelper.swift */,
 				C318CDD820D80468001CA213 /* ProfileViewController.swift */,
 				C318CDDE20D80A87001CA213 /* ProfileUserCell.swift */,
 				C332310E20D81C5A000652A5 /* ProfilePhotoCell.swift */,
@@ -767,6 +770,7 @@
 				"${BUILT_PRODUCTS_DIR}/ReachabilitySwift/Reachability.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 				"${BUILT_PRODUCTS_DIR}/SVProgressHUD/SVProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Toast-Swift/Toast_Swift.framework",
 				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
 			);
@@ -788,6 +792,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Reachability.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SVProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Toast_Swift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
@@ -929,6 +934,7 @@
 				C3959F0F20D05FD600B42B7A /* SigninViewController.swift in Sources */,
 				C3959F0B20CFDF8A00B42B7A /* Constants.swift in Sources */,
 				C3B332B820D179CD00DFEC70 /* ForgetViewController.swift in Sources */,
+				C32D2ACF216E345400CBBC0E /* ReportHelper.swift in Sources */,
 				C3C91818210DDE5E00431ADD /* AdminEditProfileViewController.swift in Sources */,
 				C367756720D7B5B500352B83 /* ChatViewController.swift in Sources */,
 			);

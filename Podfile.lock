@@ -101,6 +101,7 @@ PODS:
     - SDWebImage/Core (= 4.3.0)
   - SDWebImage/Core (4.3.0)
   - SVProgressHUD (2.2.3)
+  - Toast-Swift (3.0.1)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -121,6 +122,7 @@ DEPENDENCIES:
   - ReachabilitySwift
   - SDWebImage
   - SVProgressHUD
+  - Toast-Swift
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
@@ -153,6 +155,7 @@ SPEC REPOS:
     - ReachabilitySwift
     - SDWebImage
     - SVProgressHUD
+    - Toast-Swift
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -184,7 +187,8 @@ SPEC CHECKSUMS:
   ReachabilitySwift: 6849231cd4e06559f3b9ef4a97a0a0f96d41e09f
   SDWebImage: 6da6c8bca115addc4de8613362e1b15f66333825
   SVProgressHUD: a5eaeff664a82dda89809c409ace40183ce91523
+  Toast-Swift: ba0b01b095aada709d915f9beb1d38184a2721c3
 
-PODFILE CHECKSUM: 8902095048f8ee47463a1eeabc61c66a2d6972bf
+PODFILE CHECKSUM: 6aa3fa60bfc653213ea07cb5bb1981f28de2b63c
 
 COCOAPODS: 1.5.3

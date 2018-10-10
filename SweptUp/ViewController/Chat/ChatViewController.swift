@@ -16,7 +16,8 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     
     var mUser: User?
     var mChat: Chat?
-    var mViewReport: ProfilePopupReport?
+    
+    var helper: ReportHelper?
     
     var mDbRef: DatabaseReference?
     var mKeyboardHeight: CGFloat = 0.0
@@ -49,8 +50,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         showNavbar()
         
         // init report user popup view
-        mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
-        self.view.addSubview(mViewReport!)
+        helper = ReportHelper(user: mUser, delegate: self)
         
         //
         // init data
@@ -106,7 +106,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
                        animations: {
                         self.view.frame = frmView
         }) { (finished) in
-            self.tableViewScrollToBottom(animated: false)
+            self.tableViewScrollToBottom(animated: true)
         }
     }
     
@@ -117,7 +117,9 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         UIView.animate(withDuration: 0.3,
                        animations: {
                         self.view.frame = frmView
-        })
+        }) { (finished) in
+            self.tableViewScrollToBottom(animated: true)
+        }
         
         mKeyboardHeight = 0
     }
@@ -175,10 +177,9 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
         })
     }
     
+    /// report & block
     @objc func onButReport() {
-        // show report view
-        mViewReport?.frame = self.view.bounds
-        mViewReport?.showView(bShow: true, animated: true)
+        helper?.showMenuDialog()
     }
     
     @IBAction func onButSend(_ sender: Any) {
@@ -242,15 +243,7 @@ class ChatViewController: BaseViewController, UITableViewDataSource, UITableView
     }
     
     func tableViewScrollToBottom(animated: Bool) {
-        let time = animated ? 300 : 0
-        DispatchQueue.main.asyncAfter(deadline: .now() + .milliseconds(time)) {
-            
-            if self.mTableView.contentSize.height > self.mTableView.frame.size.height {
-                let bottomOffset = CGPoint(x: 0,
-                                           y: self.mTableView.contentSize.height - self.mTableView.frame.size.height)
-                self.mTableView.setContentOffset(bottomOffset, animated: true)
-            }
-        }
+        self.mTableView.scrollToBottom(animated)
     }
     
     /// go to user profile
@@ -310,4 +303,12 @@ extension ChatViewController : UITextFieldDelegate {
         
         return true
     }
+}
+
+extension ChatViewController: ReportHelperDelegate {
+    
+    func getViewController() -> UIViewController {
+        return self
+    }
+    
 }
