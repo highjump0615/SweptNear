@@ -208,8 +208,33 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="z5o-Fj-S0k" imageView="DZW-VE-ft0" style="IBUITableViewCellStyleDefault" id="CNE-dT-m4c">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="NW9-Cv-KJn" imageView="G5G-qb-WfH" style="IBUITableViewCellStyleDefault" id="sVX-Bo-Kbk">
                                         <rect key="frame" x="0.0" y="360" width="414" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="sVX-Bo-Kbk" id="9jt-v2-lKl">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" insetsLayoutMarginsFromSafeArea="NO" text="Blocked Users" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="NW9-Cv-KJn">
+                                                    <rect key="frame" x="56" y="0.0" width="338" height="59.666666666666664"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" image="SettingUserBlocked" id="G5G-qb-WfH">
+                                                    <rect key="frame" x="20" y="19" width="21" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
+                                                <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="SettingRightArrow" translatesAutoresizingMaskIntoConstraints="NO" id="rFY-eZ-T9N">
+                                                    <rect key="frame" x="379" y="17" width="24" height="25"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
+                                                </imageView>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" textLabel="z5o-Fj-S0k" imageView="DZW-VE-ft0" style="IBUITableViewCellStyleDefault" id="CNE-dT-m4c">
+                                        <rect key="frame" x="0.0" y="420" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CNE-dT-m4c" id="R7b-Mg-Csg">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="59.666666666666664"/>
@@ -504,6 +529,7 @@
         <image name="SettingRate" width="22" height="21"/>
         <image name="SettingRightArrow" width="7" height="13"/>
         <image name="SettingTerms" width="18" height="23"/>
+        <image name="SettingUserBlocked" width="21" height="21"/>
         <image name="TabChat" width="31" height="30"/>
         <image name="TabMap" width="29" height="28"/>
         <image name="TabNotification" width="30" height="32"/>

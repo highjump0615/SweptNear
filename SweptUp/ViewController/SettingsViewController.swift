@@ -116,6 +116,11 @@ class SettingsViewController: UITableViewController {
             self.navigationController?.pushViewController(termVC, animated: true)
             
         case 6:
+            // go to blocked users page
+            let usersVC = UsersViewController(nibName: "UsersViewController", bundle: nil)
+            self.navigationController?.pushViewController(usersVC, animated: true)
+            
+        case 7:
             doSignOut()
             
         default:
