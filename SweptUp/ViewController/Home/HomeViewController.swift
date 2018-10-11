@@ -154,6 +154,10 @@ class HomeViewController: BaseViewController,
             // parse wink
             for wink in snapshot.children {
                 let w = Wink(snapshot: wink as! DataSnapshot)
+                if userCurrent.isBlockedUser(w.senderId) {
+                    continue
+                }
+                
                 self.winks.append(w)
                 
                 // fetch user
@@ -187,6 +191,10 @@ class HomeViewController: BaseViewController,
             // parse messages
             for msg in snapshot.children {
                 let c = Chat(snapshot: msg as! DataSnapshot)
+                
+                if userCurrent.isBlockedUser(c.senderId) {
+                    continue
+                }
                 
                 // only add received message
                 if c.senderId == userCurrent.id {

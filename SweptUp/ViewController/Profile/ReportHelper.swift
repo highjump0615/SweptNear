@@ -21,16 +21,20 @@ class ReportHelper {
     var vc: UIViewController
     
     var mViewReport: ProfilePopupReport?
+    var user: User?
     
     init(user: User?, delegate: ReportHelperDelegate) {
         self.delegate = delegate
         self.vc = delegate.getViewController()
+        self.user = user
         
         mViewReport = ProfilePopupReport.getView(user: user) as? ProfilePopupReport
         self.vc.view.addSubview(mViewReport!)
     }
     
     func showMenuDialog() {
+        let userCurrent = User.currentUser!
+        let titleBlock = userCurrent.isBlockedUser(user!.id) ? "Unblock User" : "Block User"
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.actionSheet)
         
         alert.addAction(UIAlertAction(title: "Report User", style: .default, handler: { (action) in
@@ -39,10 +43,16 @@ class ReportHelper {
             self.mViewReport?.showView(bShow: true, animated: true)
         }))
         
-        alert.addAction(UIAlertAction(title: "Block User", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: titleBlock, style: .default, handler: { (action) in
+            userCurrent.blockUser(self.user?.id)
             
             // show toast
-            self.vc.view.makeToast("Blocked this user successfully")
+            if userCurrent.isBlockedUser(self.user!.id) {
+                self.vc.view.makeToast("Blocked this user successfully")
+            }
+            else {
+                self.vc.view.makeToast("Unblocked this user successfully")
+            }
         }))
         
         alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))

@@ -128,7 +128,15 @@ class LocationViewController: BaseViewController {
             mqueryLocation?.observe(.keyEntered) { (key, location) in
                 print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
                 
-                if key == userCurrent?.id { return } //ignore me
+                //ignore me
+                if key == userCurrent?.id {
+                    return
+                }
+                
+                // do not show blocked users
+                if userCurrent!.isBlockedUser(key) {
+                    return
+                }
                 
                 User.readFromDatabase(withId: key, completion: { (user) in
                     if let user = user {
@@ -222,7 +230,7 @@ extension LocationViewController: GMSMapViewDelegate {
         
         let userCurrent = User.currentUser!
         if let location = userCurrent.location {
-            self.myMark = addMarkerOnMap(location: userCurrent.location!, userInfo: userCurrent)
+            self.myMark = addMarkerOnMap(location: location, userInfo: userCurrent)
         }
     }
     

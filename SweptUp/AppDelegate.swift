@@ -65,6 +65,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 // fetch user info
                 User.readFromDatabase(withId: userId!) { (user) in
                     User.currentUser = user
+                    User.currentUser?.fetchBlockedUsers()
                     
                     if user != nil {
                         // go to home page
