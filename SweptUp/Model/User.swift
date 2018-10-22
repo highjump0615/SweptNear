@@ -256,4 +256,12 @@ class User : BaseModel {
             dbRef.child(strUserId).setValue(true)
         }
     }
+    
+    /// set availability of user
+    ///
+    /// - Parameter available: <#available description#>
+    func makeAvailable(_ available: Bool) {
+        self.available = available
+        self.saveToDatabase(withField: User.FIELD_AVAILABLE, value: available)
+    }
 }

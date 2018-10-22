@@ -38,8 +38,6 @@ class LocationViewController: BaseViewController {
         
         // init distance filter
         onDistanceChanged(self.view)
-        
-        mCheckAvailble.setEnabled(enabled: !User.currentUser!.available)
     }
 
     override func didReceiveMemoryWarning() {
@@ -53,6 +51,22 @@ class LocationViewController: BaseViewController {
         // title
         self.tabBarController?.navigationItem.title = "Location"
         mqueryLocation = nil
+    }
+    
+    func setAvailability(_ available: Bool) {
+        mCheckAvailble.setEnabled(enabled: !available)
+        
+        // update user data
+        User.currentUser?.makeAvailable(available)
+        
+        if available {
+            // show me on map
+            self.myMark?.map = mViewMap
+        }
+        else {
+            // remove me from map
+            self.myMark?.map = nil
+        }
     }
     
     func initMap() {
@@ -92,7 +106,7 @@ class LocationViewController: BaseViewController {
         marker.position = location.coordinate
         marker.iconView = markerImgView
         marker.snippet = userInfo.id
-        marker.map = mViewMap
+        marker.map = userInfo.available ? mViewMap : nil
         
         return marker
     }
@@ -182,20 +196,7 @@ class LocationViewController: BaseViewController {
     /// - Parameter sender: <#sender description#>
     @IBAction func onButAvailable(_ sender: Any) {
         let user = User.currentUser!
-        
-        user.available = !user.available
-        user.saveToDatabase(withField: User.FIELD_AVAILABLE, value: user.available)
-        
-        mCheckAvailble.setEnabled(enabled: !user.available)
-        
-        if user.available {
-            // show me on map
-            self.myMark?.map = mViewMap
-        }
-        else {
-            // remove me from map
-            self.myMark?.map = nil
-        }
+        setAvailability(!user.available)
     }
     
     /*
@@ -231,7 +232,24 @@ extension LocationViewController: GMSMapViewDelegate {
         let userCurrent = User.currentUser!
         if let location = userCurrent.location {
             self.myMark = addMarkerOnMap(location: location, userInfo: userCurrent)
+
+            if userCurrent.available {
+                // confirm availability to user
+                self.alert(title: "Allow to show you on the map?",
+                           message: "The other users can see you on the map and send wink",
+                           okButton: "Yes",
+                           cancelButton: "No",
+                           okHandler: { (_) in
+                            self.setAvailability(true)
+                }, cancelHandler: { (_) in
+                    self.setAvailability(false)
+                })
+            }
+            else {
+                self.setAvailability(false)
+            }
         }
+
     }
     
     func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {
