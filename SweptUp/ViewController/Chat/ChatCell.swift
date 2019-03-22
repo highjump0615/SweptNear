@@ -34,11 +34,13 @@ class ChatCell: UITableViewCell {
         
         if let user = msg.sender {
             // user photo
-            mButUser.sd_setImage(with: URL(string: user.photoUrl!),
-                                 for: .normal,
-                                 placeholderImage: UIImage(named: "UserDefault"),
-                                 options: .progressiveDownload,
-                                 completed: nil)
+            if let photoUrl = user.photoUrl {
+                mButUser.sd_setImage(with: URL(string: photoUrl),
+                                     for: .normal,
+                                     placeholderImage: UIImage(named: "UserDefault"),
+                                     options: .progressiveDownload,
+                                     completed: nil)
+            }
             
             // user name
             if !user.isEqual(to: userCurrent) {

@@ -33,7 +33,7 @@ class HomeViewController: BaseViewController,
                         UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout {
 
     @IBOutlet weak var mLblTitle: UILabel!
-    @IBOutlet weak var mSwitch: UISwitch!
+    
     @IBOutlet weak var mTableView: UITableView!
     @IBOutlet weak var mButProfile: UIButton!
     
@@ -54,7 +54,6 @@ class HomeViewController: BaseViewController,
         // init controls
         //
         mLblTitle.font = SHTextHelper.lobster13Regular(size: 20)
-        mSwitch.transform = CGAffineTransform(scaleX: 0.7, y: 0.7);
         self.title = " "
         mButProfile.makeRound()
         
@@ -68,9 +67,6 @@ class HomeViewController: BaseViewController,
         mRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
         mTableView.addSubview(mRefreshControl)
         
-        // update user info
-        updateUserInfo()
-        
         //
         // init data
         //
@@ -81,6 +77,9 @@ class HomeViewController: BaseViewController,
         super.viewWillAppear(animated)
         
         hideNavbar(animated: true)
+        
+        // update user info
+        updateUserInfo()
         
         // update data
         winks = winks.filter{$0.status == WinkStatus.waiting}
@@ -138,6 +137,10 @@ class HomeViewController: BaseViewController,
         let winkRef = FirebaseManager.ref().child(Wink.TABLE_NAME).child(userCurrent.id)
         let query = winkRef.queryOrdered(byChild: Wink.FIELD_STATUS).queryEqual(toValue: WinkStatus.waiting.rawValue)
         query.observeSingleEvent(of: .value, with: { (snapshot) in
+            
+            // clear list
+            self.winks.removeAll()
+            
             // notifications not found
             if !snapshot.exists() {
                 self.stopRefreshing()
@@ -146,13 +149,15 @@ class HomeViewController: BaseViewController,
                 return
             }
             
-            // clear list
-            self.winks.removeAll()
             var nFetchCount = 0
             
             // parse wink
             for wink in snapshot.children {
                 let w = Wink(snapshot: wink as! DataSnapshot)
+                if userCurrent.isBlockedUser(w.senderId) {
+                    continue
+                }
+                
                 self.winks.append(w)
                 
                 // fetch user
@@ -172,19 +177,24 @@ class HomeViewController: BaseViewController,
         let userCurrent = User.currentUser!
         let msgRef = FirebaseManager.ref().child(Chat.TABLE_NAME).child(userCurrent.id)
         msgRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // clear list
+            self.chats.removeAll()
+            
             // msg not found
             if !snapshot.exists() {
                 self.stopRefreshing()
                 return
             }
             
-            // clear list
-            self.chats.removeAll()
             var nFetchCount = 0
             
             // parse messages
             for msg in snapshot.children {
                 let c = Chat(snapshot: msg as! DataSnapshot)
+                
+                if userCurrent.isBlockedUser(c.senderId) {
+                    continue
+                }
                 
                 // only add received message
                 if c.senderId == userCurrent.id {
@@ -235,16 +245,6 @@ class HomeViewController: BaseViewController,
         gotoTabbarController(index: 1)
     }
     
-    /// switch for availability has changed
-    ///
-    /// - Parameter sender: <#sender description#>
-    @IBAction func onSwitchChanged(_ sender: Any) {
-        let user = User.currentUser!
-        
-        user.available = mSwitch.isOn
-        user.saveToDatabase(withField: User.FIELD_AVAILABLE, value: user.available)
-    }
-    
     /// update current user info
     func updateUserInfo() {
         let user = User.currentUser!
@@ -257,9 +257,6 @@ class HomeViewController: BaseViewController,
                                     options: .progressiveDownload,
                                     completed: nil)
         }
-        
-        // availability
-        mSwitch.setOn(user.available, animated: true)
     }
     
     @IBAction func onButProfile(_ sender: Any) {

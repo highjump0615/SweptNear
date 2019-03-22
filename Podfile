@@ -29,6 +29,8 @@ target 'SweptUp' do
   pod 'GooglePlaces'
   pod 'ActionSheetPicker-3.0'
   
+  pod 'Toast-Swift'
+  
   pod 'KMPlaceholderTextView', '~> 1.3.0'
 
   target 'SweptUpTests' do

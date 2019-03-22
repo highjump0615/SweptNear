@@ -9,36 +9,21 @@
 import UIKit
 import Firebase
 
-class AdminUsersViewController: BaseViewController {
+class AdminUsersViewController: BaseUsersViewController {
     
     static let USER_ALL = 0
     static let USER_BANNED = 1
     
-    var users: [User] = []
     
     var mnType = AdminUsersViewController.USER_ALL
 
     @IBOutlet weak var mButAll: UIButton!
     @IBOutlet weak var mButBanned: UIButton!
     @IBOutlet weak var mCstUnderline: NSLayoutConstraint!
-    
-    @IBOutlet weak var mTableView: UITableView!
-    var mRefreshControl: UIRefreshControl = UIRefreshControl()
-    
-    private let CELLID_USER = "UserCell"
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        //
-        // init table view
-        //
-        mTableView.register(UINib(nibName: "AdminUserCell", bundle: nil), forCellReuseIdentifier: CELLID_USER)
-        // hide empty cells
-        mTableView.tableFooterView = UIView()
-        // add refresh control
-        mRefreshControl.addTarget(self, action: #selector(refresh), for: .valueChanged)
-        mTableView.addSubview(mRefreshControl)
         
         setQueryType(type: AdminUsersViewController.USER_ALL)
         getUserInfo(bRefresh: false)
@@ -75,14 +60,8 @@ class AdminUsersViewController: BaseViewController {
         setQueryType(type: AdminUsersViewController.USER_BANNED)
     }
     
-    /// refresh table
-    ///
-    /// - Parameter sender: <#sender description#>
-    @objc func refresh(sender: Any) {
-        getUserInfo(bRefresh: true)
-    }
     
-    func getUserInfo(bRefresh: Bool) {
+    override func getUserInfo(bRefresh: Bool) {
         if !bRefresh {
             // show refreshing indicator manually
             self.mTableView.contentOffset = CGPoint(x: 0, y: -self.mRefreshControl.frame.size.height);
@@ -120,10 +99,7 @@ class AdminUsersViewController: BaseViewController {
             self.mTableView.reloadData()
         })
     }
-    
-    func stopRefreshing() {
-        self.mRefreshControl.endRefreshing()
-    }
+        
     
     /*
     // MARK: - Navigation
@@ -160,29 +136,4 @@ class AdminUsersViewController: BaseViewController {
         }
     }
 
-}
-
-extension AdminUsersViewController: UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return users.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let user = users[indexPath.row]
-        
-        let cellItem = tableView.dequeueReusableCell(withIdentifier: CELLID_USER) as! AdminUserCell
-        cellItem.fillContent(user: user)
-        
-        return cellItem
-    }
-}
-
-extension AdminUsersViewController: UITableViewDelegate {
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let profileVC = ProfileViewController(nibName: "ProfileViewController", bundle: nil)
-        profileVC.mUser = users[indexPath.row]
-        self.navigationController?.pushViewController(profileVC, animated: true)
-    }
 }

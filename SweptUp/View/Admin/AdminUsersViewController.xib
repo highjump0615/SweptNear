@@ -15,7 +15,7 @@
                 <outlet property="mButAll" destination="I8e-9A-7jj" id="Dbp-Q5-fzM"/>
                 <outlet property="mButBanned" destination="LNa-6p-7na" id="1hT-zA-Mj7"/>
                 <outlet property="mCstUnderline" destination="JhF-Ff-YRW" id="T23-H9-86d"/>
-                <outlet property="mTableView" destination="cAH-hb-RsP" id="L3J-E8-3ga"/>
+                <outlet property="mTableView" destination="cAH-hb-RsP" id="JeM-Nz-IMd"/>
                 <outlet property="view" destination="iN0-l3-epB" id="51u-vm-UYe"/>
             </connections>
         </placeholder>

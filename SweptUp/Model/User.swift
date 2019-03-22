@@ -34,6 +34,8 @@ class User : BaseModel {
     static let TABLE_NAME_PHOTOS = "photos"
     static let TABLE_NAME_GEOLOCATION = "geolocations"
     
+    static let TABLE_NAME_BLOCK = "usersBlocked"
+    
     static var currentUser: User?
     
     var email = ""
@@ -51,6 +53,9 @@ class User : BaseModel {
     // wink available
     var available: Bool = true
     var photos: [String] = []
+    
+    // blocked users
+    var usersBlocked: [String] = []
     
     //
     // excludes
@@ -158,14 +163,14 @@ class User : BaseModel {
     func fetchPhotos(completion: @escaping(()->())) {
         let photoRef = FirebaseManager.ref().child(User.TABLE_NAME_PHOTOS).child(self.id)
         photoRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // clear list
+            self.photos.removeAll()
+            
             // photos not found
             if !snapshot.exists() {
                 completion()
                 return
             }
-            
-            // clear list
-            self.photos.removeAll()
             
             // parse photos
             if let aryPhoto = snapshot.value! as? [Any] {
@@ -177,6 +182,26 @@ class User : BaseModel {
             }
             
             completion()
+        })
+    }
+    
+    /// Fetch blocked users
+    func fetchBlockedUsers() {
+        let dbRef = FirebaseManager.ref().child(User.TABLE_NAME_BLOCK).child(self.id)
+        dbRef.observeSingleEvent(of: .value, with: { (snapshot) in
+            // clear list
+            self.usersBlocked.removeAll()
+            
+            // photos not found
+            if !snapshot.exists() {
+                return
+            }
+            
+            // parse user ids
+            for userInfo in snapshot.children {
+                let u = userInfo as! DataSnapshot
+                self.usersBlocked.append(u.key)
+            }
         })
     }
     
@@ -199,5 +224,44 @@ class User : BaseModel {
         geoFire.setLocation(location, forKey: self.id, withCompletionBlock: { (error) in
             completion(error)
         })
+    }
+    
+    func isBlockedUser(_ userId: String) -> Bool {
+        return self.usersBlocked.contains(userId)
+    }
+    
+    
+    /// block or unblock user based on current state
+    ///
+    /// - Parameter userId: <#userId description#>
+    func blockUser(_ userId: String?) {
+        guard let strUserId = userId else {
+            return
+        }
+        
+        let dbRef = FirebaseManager.ref().child(User.TABLE_NAME_BLOCK).child(self.id)
+        
+        // already blocked, unblock user
+        if let index = usersBlocked.index(of: strUserId) {
+            usersBlocked.remove(at: index)
+            
+            // remove from db
+            dbRef.child(strUserId).removeValue()
+        }
+        // block user
+        else {
+            usersBlocked.append(strUserId)
+            
+            // add to db
+            dbRef.child(strUserId).setValue(true)
+        }
+    }
+    
+    /// set availability of user
+    ///
+    /// - Parameter available: <#available description#>
+    func makeAvailable(_ available: Bool) {
+        self.available = available
+        self.saveToDatabase(withField: User.FIELD_AVAILABLE, value: available)
     }
 }

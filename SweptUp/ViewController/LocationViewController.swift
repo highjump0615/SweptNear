@@ -20,8 +20,12 @@ class LocationViewController: BaseViewController {
     @IBOutlet weak var mLblDistance: UILabel!
     @IBOutlet weak var mSliderDistance: UISlider!
     
+    @IBOutlet weak var mCheckAvailble: SignupCheckbox!
+    
     var users: [User] = []
     var mqueryLocation: GFCircleQuery? = nil
+    
+    var myMark: GMSMarker?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +37,7 @@ class LocationViewController: BaseViewController {
         self.mViewTopbar.addBottomBorderWithColor(color: colorGray, width: 1.0)
         
         // init distance filter
-        onDistanceChanged(self.view)        
+        onDistanceChanged(self.view)
     }
 
     override func didReceiveMemoryWarning() {
@@ -42,9 +46,27 @@ class LocationViewController: BaseViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         // title
         self.tabBarController?.navigationItem.title = "Location"
         mqueryLocation = nil
+    }
+    
+    func setAvailability(_ available: Bool) {
+        mCheckAvailble.setEnabled(enabled: !available)
+        
+        // update user data
+        User.currentUser?.makeAvailable(available)
+        
+        if available {
+            // show me on map
+            self.myMark?.map = mViewMap
+        }
+        else {
+            // remove me from map
+            self.myMark?.map = nil
+        }
     }
     
     func initMap() {
@@ -64,15 +86,19 @@ class LocationViewController: BaseViewController {
         }
     }
     
-    func addMarkerOnMap(location: CLLocation, userInfo: User) {
+    func addMarkerOnMap(location: CLLocation, userInfo: User) -> GMSMarker {
         // custom marker view with user photo
         let markerWidth = 30.0
         let markerImgView = UIImageView(frame: CGRect(x: 0, y: 0,
                                                       width: markerWidth, height: markerWidth))
-        markerImgView.sd_setImage(with: URL(string: userInfo.photoUrl!),
-                                  placeholderImage: UIImage(named: "UserDefault"),
-                                  options: .progressiveDownload,
-                                  completed: nil)
+        markerImgView.image = UIImage(named: "UserDefault")
+        
+        if let photoUrl = userInfo.photoUrl {
+            markerImgView.sd_setImage(with: URL(string: photoUrl),
+                                      placeholderImage: UIImage(named: "UserDefault"),
+                                      options: .progressiveDownload,
+                                      completed: nil)
+        }
         markerImgView.makeRoundBorder(width: 1.0, color: Constants.gColorTheme)
         
         // Creates a marker in the center of the map.
@@ -80,7 +106,9 @@ class LocationViewController: BaseViewController {
         marker.position = location.coordinate
         marker.iconView = markerImgView
         marker.snippet = userInfo.id
-        marker.map = mViewMap
+        marker.map = userInfo.available ? mViewMap : nil
+        
+        return marker
     }
     
     @IBAction func onButFilter(_ sender: Any) {
@@ -114,7 +142,15 @@ class LocationViewController: BaseViewController {
             mqueryLocation?.observe(.keyEntered) { (key, location) in
                 print("Entered:\(key) latitude:\(location.coordinate.latitude) longitude:\(location.coordinate.longitude)" )
                 
-                if key == userCurrent?.id { return } //ignore me
+                //ignore me
+                if key == userCurrent?.id {
+                    return
+                }
+                
+                // do not show blocked users
+                if userCurrent!.isBlockedUser(key) {
+                    return
+                }
                 
                 User.readFromDatabase(withId: key, completion: { (user) in
                     if let user = user {
@@ -155,6 +191,14 @@ class LocationViewController: BaseViewController {
         mLblDistance.text = "Maximum of \(mSliderDistance.value) km"
     }
     
+    /// button for setting availability
+    ///
+    /// - Parameter sender: <#sender description#>
+    @IBAction func onButAvailable(_ sender: Any) {
+        let user = User.currentUser!
+        setAvailability(!user.available)
+    }
+    
     /*
     // MARK: - Navigation
 
@@ -179,6 +223,33 @@ extension LocationViewController: GMSMapViewDelegate {
         if mqueryLocation == nil {
             onSliderTouchUp(self.view)
         }
+        
+        // add current user
+        if self.myMark != nil {
+            return
+        }
+        
+        let userCurrent = User.currentUser!
+        if let location = userCurrent.location {
+            self.myMark = addMarkerOnMap(location: location, userInfo: userCurrent)
+
+            if userCurrent.available {
+                // confirm availability to user
+                self.alert(title: "Allow to show you on the map?",
+                           message: "The other users can see you on the map and send wink",
+                           okButton: "Yes",
+                           cancelButton: "No",
+                           okHandler: { (_) in
+                            self.setAvailability(true)
+                }, cancelHandler: { (_) in
+                    self.setAvailability(false)
+                })
+            }
+            else {
+                self.setAvailability(false)
+            }
+        }
+
     }
     
     func mapViewDidFinishTileRendering(_ mapView: GMSMapView) {

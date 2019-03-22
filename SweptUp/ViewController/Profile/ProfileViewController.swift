@@ -34,8 +34,9 @@ class ProfileViewController: BaseViewController,
     
     var mUser: User?
     var mViewSent: ProfilePopupSent?
-    var mViewReport: ProfilePopupReport?
     var mWink: Wink?
+    
+    var helper: ReportHelper?
     
     @IBOutlet weak var mTableView: UITableView!
     
@@ -78,8 +79,7 @@ class ProfileViewController: BaseViewController,
                                                                     action: #selector(onButReport))
                 
                 // init report user popup view
-                mViewReport = ProfilePopupReport.getView(user: mUser) as? ProfilePopupReport
-                self.view.addSubview(mViewReport!)
+                helper = ReportHelper(user: mUser, delegate: self)
             }
         }
         
@@ -168,11 +168,9 @@ class ProfileViewController: BaseViewController,
         self.mTableView.reloadData()
     }
     
-    /// report user
+    /// report & block
     @objc func onButReport() {
-        // show report view
-        mViewReport?.frame = self.view.bounds
-        mViewReport?.showView(bShow: true, animated: true)
+        helper?.showMenuDialog()
     }
     
     /// refresh table
@@ -402,4 +400,13 @@ class ProfileViewController: BaseViewController,
         
         return CGSize(width: itemWidth, height: itemWidth)
     }
+}
+
+
+extension ProfileViewController: ReportHelperDelegate {
+    
+    func getViewController() -> UIViewController {
+        return self
+    }
+    
 }
