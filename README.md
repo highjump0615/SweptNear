@@ -40,8 +40,7 @@ Main language: Swift 4.0
 ``locationManager.startUpdatingLocation()``  
 - Google Firebase for backend  
 - Push notification using Firebase Clound Messaging(FCM)
-  - [Sending push notification from App](https://firebase.google.com/docs/cloud-messaging/send-message?authuser=0#send_messages_using_the_legacy_app_server_protocols
-https://firebase.google.com/docs/cloud-messaging/auth-server?authuser=0)
+  - [Sending push notification from App](https://firebase.google.com/docs/cloud-messaging/send-message)
 
 #### 2.3 Code tricks  
 - Methods with completion callback using closures  
