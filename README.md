@@ -64,7 +64,7 @@ func readFromDatabaseChild(withField: String, completion: @escaping((Any?)->()))
   - Caching all images  
   - Save image to cache  
 ``SDWebImageManager.shared().saveImage()``  
-- GoogleMaps v2.7.0, GooglePlaces v 2.7.0  
+- GoogleMaps v2.7.0, GooglePlaces v2.7.0  
 [https://developers.google.com/maps/documentation/ios-sdk/intro](https://developers.google.com/maps/documentation/ios-sdk/intro)  
 - [SVProgressHUD](https://github.com/SVProgressHUD/SVProgressHUD) v2.2.3  
 - [EmptyDataSet-Swift](https://github.com/Xiaoye220/EmptyDataSet-Swift) v4.0.5  
